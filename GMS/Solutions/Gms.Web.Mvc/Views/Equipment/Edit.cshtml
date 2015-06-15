@@ -1,0 +1,83 @@
+﻿@using Gms.Domain
+@model Gms.Domain.Equipment
+
+@{
+    Layout = null;
+}
+        
+        <form method="post" action="/Equipment/SaveOrUpdate">
+            <table>
+            
+                <tr>
+                    <td>类别</td>
+                    <td>
+                        @Html.DropDownListForCommonCode(c=>c.EquiType,CommonCodeType.物料类型)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>名称</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.Name)
+                        @Html.HiddenFor(c=>c.Id)
+                    </td>
+                </tr>
+                    
+                <tr>
+                    <td>型号</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.Model)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>单位</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.Unit,new{style="width: 40px;"})
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>数量</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.Quantity,new{style="width: 40px;"})
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>最低数量</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.MinQuantity,new{style="width: 40px;"})
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>单价</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.Price,new{style="width: 40px;"})
+                        元
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>备注</td>
+                    <td>
+                        @Html.TextAreaFor(c=>c.Note)
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+
+
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        
+        $("#btnSave").click(function () {
+            window.returnValue = "http://www.51js.com";
+            window.close();
+        });
+
+    });
+
+</script>*@

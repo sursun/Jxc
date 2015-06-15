@@ -1,0 +1,78 @@
+﻿@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+@model Gms.Domain.StoreChange
+
+<body>
+    
+    <div align="center" style="margin-top: 50px;">
+        <div class="easyui-panel" style="width:450px;height:260px;padding:10px;background:#fafafa;">
+    
+            <form id="StoreDelete" method="POST" action="/GlassStore/StoreDeleteAction">
+                <table>
+                    <tr>
+                        <td style="width: 80px;">库存：</td>
+                        <td>
+                            <input id="GlassStore_Name" class="messager-input disabledinput" disabled="disabled"  />
+                            <input id="GlassStore_Id" class="messager-input" style="display: none" name="GlassStore.Id"/>
+                            <span id="GlassStore_Amount" style="font-size: 18px;font-weight: bold;color: red;"></span>
+                            <a id="select_store" href="#">选择库存</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>订单：</td>
+                        <td>
+                            <input id="Order_CodeNo" class="messager-input disabledinput" disabled="disabled"  />
+                            <input id="Order_Id" class="messager-input" style="display: none" name="Order.Id"/>
+                            <a id="select_order" href="#">选择订单</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>用途：</td>
+                        <td>
+                            @Html.DropDownListForEnum(c=>c.GlassUsage,null,null)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>数量：</td>
+                        <td>
+                            @Html.TextBoxFor(c=>c.Amount)片
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>备注：</td>
+                        <td>
+                            @Html.TextAreaFor(c=>c.Note)
+                        </td>
+                    </tr>
+
+                </table>
+            </form>
+            <div style="padding-top: 10px; margin-top:10px;text-align: right;border-top: 2px solid brown">
+                <a id="btnSubmit" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'">提交</a>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div id="selcet_store_dlg" dlgtitle="选择库存" style="display: none;">
+        <iframe id="selcet_store_dlg_content" style="width: 100%; height: 100%; border: none;">
+            @*动态加载*@
+        </iframe>
+    </div>
+
+    <div id="selcet_order_dlg" dlgtitle="选择订单" style="display: none;">
+        <iframe id="selcet_order_dlg_content" style="width: 100%; height: 100%; border: none;">
+            @*动态加载*@
+        </iframe>
+    </div>
+</body>
+
+<script type="text/javascript" src="@Url.Content("/Scripts/GlassStore/GlassStore.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        GlassStore.StoreDelete();
+    });
+
+</script>

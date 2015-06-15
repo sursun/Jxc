@@ -1,0 +1,68 @@
+﻿
+
+.wlbg {
+	background: url(mgt/../mgt/images/wlbg.jpg) repeat-x #f6fbff; margin: 0 auto; 
+    /*background-color: #0048BE;*/
+    color:#FFFFFF;
+}
+.top {
+	width: 1000px; margin: 0 auto; height:78px; /*background: url(mgt/images/topbg.jpg) no-repeat;*/
+}
+
+.t_name {
+	float:left; margin:5px 0; 
+    padding-left:35px; 
+    overflow: hidden; 
+    width:390px; max-width:370px; 
+    width:expression(document.body.clientWidth > 370? "370px": "auto" ); 
+    /*height:38px; 
+	line-height: 38px; 
+    color: #161819; */
+    table-layout:fixed; word-wrap: break-word; word-break: break-all; 
+}
+.t_name h1 { 
+	overflow: hidden; 
+    font-family: "黑体", "宋体", Arial, "MS Serif", serif ; 
+    font-weight: normal; 
+    font-size: 24px; 
+}
+
+.t_menu { 
+	float:right; margin:0px 10px 0 0;
+    /*color: #161819; */
+}
+.t_menu ul li { 
+	float:left;line-height:18px;  display:inline; padding:3px 7px; background:url(mgt/images/t_menu_line.gif) no-repeat right center;
+}
+.t_menu a { 
+	color: #FFFFFF;
+    text-decoration:none;
+}
+.t_menu a:hover { 
+	color:#FFFFFF;
+    text-decoration: underline;
+}
+
+.icon-user{
+	background:url('../Content/img/user.png') no-repeat center center;
+}
+
+.icon-customer{
+	background:url('../Content/img/customer.png') no-repeat center center;
+}
+
+.icon-order{
+	background:url('../Content/img/order.png') no-repeat center center;
+}
+.icon-store{
+	background:url('../Content/img/store.png') no-repeat center center;
+}
+.icon-config{
+	background:url('../Content/img/config.png') no-repeat center center;
+}
+.icon-company{
+	background:url('../Content/img/company.png') no-repeat center center;
+}
+.icon-tree-node{
+	background:url('../Content/img/tree_node.png') no-repeat center center;
+}

@@ -1,0 +1,40 @@
+﻿@using Gms.Domain
+@model Gms.Domain.Equipment
+
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body>
+
+    <div id="toolbar" style="padding: 5px; height: auto">
+        
+        <div>
+            物料类型：
+            @Html.DropDownListForCommonCode(c=>c.EquiType,CommonCodeType.物料类型,"GlassTypeId","全部")
+
+            名称：
+            <input name="Name" class="messager-input" />
+            
+            数量：<input name="Quantity.Start" class="messager-input" style="width: 80px" />
+            至<input name="Quantity.End" class="messager-input" style="width: 80px" />
+
+            <a href="#" id="equi_search" class="easyui-linkbutton search" iconcls="icon-search">搜索</a>
+        </div>
+        
+        
+    </div>
+     
+    <table id="equi_search_list" url="@Url.Action("WarningList","Equipment")" >
+            
+    </table>
+    
+        
+</body>
+<script type="text/javascript" src="@Url.Content("/Scripts/equi/equi.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Equipment.Warning();
+    });
+
+</script>

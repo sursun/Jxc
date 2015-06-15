@@ -1,0 +1,66 @@
+﻿<RecentFiles>
+  <RecentFiles>
+    <File id="9544D94B-9B6E-4B61-8A09-88382205BF86/f:Repository.cs" caret="3829" fromTop="10" />
+    <File id="9544D94B-9B6E-4B61-8A09-88382205BF86/f:IRoleAuthRepository.cs" caret="0" fromTop="0" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:Shared/f:MainLayout.cshtml" caret="7496" fromTop="10" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:Shared/f:EmptyLayout.cshtml" caret="1047" fromTop="16" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:User/f:Index.cshtml" caret="1476" fromTop="22" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:User/f:Edit.cshtml" caret="1250" fromTop="20" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Scripts/d:User/f:User.js" caret="286" fromTop="13" />
+    <File id="9544D94B-9B6E-4B61-8A09-88382205BF86/f:IUserRepository.cs" caret="293" fromTop="13" />
+    <File id="9544D94B-9B6E-4B61-8A09-88382205BF86/f:RoleAuthRepository.cs" caret="361" fromTop="0" />
+    <File id="8DEF56CD-601E-443C-9DCE-C4EC54C0B6A6/f:User.cs" caret="1590" fromTop="14" />
+    <File id="9544D94B-9B6E-4B61-8A09-88382205BF86/f:OrderRepository.cs" caret="327" fromTop="7" />
+    <File id="9544D94B-9B6E-4B61-8A09-88382205BF86/f:UserRepository.cs" caret="542" fromTop="17" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:CastleWindsor/f:ComponentRegistrar.cs" caret="1189" fromTop="18" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Controllers/f:BaseController.cs" caret="2318" fromTop="12" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:Costomer/f:Index.cshtml" caret="0" fromTop="0" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Controllers/f:UserController.cs" caret="436" fromTop="0" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Controllers/f:CostomerController.cs" caret="321" fromTop="0" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Controllers/f:DashboardController.cs" caret="381" fromTop="0" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/f:Global.asax.cs" caret="3923" fromTop="22" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/f:Web.config" caret="2046" fromTop="16" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Controllers/f:SGAccountController.cs" caret="1699" fromTop="14" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:Order/f:Index.cshtml" caret="1243" fromTop="18" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:Order/f:Edit.cshtml" caret="7666" fromTop="11" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:Order/f:ProductEdit.cshtml" caret="352" fromTop="18" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:Costomer/f:Edit.cshtml" caret="1093" fromTop="28" />
+    <File id="8DEF56CD-601E-443C-9DCE-C4EC54C0B6A6/f:Costomer.cs" caret="442" fromTop="1" />
+    <File id="8DEF56CD-601E-443C-9DCE-C4EC54C0B6A6/f:Order.cs" caret="0" fromTop="0" />
+    <File id="8DEF56CD-601E-443C-9DCE-C4EC54C0B6A6/f:ProductCure.cs" caret="557" fromTop="9" />
+    <File id="8DEF56CD-601E-443C-9DCE-C4EC54C0B6A6/f:Product.cs" caret="1306" fromTop="8" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Controllers/f:OrderController.cs" caret="4186" fromTop="7" />
+  </RecentFiles>
+  <RecentEdits>
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Models/f:ChangePasswordViewModel.cs" caret="384" fromTop="4" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:User/f:Index.cshtml" caret="626" fromTop="9" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:User/f:Edit.cshtml" caret="478" fromTop="10" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Models/f:LogOnViewModel.cs" caret="404" fromTop="15" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Content/f:login.css" caret="2464" fromTop="11" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:SGAccount/f:Login.cshtml" caret="1218" fromTop="4" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:Home/f:Welcome.cshtml" caret="183" fromTop="14" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:Shared/f:MainLayout.cshtml" caret="1889" fromTop="8" />
+    <File id="9544D94B-9B6E-4B61-8A09-88382205BF86/f:UserRepository.cs" caret="501" fromTop="14" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Scripts/d:User/f:User.js" caret="393" fromTop="15" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Controllers/f:SGAccountController.cs" caret="757" fromTop="11" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Controllers/f:UserController.cs" caret="286" fromTop="9" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Controllers/f:CostomerController.cs" caret="321" fromTop="13" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Controllers/f:HomeController.cs" caret="99" fromTop="4" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Controllers/f:ProductController.cs" caret="213" fromTop="10" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Controllers/f:RoleController.cs" caret="436" fromTop="6" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Controllers/f:BaseController.cs" caret="350" fromTop="5" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:Home/f:Index.cshtml" caret="219" fromTop="4" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:Shared/f:Error.cshtml" caret="155" fromTop="12" />
+    <File id="CC4A233E-BE8A-47CC-A87C-8352BFD557B7/f:App.config" caret="1347" fromTop="13" />
+    <File id="CC4A233E-BE8A-47CC-A87C-8352BFD557B7/d:Gms.Data/f:BaseDataTest.cs" caret="1387" fromTop="18" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Scripts/d:Order/f:Order.js" caret="9273" fromTop="0" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/f:Web.config" caret="3301" fromTop="24" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/f:Global.asax.cs" caret="1818" fromTop="9" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Scripts/d:swfupload/f:handlers.js" caret="2410" fromTop="12" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:Shared/f:EmptyLayout.cshtml" caret="599" fromTop="8" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Scripts/d:swfupload/f:default.css" caret="1997" fromTop="15" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:Order/f:Edit.cshtml" caret="8668" fromTop="7" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Controllers/f:OrderController.cs" caret="13722" fromTop="6" />
+    <File id="39613BA0-1206-4A4B-A16A-C1F2A22D1267/d:Views/d:Order/f:ProductEdit.cshtml" caret="0" fromTop="0" />
+  </RecentEdits>
+</RecentFiles>

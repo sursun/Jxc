@@ -1,0 +1,74 @@
+﻿@using Gms.Domain
+@model Gms.Domain.CureProcess
+
+@{
+    Layout = null;
+}
+
+<form id="eidtform" method="post" action="/CureProcess/SaveOrUpdate">
+    
+    <input name="Id" style="display: none" value="@Model.Id"/>
+
+    <table>
+        <tr>
+            <td>过程名</td>
+            <td>
+                @Html.TextBoxFor(c => c.Name)
+            </td>
+        </tr>
+        
+        <tr>
+            <td>加工类型</td>
+            <td style="width: 200px;">
+                @Html.CheckBoxListForCommonCode(c=>c.CureTypes,CommonCodeType.加工类型,"relCureTypes")
+                
+@*                <span><input name="cureTypes" value="2" type="checkbox">
+                    <label>qiege</label>
+                </span>
+                <span><input name="cureTypes" value="3" type="checkbox">
+                    <label>ganghua</label>
+                </span>
+                <span><input name="cureTypes" value="4" type="checkbox">
+                    <label>mobian</label>
+                </span>
+                <span><input name="cureTypes" value="7" type="checkbox">
+                    <label>zhuankong</label>
+                </span>*@
+
+            
+            </td>
+        </tr>
+        
+        <tr>
+            <td style="vertical-align: top;">过程描述</td>
+            <td >
+                @Html.TextBoxFor(c => c.DescString)
+                <p style="color: #8e8e8e">例如：开板=>钻孔=>钢化</p>
+            </td>
+        </tr>
+
+        <tr>
+            <td>按面积计算单价</td>
+            <td>
+                @Html.TextBoxFor(c=>c.AreaPrice)
+            </td>
+        </tr>
+
+        <tr>
+            <td>按边长计算单价</td>
+            <td>
+                @Html.TextBoxFor(c=>c.EdgePrice)
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>备注</td>
+            <td>
+                @Html.TextAreaFor(c=>c.Note)
+            </td>
+        </tr>
+
+    </table>
+
+</form>

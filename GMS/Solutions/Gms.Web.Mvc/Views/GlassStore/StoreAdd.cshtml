@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+@using Gms.Domain
+@model Gms.Domain.GlassStore
+
+<body>
+    
+    <div align="center" style="margin-top: 50px;">
+        <div class="easyui-panel" style="width:500px;height:180px;padding:10px;background:#fafafa;">
+    
+            <form id="StoreAdd" method="POST" action="/GlassStore/StoreAddAction">
+                <table>
+                    <tr>
+                        <td>玻璃品种：</td>
+                        <td>
+                            @Html.DropDownListForCommonCode(c=>c.GlassType,CommonCodeType.玻璃品种)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>厚度：</td>
+                        <td>
+                            @Html.DropDownListForEnum(c=>c.Thickness,null,null)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>规格（毫米）：</td>
+                        <td>
+                            @Html.TextBoxFor(c=>c.LongEdge)
+                            *
+                            @Html.TextBoxFor(c=>c.ShortEdge)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>数量：</td>
+                        <td>
+                            @Html.TextBoxFor(c=>c.Amount)
+                        </td>
+                    </tr>
+                    
+                </table>
+            </form>
+            
+            <div style="padding-top: 10px; margin-top:10px;text-align: right;border-top: 2px solid brown">
+                <a id="btnSubmit" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'">提交</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="@Url.Content("/Scripts/GlassStore/GlassStore.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        GlassStore.StoreAdd();
+    });
+
+</script>

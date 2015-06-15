@@ -1,0 +1,97 @@
+﻿@model SecurityGuard.ViewModels.LogOnViewModel
+@{
+    ViewBag.Title = "企业工作平台---登录";
+}
+
+
+<script src="@Url.Content("~/Content/SecurityGuard/scripts/jquery-1.6.1.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/SecurityGuard/scripts/modernizr-1.7.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/SecurityGuard/scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/SecurityGuard/scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/login.css")"/>
+<DIV id="bodyContainer">
+    <DIV id="headerContainer">
+        <DIV id="header_top">
+            <DIV class="himg"><A href="#"><IMG title=玻璃加工企业工作平台 border="0" 
+                                             src="@Url.Content("~/Content/img/toplogo.jpg")"></A> </DIV>
+            <DIV class="slogan"></DIV>
+            <DIV class="htext">
+  
+                <DIV class="hoper">服务热线：18653170063 </DIV>
+
+            </DIV>
+
+        </DIV>
+        <DIV class="header_simpline"></DIV>
+        <DIV class="cb"></DIV>
+
+    </DIV>
+    <h2></h2>
+
+    <div class="login_bo_t"></div>
+    <div class="login_bo">
+        <div class="login_win" id="login_win">
+            <div class="ti">
+                <b class="login_ico login_ti_ico"></b>登录信息
+            </div>
+            @using (Html.BeginForm((string)ViewBag.FormAction, "SGAccount", new { returnUrl = Request.QueryString["ReturnUrl"] }))
+            {
+                
+ 
+                <div class="label">
+                    <span class="lb">
+                        @Html.LabelFor(model => model.UserName)
+                    </span>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.UserName)
+                    @Html.ValidationMessageFor(model => model.UserName)
+                </div></div>
+                
+                <div class="label">
+<span class="lb">  @Html.LabelFor(model => model.Password):</span>
+
+
+ 
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Password)
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+                    <div class="cb"></div>
+                </div>
+  
+                <div id="error_msg" class="error_msg">
+                    @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                    </div>
+                <div id="insertDiv" class="btn">
+                    <input class="login_ico login_nor_btn" tabIndex=3 value="登  录" type="submit"  />
+                    <div class="cb"></div>
+                </div>
+                <div class="no_acco">如忘记密码，请联系管理员。
+											
+                                    	</div>
+
+            }
+            </div>
+            <div class="login_faq">
+                                	<ul>
+										<li>
+											·勿将密码透露给他人
+										</li>
+										<li style="width: 200px;">
+											·保护好您的密码
+										</li>
+									</ul>
+                                     <div class="cb"></div>
+                                </div>
+        
+        
+        </div>
+    <div class="login_bo_b"></div>
+    </DIV>
+
+<script type="text/javascript">
+    $(function () {
+        $("#UserName").focus();
+    });
+</script>

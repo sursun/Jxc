@@ -1,0 +1,46 @@
+﻿
+@using Gms.Common
+@model Gms.Domain.CommonCode
+
+@{
+    Layout = null;
+}
+
+<form id="doctorform" method="post" action="/CommonCode/SaveOrUpdate">
+
+    <table>
+        <tr>
+            <td>类型</td>
+            <td>
+                @*@Html.DropDownListForEnum(c=>c.Type,"",null)*@
+                <input name="Type" style="display: none" value="@Model.Type"/>
+                <input disabled="disabled" value="@Model.Type"/>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>上级名称</td>
+            <td>
+                @Html.TextBoxFor(c => c.Parent.Id,new{@style="display: none"})
+                @Html.TextBoxFor(c => c.Parent.Name,new{@disabled="disabled"})
+            </td>
+        </tr>
+        <tr>
+            <td>名称</td>
+            <td>
+                @Html.TextBoxFor(c => c.Id,new{@style="display: none"})
+                @Html.TextBoxFor(c => c.Name)
+            </td>
+        </tr>
+        
+        <tr>
+            <td>备注</td>
+            <td>
+                @Html.TextAreaFor(c=>c.Note)
+
+            </td>
+        </tr>
+
+    </table>
+
+</form>

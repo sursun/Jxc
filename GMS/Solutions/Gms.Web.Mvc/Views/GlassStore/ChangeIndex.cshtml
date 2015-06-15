@@ -1,0 +1,37 @@
+﻿@using Gms.Domain
+@model Gms.Domain.StoreChange
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body>
+
+    <div id="toolbar" style="padding: 5px; height: auto">
+        <div>
+            玻璃品种：
+            @Html.DropDownListForCommonCode(c=>c.GlassStore.GlassType,CommonCodeType.玻璃品种,"GlassTypeId","全部")
+            厚度：
+            @Html.DropDownListForEnum(c=>c.GlassStore.Thickness,"Thickness","全部",null)
+            用途：
+            @Html.DropDownListForEnum(c=>c.GlassUsage,"全部",null)
+            订单编号：<input name="OrderCodeNo" class="messager-input" style="width: 80px" />
+            创建日期：<input name="CreateTime.Start" class="easyui-datebox" style="width: 80px" />
+            至<input name="CreateTime.End" class="easyui-datebox" style="width: 80px" />
+            <a href="#" id="storechange_search" class="easyui-linkbutton search" iconcls="icon-search">搜索</a>
+        </div>
+    </div>
+     
+    <table id="storechange_search_list" url="@Url.Action("ChangeList","GlassStore")" >
+            
+    </table>
+        
+        
+</body>
+
+<script type="text/javascript" src="@Url.Content("/Scripts/GlassStore/GlassStore.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        GlassStore.StoreChangeInit();
+    });
+
+</script>

@@ -1,0 +1,271 @@
+﻿@model List<ProductModel>
+
+<html>
+    <head>
+        <title>产品列表</title>
+        
+       <link rel="stylesheet" href="@Url.Content("/Content/css.css")" />
+
+        <script type="text/javascript" src="/Scripts/jquery.sheet-3.1-rc-3/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="/Scripts/jquery.sheet-3.1-rc-3/jquery.sheet.js"></script>
+        
+        <script type="text/javascript">
+
+            $.sheet.preLoad('/Scripts/jquery.sheet-3.1-rc-3/');
+
+            $(function() {
+                var jS = $('#sheetParent').sheet({
+                    editableNames: false,
+                        barMenus: false,
+                        editable:true,
+                    //resizableCells: false,
+                        contextmenuTop: null,
+                        contextmenuCell: null
+                    }
+                ).getSheet(); //.addColumn();
+                
+                $('#sheetParent').getSheet().frozenAt().row = 1;
+                $('#sheetParent').getSheet().toggleHide.column(11);
+                
+                jS.cellStyleToggle('styleWrap');
+                
+
+                $("#EditProduct").click(function () {
+                    
+                    $('#sheetParent').getSheet().toggleState();
+                    $('#sheetParent').getSheet().frozenAt().row = 1;
+                    $('#sheetParent').getSheet().toggleHide.column(11);
+                    
+                    $("#EditProduct").hide();
+                    $("#SaveProduct").show();
+                });
+
+                $("#btnSaveProducts").click(function () {
+                    if (!jS.changed) {
+                        $('#sheetParent').getSheet().toggleState();
+                        $("#EditProduct").show();
+                        $("#SaveProduct").hide();
+                        return true;
+                    }
+                    
+                    saveData();
+                    
+                    //window.location.reload();
+                });
+
+                var saveData = function() {
+
+                    var oId = $("#OrderId").val();
+                    //
+                    //将产品保存至服务器
+                    //
+                    var sheet = $('#sheetParent').getSheet();
+                    var rows = sheet.spreadsheets[0];
+
+                    var len = rows.length;
+                    if (len < 3)
+                        return false;
+
+                    var objs = new Array();
+                    
+                    for (var i = 2; i < (len - 1) ; i++) {
+                        
+                        var rec = rows[i];
+
+                        objs.push({
+                            OrderId: oId,
+                        Id:rec[11].value,
+                        Name:rec[1].value,
+                        GlassTypeString:rec[2].value,
+                        ThicknessString:rec[3].value,
+                        LongEdge:rec[4].value,
+                        ShortEdge:rec[5].value,
+                        EdgeLength:rec[7].value,
+                        Area:rec[8].value,
+                        Amount:rec[6].value,
+                        Price:rec[9].value,
+                        Note: rec[10].value
+                        });
+
+                    }
+                    
+                    //保存合计行（最后一行）
+                    var lastRow = rows[len - 1];
+
+                    var strObjs = SerializeJson(objs);
+   
+                    //保存到服务器
+                    $.post('/Product/SaveProducts', {
+                        orderId: oId,
+                        totalPrice: lastRow[9].value,
+                        products: strObjs
+                    }, function (data) {
+                        if (data.success) {
+                            alert("保存成功！"); //window.location.reload();
+                        } else {
+                            alert(data.data);
+                        }
+
+                    }, "json");
+                };
+
+            });
+
+            function SerializeJson(obj) {
+                switch (obj.constructor) {
+                    case Object:
+                        var str = "{";
+                        for (var o in obj) {
+                            str += o + ":" + SerializeJson(obj[o]) + ",";
+                        }
+                        if (str.substr(str.length - 1) == ",")
+                            str = str.substr(0, str.length - 1);
+                        return str + "}";
+                        break;
+                    case Array:
+                        var str = "[";
+                        for (var o in obj) {
+                            str += SerializeJson(obj[o]) + ",";
+                        }
+                        if (str.substr(str.length - 1) == ",")
+                            str = str.substr(0, str.length - 1);
+                        return str + "]";
+                        break;
+                    case Boolean:
+                        return "\"" + obj.toString() + "\"";
+                        break;
+                    case Date:
+                        return "\"" + obj.toString() + "\"";
+                        break;
+                    case Function:
+                        break;
+                    case Number:
+                        return "\"" + obj.toString() + "\"";
+                        break;
+                    case String:
+                        return "\"" + obj.toString() + "\"";
+                        break;
+                }
+            }
+
+        </script>
+
+        <style>
+            .tr_top td{
+                font-weight: bold;
+            }
+
+            .tr_bottom td{
+                font-weight: bold;
+            }
+
+        </style>
+    </head>
+    <body>
+        @{
+
+            <div id="panel_tools" style="margin: 10px 5px 10px 5px;">
+                @*<a href="#" id="EditProduct" >编辑</a>*@
+                <a id="btnSaveProducts" href="#" class="btn-small">保存</a>
+                @*<a href="#" id="SaveProduct" style="display: none;" >保存</a>*@
+            </div>
+
+            int nCount = 0;
+        }
+        
+        <div style="display: none">
+            <input id="OrderId" value="@ViewData["OrderId"]"/>
+        </div>
+        
+        <div id="sheetParent" style="height: 450px;">
+            <table title="产品列表">        
+		       
+                <tr class="tr_top">
+                    <td>产品名称</td>
+                    <td style="width: 80px;" col-data-formula="=DROPDOWN(@ViewData["GlasssTypeString"])">玻璃品种</td>
+                    <td col-data-formula="=DROPDOWN(@ViewData["ThicknessString"])">玻璃厚度</td>
+                    <td default_value="0">长边</td>
+                    <td default_value="0">短边</td>
+                    <td default_value="0">数量</td>
+                    <td default_value="0">边长</td>
+                    <td default_value="0">面积</td>
+                    <td default_value="0">小计（元）</td>
+                    <td default_value="无">加工说明</td>
+                    <td default_value="0">ID</td>
+                </tr>
+                
+                @if (Model != null)
+                {
+                    
+                    foreach (var productModel in Model)
+                    {
+                        nCount++;
+                        <tr>
+                            <td>@productModel.Name</td>
+                            <td data-formula="=DROPDOWN(@ViewData["GlasssTypeString"])">@productModel.GlassTypeString</td>
+                            <td data-formula="=DROPDOWN(@ViewData["ThicknessString"])">@productModel.ThicknessString</td>
+                            <td>@productModel.LongEdge</td>
+                            <td>@productModel.ShortEdge</td>
+                            <td>@productModel.Amount</td>
+                            <td>@productModel.EdgeLength</td>
+                            <td>@productModel.Area</td>
+                            <td>@productModel.Price</td>
+                            <td>@productModel.Note</td>
+                            <td>@productModel.Id</td>
+                        </tr>
+                    }
+
+                    if (nCount == 0)
+                    {
+                        <tr>
+                            <td></td>
+                            <td data-formula="=DROPDOWN(@ViewData["GlasssTypeString"])"></td>
+                            <td data-formula="=DROPDOWN(@ViewData["ThicknessString"])"></td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>无</td>
+                            <td>0</td>
+                        </tr>
+                    }
+                }
+                @{
+                    nCount += 2; 
+                    string F_SUM = "=SUM(F1:F" + nCount + ")";
+                    string G_SUM = "=SUM(G1:G" + nCount + ")";
+                    string H_SUM = "=SUM(H1:H" + nCount + ")";
+                    string I_SUM = "=SUM(I1:I" + nCount + ")";
+                    
+                }
+@*                <tr>
+                    <td>大厅门</td>
+                    <td >红金龙</td>
+                    <td>3</td>
+                    <td name="longedge">3000</td>
+                    <td>400</td>
+                    <td>20</td>
+                    <td>50000</td>
+                    <td>70000</td>
+                    <td>80</td>
+                    <td>无说明</td>
+                </tr>*@
+                <tr class="tr_bottom">
+                    <td>合计</td>	
+                    <td>&ensp;</td>	     
+                    <td>&ensp;</td>	
+                    <td>&ensp;</td>	
+                    <td>&ensp;</td>	       
+                    <td data-formula="@F_SUM"></td>
+                    <td data-formula="@G_SUM">边长</td>
+                    <td data-formula="@H_SUM">面积</td>
+                    <td data-formula="@I_SUM">小计（元）</td>
+                    <td>&ensp;</td>
+                    <td>&ensp;</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

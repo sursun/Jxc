@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "角色权限";
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body class="easyui-layout">
+    
+    <div data-options="region:'center',title:'角色'" style="padding:5px;background:#eee;">
+        <div id="toolbar" style="padding: 5px; height: auto">
+            <div style="margin-bottom: 5px">
+                <a href="#" id="RoleAdd" class="easyui-linkbutton" forgid="role_list" iconcls="icon-add" plain="true">添加</a>
+                <a href="#" id="RoleDel" class="easyui-linkbutton" forgid="role_list" iconcls="icon-remove" plain="true">删除</a>
+             </div>
+        </div>
+     
+        <table id="role_list" url="@Url.Action("RoleList","Role")" del="@Url.Action("Delete","Role")">
+            
+        </table>
+
+        <div id="role_edit" dlgtitle="角色" style="display: none">
+            角色信息
+
+        </div>
+    </div> 
+
+    <div data-options="region:'east',iconCls:'icon-tip',title:'权限',split:true" style="width:400px;">
+        <table id="roleAuth" class="easyui-propertygrid" style="width:300px"  baseurl="@Url.Action("GetRoleAuths","Role")"
+               data-options="showGroup:true,scrollbarSize:0"></table>
+    </div>
+    
+</body>
+
+<script type="text/javascript" src="@Url.Content("/Scripts/User/Role.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Role.Init();
+    });
+
+</script>

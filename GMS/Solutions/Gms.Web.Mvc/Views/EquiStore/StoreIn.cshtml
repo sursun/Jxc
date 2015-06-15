@@ -1,0 +1,39 @@
+﻿@using Gms.Domain
+@model Gms.Domain.EquiStoreIn
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body>
+
+    <div id="toolbar" style="padding: 5px; height: auto">
+        <div style="margin-bottom: 5px">
+            <a href="#" id="btnAdd" class="easyui-linkbutton" iconcls="icon-add" plain="true">添加入库单</a>
+         </div>
+
+        <div>
+            
+            入库单号：<input name="CodeNo" class="messager-input" />
+            &emsp;来源：@Html.DropDownListForCommonCode(c=>c.EquiFrom,CommonCodeType.物料来源,"EquiFromId","全部")
+            &emsp;入库人：<input name="UserName" class="messager-input" />
+
+            &emsp;入库时间：<input name="CreateDateTime.Start" class="easyui-datetimebox" />
+            至<input name="CreateDateTime.End" class="easyui-datetimebox" />
+
+            <a href="#" id="equi_in_search" class="easyui-linkbutton search" iconcls="icon-search">搜索</a>
+        </div>
+    </div>
+     
+    <table id="equi_in_search_list" url="@Url.Action("StoreInList","EquiStore")" >
+            
+    </table>
+
+
+</body>
+<script type="text/javascript" src="@Url.Content("/Scripts/equi/equistore.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        EquiStore.In();
+    });
+
+</script>

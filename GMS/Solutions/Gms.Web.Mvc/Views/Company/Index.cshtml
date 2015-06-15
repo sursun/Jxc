@@ -1,0 +1,61 @@
+﻿@using ReginfoRepository
+@model dynamic
+
+@{
+    ViewBag.Title = "产品注册";
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body>
+    <div>
+        <p>输入注册码（*）</p>
+        <textarea id="reginfo" cols="40" rows="4"></textarea>
+        <br />
+
+        @{
+            RegInfo regInfo = (RegInfo) ViewData["LocalRegInfo"];
+        }
+
+        <a href="#" title="请将下方的‘服务器序列号’发送给软件提供商以获取新的注册码">如何获取注册码？</a>
+        <br />
+        <p>服务器序列号：</p>
+        @ViewData["PcSn"]
+
+        <p>当前注册码信息：</p>
+        @if (regInfo != null)
+        {
+            @regInfo.CompanyName
+
+            <span>【</span>
+            <span style="color: red; font-weight: bold; font-size: 16px;">
+                @regInfo.LifeStartTime
+                <span>---</span>
+                @regInfo.LifeEndTime
+            </span>
+            <span>】</span>
+        }
+        else
+        {
+            <span>无</span>
+        }
+        
+        <p></p>
+        <a id="SaveKey" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'">注册</a>
+
+    </div>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#SaveKey").click(function() {
+
+            $.post("/Company/SaveOrUpdate", { regkey: $("#reginfo").val() }, function (data) {
+                if (data.success) {
+                    alert("导入成功");
+                    window.location.reload();
+                } else {
+                    alert(data.data);
+                }
+            }, 'json');
+        });
+    })
+</script>

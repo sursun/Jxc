@@ -1,0 +1,70 @@
+﻿@using Gms.Domain
+@model Gms.Domain.ProductCure
+
+@{
+    Layout = null;//"~/Views/Shared/EmptyLayout.cshtml";
+}
+
+
+    <form  method="post" action="/ProductCure/SaveOrUpdate">
+@*        @Html.HiddenFor(c=>c.Id)
+        @Html.HiddenFor(c=>c.Order.Id)
+        *@
+        <input name="Id" value="@Model.Id" style="display: none;"/>
+        <input name="Order.Id" value="@Model.Order.Id" style="display: none;"/>
+        <table>
+            <tr>
+                <td>加工类型</td>
+                <td>
+ 
+                    @Html.DropDownListForCommonCode(c=>c.CureType,CommonCodeType.加工类型)
+               
+                </td>
+            </tr>
+            
+            <tr>
+                <td>加工人员</td>
+                <td>
+                    <input class="easyui-combobox"name="User.Id"
+                           data-options="url:'/User/GetAll',method:'get',valueField:'value',textField:'label',panelHeight:'auto'" />
+   
+                </td>
+            </tr>
+            
+            <tr>
+                <td>负责人</td>
+                <td>
+   
+                    <input class="easyui-combobox"name="CheckUser.Id"
+                           data-options="url:'/User/GetAll',method:'get',valueField:'value',textField:'label',panelHeight:'auto'" />
+                    
+                </td>
+            </tr>
+
+            <tr>
+                <td>开始时间</td>
+                <td>
+   
+                    @Html.TextBoxFor(c => c.StartTime,new{@class="easyui-datetimebox"})
+                </td>
+            </tr>
+        
+            <tr>
+                <td>结束时间</td>
+                <td>
+   
+                    @Html.TextBoxFor(c => c.EndTime,new{@class="easyui-datetimebox"})
+                </td>
+            </tr>
+        
+            <tr>
+                <td>备注</td>
+                <td>
+   
+                    @Html.TextAreaFor(c => c.Note)
+                </td>
+            </tr>
+        
+        </table>
+
+    </form>

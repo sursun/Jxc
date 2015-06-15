@@ -1,0 +1,5 @@
+2013/05/02-16:35:59.520 bd28 Recovering log #58
+2013/05/02-16:35:59.531 bd28 Level-0 table #60: started
+2013/05/02-16:35:59.563 bd28 Level-0 table #60: 1213 bytes OK
+2013/05/02-16:35:59.659 bd28 Delete type=0 #58
+2013/05/02-16:35:59.660 bd28 Delete type=3 #56

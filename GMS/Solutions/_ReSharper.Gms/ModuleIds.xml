@@ -1,0 +1,7 @@
+<Modules>
+  <Module PersistentId="8DEF56CD-601E-443C-9DCE-C4EC54C0B6A6" ModuleId="Gms.Domain" />
+  <Module PersistentId="39613BA0-1206-4A4B-A16A-C1F2A22D1267" ModuleId="Gms.Web.Mvc" />
+  <Module PersistentId="9544D94B-9B6E-4B61-8A09-88382205BF86" ModuleId="Gms.Infrastructure" />
+  <Module PersistentId="CC4A233E-BE8A-47CC-A87C-8352BFD557B7" ModuleId="Gms.Tests" />
+  <Module PersistentId="EAF81361-C101-4AD9-B017-C8E473DADE49" ModuleId="Gms.Common" />
+</Modules>

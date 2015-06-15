@@ -1,0 +1,43 @@
+﻿@model Gms.Domain.Customer
+
+@{
+    Layout = null;
+}
+
+<form id="customerform" method="post" action="/Customer/CreateOrUpdate">
+    <table>
+                    <tr>
+                        <td>姓名</td>
+                        <td>
+                            @Html.TextBoxFor(c=>c.Name)
+                            <input id="Id" name="Id" style="display: none" type="number" value=""/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>电话</td>
+                        <td>
+                            @Html.TextBoxFor(c=>c.Mobile)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>公司</td>
+                        <td>
+                            @Html.TextBoxFor(c=>c.Company)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>地址</td>
+                        <td>
+                            @Html.TextBoxFor(c=>c.Address)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>备注</td>
+                        <td>
+                            @Html.TextAreaFor(c=>c.Note)
+                        </td>
+                    </tr>
+
+                </table>
+    </form>

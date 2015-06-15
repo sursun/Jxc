@@ -1,0 +1,24 @@
+﻿namespace Gms.Infrastructure.NHibernateMaps.Conventions
+{
+    #region Using Directives
+
+    using System;
+
+    using FluentNHibernate;
+    using FluentNHibernate.Conventions;
+
+    #endregion
+
+    public class CustomForeignKeyConvention : ForeignKeyConvention 
+    {
+        protected override string GetKeyName(Member property, Type type)
+        {
+            if (property == null)
+            {
+                return type.Name + "Fk";
+            }
+
+            return property.Name + "Fk";  
+        }
+    }
+}

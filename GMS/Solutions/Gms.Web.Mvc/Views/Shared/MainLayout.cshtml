@@ -1,0 +1,170 @@
+﻿@using System.Web.UI.WebControls
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta content="IE=8" http-equiv="X-UA-Compatible">
+
+    <title>企业工作平台</title>
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="no-cache" http-equiv="cache-control">
+    <meta content="0" http-equiv="expires">
+
+    <link type="text/css" rel="Stylesheet" media="all" href="/Content/mgt/styles/mergedstyle.css"/>
+    <link type="text/css" rel="stylesheet" href="/Content/mgt/styles/top.css"/>
+    <link type="text/css" rel="stylesheet" href="/Content/mgt/styles/igoal.css"/>
+    <link type="text/css" rel="stylesheet" href="/Content/mgt/styles/sysmnghint.css"/>
+    
+    <script src="@Url.Content("/Content/mgt/resource.jsp")" type="text/javascript"></script>
+
+    <script src="@Url.Content("/Content/mgt/scripts/mergedjs.js")" type="text/javascript"></script>
+    <script src="@Url.Content("/Content/mgt/scripts/tm.js")" type="text/javascript"></script>
+    <script src="@Url.Content("/Content/mgt/scripts/mergedjsB.js")" type="text/javascript"></script>
+    <script src="@Url.Content("/Content/mgt/scripts/jin-crossframe.js")" type="text/javascript"></script>
+    <script src="@Url.Content("/Content/mgt/scripts/dwrService.js")" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+
+        //validatorItemHash.init();
+
+        global_language = 'zh_CN';
+        globalCp = '';
+        //globalCp = '/mgt';
+
+        var gVar = {
+            close: "关闭",
+            more: "更多",
+            noright: "您无权访问此页面"
+        };
+
+        //var curPageUser = {
+        //    id: 1689132
+        //};
+        var defaultUrlId = "HK_Home_Welcome";
+        window.addEvent("load", function () {
+            tm.menu = [{ 'name': '主页', 'url': '/Home/Welcome', 'domId': 'HK_Home_Welcome', 'pic': 'null', 'out': false, 'hidden': false },
+                { 'name': '用户管理', 'url': '/User', 'domId': 'HK_User', 'pic': 'j_ico_relacomp', 'out': true, 'hidden': false },
+                { 'name': '客户管理', 'url': '/Customer', 'domId': 'HK_Customer', 'pic': 'j_ico_address', 'out': true, 'hidden': false },
+                { 'name': '订单管理', 'url': '/Order', 'domId': 'HK_Order', 'pic': 'j_ico_notice', 'out': true, 'hidden': false },
+                //{ 'name': '角色管理', 'url': '/Role/RoleAuth', 'domId': 'HK_Role_RoleAuth', 'pic': 'j_ico_pline', 'out': false, 'hidden': false },
+            ////tm.menu = [{ 'name': '主页', 'url': 'h', 'domId': 'h,MGT_MA', 'pic': 'null', 'out': false, 'hidden': false },
+                //{ 'name': '加工管理', 'url': '/ProductCure', 'domId': 'HK_ProductCure', 'pic': 'j_ico_attend', 'out': true, 'hidden': false },
+                { 'name': '参数设置', 'url': '/SysConfig', 'domId': 'HK_SysConfig', 'pic': 'j_ico_twitter', 'out': true, 'hidden': false },
+            //    { 'name': '订单管理', 'url': '/Order', 'domId': 'igoal,RA18', 'pic': 'j_ico_pline', 'out': true, 'hidden': false },
+            //    { 'name': '角色权限', 'url': '/Role/RoleAuth', 'domId': 'RA9,MGT_EG_MANAGER', 'pic': 'j_ico_notice', 'out': false, 'hidden': false },
+                //{ 'name': '备忘', 'url': 'RA15', 'domId': 'RA15', 'pic': 'j_ico_memo', 'out': false, 'hidden': false },
+                //{ 'name': '邮件', 'url': 'RA8B4', 'domId': 'RA8B4', 'pic': 'j_ico_email', 'out': false, 'hidden': false },
+                //{ 'name': '文档', 'url': 'MGT_DOC', 'domId': 'MGT_DOC,RA17,RA14', 'pic': 'j_ico_docu', 'out': false, 'hidden': false },
+                //{ 'name': '沟通', 'url': 'MGT_IM_SR', 'domId': 'MGT_IM_SR,RA8B3,RA8B5,RA8B1,MGT_CLIENT_SMS,MGT_IM_MANAGER', 'pic': 'j_ico_comm', 'out': false, 'hidden': false },
+                //{ 'name': '日志', 'url': 'MGT_CLIENT_WORKLOG', 'domId': 'MGT_CLIENT_WORKLOG,RA1,MGT_CLIENT_WORKLOG_MANAGER,MGT_DAYPLAN', 'pic': 'j_ico_log', 'out': false, 'hidden': false },
+                //{ 'name': '计划', 'url': 'MGT_PLN', 'domId': 'MGT_PLN,RA7', 'pic': 'j_ico_plan', 'out': false, 'hidden': false },
+                //{ 'name': '审批', 'url': 'RA16', 'domId': 'RA16', 'pic': 'j_ico_approve', 'out': false, 'hidden': false },
+                //{ 'name': '任务', 'url': 'MGT_TSK_MY', 'domId': 'MGT_TSK_MY,MGT_TSK_T2,MGT_TSK_T1M0,MGT_TSK_T1M2,MGT_IMP,MGT_TSK_MANAGER', 'pic': 'j_ico_task', 'out': false, 'hidden': false },
+                //{ 'name': '项目', 'url': 'MGT_PROJECT_MY', 'domId': 'MGT_PROJECT_MY,RA2,MGT_PROJECT', 'pic': 'j_ico_project', 'out': false, 'hidden': false },
+                //{ 'name': '知识', 'url': 'RA6B1,MGT_KNOWLEDGE_AUDIT', 'domId': 'RA6B1,MGT_KNOWLEDGE_AUDIT', 'pic': 'j_ico_konw', 'out': false, 'hidden': false },
+                //{ 'name': '论坛', 'url': 'MGT_BBS', 'domId': 'MGT_BBS,RA5', 'pic': 'j_ico_bbs', 'out': false, 'hidden': false },
+                //{ 'name': '通讯录', 'url': 'INFO_ADDRESS', 'domId': 'INFO_ADDRESS', 'pic': 'j_ico_address', 'out': false, 'hidden': false },
+                //{ 'name': '讨论', 'url': 'MGT_TALK_AREA', 'domId': 'MGT_TALK_AREA,MGT_TLK', 'pic': 'j_ico_discuss', 'out': false, 'hidden': false },
+                //{ 'name': '关注', 'url': 'MGT_ATT', 'domId': 'MGT_ATT', 'pic': 'j_ico_attent', 'out': false, 'hidden': false },
+                //{ 'name': '工作历程', 'url': 'MGT_TRK', 'domId': 'MGT_TRK', 'pic': 'j_ico_experience', 'out': false, 'hidden': false },
+                //{ 'name': '系统提醒', 'url': '/Apps/MessageCenter.jsp', 'domId': 'SysNoti', 'pic': 'j_ico_sysremd', 'out': true, 'hidden': false },
+                //{ 'name': '友好企业', 'url': '/Apps/Enc.jsp', 'domId': 'MGT_CLIENT_NEIGHBOR,MGT_TYPE_CLIENT_INVITE,MGT_ENC', 'pic': 'j_ico_relacomp', 'out': true, 'hidden': false },
+                //{ 'name': '在线客服', 'url': 'MGT_TYPE_ONLINE_DIALOG', 'domId': 'MGT_TYPE_ONLINE_DIALOG,RA3', 'pic': 'j_ico_online', 'out': false, 'hidden': false },
+                { 'name': '购买', 'url': '/module/purchase/index.do', 'domId': 'RA21B1,/module/purchase/index.do', 'pic': 'null', 'out': true, 'hidden': true }];
+
+            if(!Browser.Engine.trident4){
+                window.addEvent("resize",tm.wresize);		
+                window.jincrossframe.addListener(tm.getCrossDoaminContent);
+            }else{
+                window.alert("您的浏览器使用了IE6内核，版本过低，请升级IE浏览器！");
+            }
+            
+            tm.wresize();
+            tm.showMenu();
+	
+            //prompt("location.href " + location.href );
+            var u = new URI(location.href);
+            var url = u.getData("url");
+            var q="";
+	
+            if(!url){
+                if(!Browser.Engine.trident4){
+                    url = defaultUrlId;
+                }
+            }else{
+                if(!Browser.Engine.trident4){
+                    tm.tab.insertHead();
+                }
+                q = u.get("query");
+            }	
+
+            tm.tab.show(url,q);
+	
+            if (Cookie.read('cScheme') != window.location.protocol) { 
+                Cookie.write('cScheme', window.location.protocol, {'path':"/"});
+            }
+	
+        return;	
+        });	
+	
+</script>
+</head>
+<body>
+
+    <div class="wlbg">
+
+        <div class="top">
+            <div class="t_shortcut">
+                <div class="t_menu">
+                    <ul>
+                        @RenderSection("Loginfo")
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cb"></div>
+
+            <div class="t_name">
+                <h1>利源玻璃工艺厂</h1>
+            </div>
+
+            <div class="t_nav_li">
+                <ul id="bigTitleId">
+                    
+                </ul>
+            </div>
+
+            <div class="cb"></div>
+
+
+            <!--更多-->
+            <div style="z-index: 100; display: none; top: 70px; left: 891px;" id="t_pop_navli" class="t_pop_navli">
+                <div class="bgt"></div>
+                <div class="bgm">
+                    <ul id="moreTitleId">
+                       
+                    </ul>
+                    <div class="cb"></div>
+                </div>
+                <div class="bgb"></div>
+            </div>
+
+            <div id="header" class="t_nav">
+                <div id="menu">
+
+                </div>
+            </div>
+
+            <div style="height: 125px; width: 1000px; position: relative;" id="tmmain" class="jgcont">
+                @RenderBody()
+                
+            </div>
+        </div>
+    </div>
+    
+@*    <div id="bigTitleIdHideDiv" style="position: absolute; top: 0px; left: 0px; background-color: white; visibility: visible; opacity: 0.01; z-index: 1; display: none; width: 1280px; height: 499px;">
+        
+    </div>*@
+</body>
+</html>

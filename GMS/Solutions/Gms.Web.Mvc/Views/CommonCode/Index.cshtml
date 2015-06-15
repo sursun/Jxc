@@ -1,0 +1,33 @@
+﻿@using Gms.Domain
+
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+<body>
+    <div id="tabCommonCode" class="easyui-tabs" data-options="fit:true">	
+        <div title="加工类型" style="padding:10px">	
+            <iframe style="width: 100%;height:100%;border: none;" src="/CommonCode/TypeInfo?type=@CommonCodeType.加工类型"></iframe>
+        </div>	
+        <div title="玻璃品种" style="padding:10px">
+            <iframe style="width: 100%;height:100%;border: none;" url="/CommonCode/TypeInfo?type=@CommonCodeType.玻璃品种"></iframe>
+        </div>
+        <div title="物料类型" style="padding:10px">
+            <iframe style="width: 100%;height:100%;border: none;" url="/CommonCode/TypeInfo?type=@CommonCodeType.物料类型"></iframe>
+        </div>
+        <div title="物料来源" style="padding:10px">
+            <iframe style="width: 100%;height:100%;border: none;" url="/CommonCode/TypeInfo?type=@CommonCodeType.物料来源"></iframe>
+        </div>
+        <div title="物料用途" style="padding:10px">
+            <iframe style="width: 100%;height:100%;border: none;" url="/CommonCode/TypeInfo?type=@CommonCodeType.物料用途"></iframe>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="@Url.Content("/Scripts/CommonCode/CommonCode.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        CommonCode.Init();
+    });
+
+</script>
+

@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body>
+
+    <div id="toolbar" style="padding: 5px; height: auto">
+        <div>
+            
+            物料名称：
+            <input name="EquiName" class="messager-input" />
+            
+            变动时间：<input name="CreateDateTime.Start" class="easyui-datebox" style="width: 100px" />
+            至<input name="CreateDateTime.End" class="easyui-datebox" style="width: 100px" />
+
+            <a href="#" id="equi_search" class="easyui-linkbutton search" iconcls="icon-search">搜索</a>
+        </div>
+    </div>
+     
+    <table id="equi_search_list" url="@Url.Action("PriceChangeList","Equipment")" >
+            
+    </table>
+        
+        
+</body>
+<script type="text/javascript" src="@Url.Content("/Scripts/equi/pricechange.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        EquiPriceChange.Init();
+    });
+
+</script>

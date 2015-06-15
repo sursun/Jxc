@@ -1,0 +1,45 @@
+﻿@using Gms.Domain
+@model dynamic
+
+@{
+    ViewBag.Title = "加工过程";
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<html>
+    <body>
+        <div id="toolbar" style="padding: 5px; height: auto">
+            <div style="margin-bottom: 5px">
+                <a href="#" id="btnAdd" class="easyui-linkbutton" iconcls="icon-add" plain="true">添加</a>
+                <a href="#" class="easyui-linkbutton del" forgid="cureprocess_list" iconcls="icon-remove" plain="true">删除</a>
+                <a href="#" id="btnEdit" class="easyui-linkbutton" forgid="cureprocess_list" iconcls="icon-edit" plain="true">修改</a>
+            </div>
+        </div>
+     
+        <table id="cureprocess_list" url="@Url.Action("List","CureProcess")" del="@Url.Action("Delete","CureProcess")">
+            
+        </table>
+        
+        <div id="cureprocess_edit" style="display: none">
+            <div id="cureprocess_edit_content">
+                @{
+                    Html.RenderPartial("Edit", new CureProcess());
+                }
+            </div>
+        </div>
+    
+        @*记录选择的项，便于其他页面调用*@
+        <div style="display: none;">
+            <input id="process_selected_id" />
+            <input id="process_selected_name" />
+            <input id="process_selected_desc" />
+        </div>
+
+    </body>
+    <script type="text/javascript" src="@Url.Content("/Scripts/CureProcess/CureProcess.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            CureProcess.Init();
+        });
+    </script>
+</html>
