@@ -1,4 +1,3 @@
 *.user
-*.cache
-*.dll
-*.user
+bin/
+obj/
