@@ -7,11 +7,11 @@ using SharpArch.Domain.DomainModel;
 
 namespace Gms.Domain
 {
-    public class Customer : LinkMan
+    public class Customer : RelationPerson
     {
         public Customer()
         {
-            LinkmanType = LinkmanType.客户;
+            RelationType = RelationType.客户;
         }
 
         /// <summary>
@@ -23,21 +23,39 @@ namespace Gms.Domain
         /// 客户等级 
         /// </summary>
         public virtual CustomerGrade CustomerGrade { get; set; }
+
+        /// <summary>
+        /// 期初应收款
+        /// </summary>
+        public virtual Decimal ShoukuanQc { get; set; }
+
+        /// <summary>
+        /// 应收款
+        /// </summary>
+        public virtual Decimal ShoukuanYing { get; set; }
+
+        /// <summary>
+        /// 预收款
+        /// </summary>
+        public virtual Decimal ShoukuanYu { get; set; }
+
+        /// <summary>
+        /// 是否允许欠款
+        /// </summary>
+        public virtual Boolean AllowDebt { get; set; }
+
+        /// <summary>
+        /// 允许欠款金额
+        /// </summary>
+        public virtual Boolean Debt { get; set; }
+
         
+
         /// <summary>
         /// 累计积分
         /// </summary>
         public virtual int Point { get; set; }
 
-        /// <summary>
-        /// 地址
-        /// </summary>
-        public virtual String Address { get; set; }
-
-        /// <summary>
-        /// 备注
-        /// </summary>
-        public virtual String Note { get; set; }
     }
 
     public class CustomerQuery : QueryBase

@@ -29,15 +29,26 @@ namespace Gms.Domain
         在职,锁定,离职
     }
 
-    public enum LinkmanType
+    public enum RelationType
     {
         客户,供应商
     }
 
     public enum CommonCodeType
     {
+        民族,
+        教育水平,
         客户类别,
-        供应商类别
+        供应商类别,
+        商品类别,
+        商品品牌,
+        商品陈列,
+        仓库,
+        入库业务类型,
+        出库业务类型,
+        收入记账类型,
+        支出记账类型,
+        计量单位
     }
 
     /// <summary>
@@ -46,6 +57,19 @@ namespace Gms.Domain
     public enum InventoryPricing
     {
         先进先出法,加权平均法,移动平均法,个别计价法,后进先出法
+    }
+
+    /// <summary>
+    /// 价格类型
+    /// </summary>
+    public enum PriceType
+    {
+        进价,批发价,零售价,会员价
+    }
+
+    public enum AuditState
+    {
+        未审核,已审核
     }
 
     //----------------------------------------------------//

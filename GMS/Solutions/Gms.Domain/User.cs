@@ -63,12 +63,12 @@ namespace Gms.Domain
         /// <summary>
         /// 民族
         /// </summary>
-        public virtual Nation Nation { get; set; }
+        public virtual CommonCode Nation { get; set; }
 
         /// <summary>
         /// 教育水平
         /// </summary>
-        public virtual Diploma Diploma { get; set; }
+        public virtual CommonCode Diploma { get; set; }
 
         /// <summary>
         /// 入职日期

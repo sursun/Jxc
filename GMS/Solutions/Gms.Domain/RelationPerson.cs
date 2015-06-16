@@ -10,12 +10,12 @@ namespace Gms.Domain
     /// 联系人
     /// 客户|供应商
     /// </summary>
-    public class LinkMan:Entity
+    public class RelationPerson:Entity
     {
         /// <summary>
         /// 联系人类型
         /// </summary>
-        public virtual LinkmanType LinkmanType { get; set; }
+        public virtual RelationType RelationType { get; set; }
 
         /// <summary>
         /// 编号
@@ -28,9 +28,26 @@ namespace Gms.Domain
         public virtual String Name { get; set; }
 
         /// <summary>
-        /// 证件号码
+        /// 拼音（姓名）
         /// </summary>
-        public virtual String CardNo { get; set; }
+        public virtual String Pinyin { get; set; }
+
+        /// <summary>
+        /// 默认结算账户
+        /// </summary>
+        public virtual Account Account { get; set; }
+
+        /// <summary>
+        /// 期初日期
+        /// </summary>
+        public virtual DateTime BaseTime { get; set; }
+
+        /// <summary>
+        /// 累计金额
+        /// 消费（客户）
+        /// 采购（供应商）
+        /// </summary>
+        public virtual Decimal Amount { get; set; }
 
         /// <summary>
         /// 添加日期（开户时间）

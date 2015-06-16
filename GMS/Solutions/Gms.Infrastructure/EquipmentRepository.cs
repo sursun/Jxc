@@ -7,11 +7,11 @@ using Gms.Domain;
 
 namespace Gms.Infrastructure
 {
-    public class EquipmentRepository : RepositoryBase<Equipment>, IEquipmentRepository
+    public class EquipmentRepository : RepositoryBase<Goods>, IEquipmentRepository
     {
-        protected override IQueryable<Equipment> LoadQuery<TQ>(TQ query)
+        protected override IQueryable<Goods> LoadQuery<TQ>(TQ query)
         {
-            IQueryable<Equipment> q = base.LoadQuery(query);
+            IQueryable<Goods> q = base.LoadQuery(query);
             var entityQuery = query as EquipmentQuery;
             if (entityQuery == null) return q;
 

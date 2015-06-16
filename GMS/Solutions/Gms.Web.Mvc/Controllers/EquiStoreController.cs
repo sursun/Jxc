@@ -170,7 +170,7 @@ namespace Gms.Web.Mvc.Controllers
             if (equiIn.Equipment == null)
                 return;
 
-            Equipment equi = equiIn.Equipment;
+            Goods equi = equiIn.Equipment;
 
             //检查价格是否变化
             if (equi.Price != equiIn.Price)

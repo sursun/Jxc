@@ -12,7 +12,7 @@ namespace Gms.Domain
     /// <summary>
     /// 设备
     /// </summary>
-    public class Equipment : Entity
+    public class Goods : Entity
     {
         /// <summary>
         /// 类别

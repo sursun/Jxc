@@ -14,7 +14,7 @@ namespace Gms.Domain
         /// <summary>
         /// 所属联系人
         /// </summary>
-        public virtual LinkMan LinkMan { get; set; }
+        public virtual RelationPerson LinkMan { get; set; }
 
         /// <summary>
         /// 姓名

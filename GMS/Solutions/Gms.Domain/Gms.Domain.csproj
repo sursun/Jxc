@@ -93,34 +93,22 @@
     </Compile>
     <Compile Include="Attribute\FieldLengthAttribute.cs" />
     <Compile Include="Attribute\NotMapAttribute.cs" />
+    <Compile Include="ChargeSwap.cs" />
     <Compile Include="CommonCode.cs" />
     <Compile Include="Contact.cs" />
     <Compile Include="Department.cs" />
-    <Compile Include="ProductCure.cs" />
-    <Compile Include="CureProcess.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Enums.cs" />
-    <Compile Include="Order.cs" />
-    <Compile Include="Product.cs" />
-    <Compile Include="RoleAuth.cs" />
     <Compile Include="RoleConstants.cs" />
     <Compile Include="User.cs" />
-    <Compile Include="GlassStore.cs" />
-    <Compile Include="StoreChange.cs" />
     <Compile Include="Company.cs" />
-    <Compile Include="Equipment.cs" />
-    <Compile Include="EquiPriceChange.cs" />
-    <Compile Include="EquiIn.cs" />
-    <Compile Include="EquiOut.cs" />
-    <Compile Include="EquiStoreOut.cs" />
-    <Compile Include="EquiStoreIn.cs" />
+    <Compile Include="Goods.cs" />
     <Compile Include="Supplier.cs" />
-    <Compile Include="LinkMan.cs" />
-    <Compile Include="Nation.cs" />
-    <Compile Include="Diploma.cs" />
+    <Compile Include="RelationPerson.cs" />
     <Compile Include="SysLog.cs" />
     <Compile Include="Account.cs" />
     <Compile Include="CustomerGrade.cs" />
+    <Compile Include="Charge.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

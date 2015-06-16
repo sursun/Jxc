@@ -39,9 +39,14 @@ namespace Gms.Domain
         public virtual int Level { get; set; }
 
         /// <summary>
-        /// 扩展
+        /// 扩展1
         /// </summary>
-        public virtual String Param { get; set; }
+        public virtual String ParamString { get; set; }
+
+        /// <summary>
+        /// 扩展2
+        /// </summary>
+        public virtual String ParamFlag { get; set; }
 
         /// <summary>
         /// 备注

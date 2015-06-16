@@ -42,7 +42,7 @@ namespace Gms.Web.Mvc.Controllers
         }
         
         [Transaction]
-        public ActionResult SaveOrUpdate(Equipment equi)
+        public ActionResult SaveOrUpdate(Goods equi)
         {
             if (equi.Id > 0)
             {
@@ -167,7 +167,7 @@ namespace Gms.Web.Mvc.Controllers
         {
         }
 
-        public EquipmentModel(Equipment equi)
+        public EquipmentModel(Goods equi)
         {
             this.Id = equi.Id;
 
@@ -237,7 +237,7 @@ namespace Gms.Web.Mvc.Controllers
         }
        
 
-        public static EquipmentModel From(Equipment equi)
+        public static EquipmentModel From(Goods equi)
         {
             return new EquipmentModel(equi);
         }
