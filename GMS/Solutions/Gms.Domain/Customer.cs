@@ -7,22 +7,27 @@ using SharpArch.Domain.DomainModel;
 
 namespace Gms.Domain
 {
-    public class Customer:Entity
+    public class Customer : LinkMan
     {
-        /// <summary>
-        /// 姓名
-        /// </summary>
-        public virtual String Name { get; set; }
+        public Customer()
+        {
+            LinkmanType = LinkmanType.客户;
+        }
 
         /// <summary>
-        /// 电话
+        /// 客户类型
         /// </summary>
-        public virtual String Mobile { get; set; }
+        public virtual CommonCode CustomerType { get; set; }
+
+        /// <summary>
+        /// 客户等级 
+        /// </summary>
+        public virtual CustomerGrade CustomerGrade { get; set; }
         
         /// <summary>
-        /// 公司
+        /// 累计积分
         /// </summary>
-        public virtual String Company { get; set; }
+        public virtual int Point { get; set; }
 
         /// <summary>
         /// 地址

@@ -95,6 +95,7 @@
     <Compile Include="Attribute\NotMapAttribute.cs" />
     <Compile Include="CommonCode.cs" />
     <Compile Include="Contact.cs" />
+    <Compile Include="Department.cs" />
     <Compile Include="ProductCure.cs" />
     <Compile Include="CureProcess.cs" />
     <Compile Include="Customer.cs" />
@@ -114,6 +115,12 @@
     <Compile Include="EquiStoreOut.cs" />
     <Compile Include="EquiStoreIn.cs" />
     <Compile Include="Supplier.cs" />
+    <Compile Include="LinkMan.cs" />
+    <Compile Include="Nation.cs" />
+    <Compile Include="Diploma.cs" />
+    <Compile Include="SysLog.cs" />
+    <Compile Include="Account.cs" />
+    <Compile Include="CustomerGrade.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

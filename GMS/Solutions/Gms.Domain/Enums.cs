@@ -11,15 +11,46 @@ namespace Gms.Domain
         女
     }
 
-    public enum CommonCodeType
+    public enum Yesno
     {
-        加工类型,
-        玻璃品种,
-        物料类型,
-        物料来源,
-        物料用途
+        是,
+        否
     }
 
+    public enum EmployeeType
+    {
+        采购员 = 0x00000001,
+        业务员 = 0x00000002,
+        库管员 = 0x00000004
+    }
+
+    public enum EmployeeStatus
+    {
+        在职,锁定,离职
+    }
+
+    public enum LinkmanType
+    {
+        客户,供应商
+    }
+
+    public enum CommonCodeType
+    {
+        客户类别,
+        供应商类别
+    }
+
+    /// <summary>
+    /// 库存计价法
+    /// </summary>
+    public enum InventoryPricing
+    {
+        先进先出法,加权平均法,移动平均法,个别计价法,后进先出法
+    }
+
+    //----------------------------------------------------//
+
+    
     public enum OrderState
     {
         未处理,

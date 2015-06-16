@@ -9,19 +9,22 @@ using SharpArch.Domain.DomainModel;
 
 namespace Gms.Domain
 {
-    public class CommonCode : Entity
+    /// <summary>
+    /// 部门
+    /// </summary>
+    public class Department : Entity
     {
         /// <summary>
-        /// 父级
+        /// 上级部门
         /// </summary>
         [XmlIgnore]
         [ScriptIgnore]
-        public virtual CommonCode Parent { get; set; }
+        public virtual Department Parent { get; set; }
 
         /// <summary>
         /// 编码
         /// </summary>
-        public virtual String CodeNo { get; set; }
+        public virtual String CondeNo { get; set; }
 
         /// <summary>
         /// 名称
@@ -29,35 +32,19 @@ namespace Gms.Domain
         public virtual String Name { get; set; }
 
         /// <summary>
-        /// 类型
-        /// </summary>
-        public virtual CommonCodeType Type { get; set; }
-
-        /// <summary>
         /// 层级
         /// </summary>
         public virtual int Level { get; set; }
-
-        /// <summary>
-        /// 扩展
-        /// </summary>
-        public virtual String Param { get; set; }
 
         /// <summary>
         /// 备注
         /// </summary>
         public virtual String Note { get; set; }
 
-        /// <summary>
-        /// 下属编码
-        /// </summary>
-        [XmlIgnore]
-        public virtual IList<CommonCode> Subs { get; set; }
-
-        public virtual String FullNameString()
+        public virtual String ParentString()
         {
-            String strRet = Name;
-            CommonCode parentItem = Parent;
+            String strRet = "";
+            Department parentItem = Parent;
 
             while (parentItem != null)
             {
@@ -71,14 +58,40 @@ namespace Gms.Domain
             return strRet;
         }
 
+        /// <summary>
+        /// 下级部门
+        /// </summary>
+        [XmlIgnore]
+        public virtual IList<Department> Subs { get; set; }
+
     }
 
-    public class CommonCodeQuery : QueryBase
+    public class DepartmentQuery : QueryBase
     {
+        /// <summary>
+        /// 上级部门
+        /// </summary>
         public int? ParentId { get; set; }
 
+        /// <summary>
+        /// 名称
+        /// </summary>
         public String Name { get; set; }
 
-        public CommonCodeType? Type { get; set; }
+        /// <summary>
+        /// 编码
+        /// </summary>
+        public String CondeNo { get; set; }
+
+        /// <summary>
+        /// 层级
+        /// </summary>
+        public int? Level { get; set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        public String Note { get; set; }
     }
+
 }
