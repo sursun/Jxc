@@ -54,6 +54,11 @@ namespace Gms.Domain
         public virtual AuditState AuditState { get; set; }
 
         /// <summary>
+        /// 审核说明
+        /// </summary>
+        public virtual String AuditNote { get; set; }
+
+        /// <summary>
         /// 登记人
         /// </summary>
         public virtual User Creator { get; set; }

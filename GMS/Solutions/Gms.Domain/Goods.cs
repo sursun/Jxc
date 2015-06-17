@@ -10,52 +10,121 @@ using SharpArch.Domain.DomainModel;
 namespace Gms.Domain
 {
     /// <summary>
-    /// 设备
+    /// 商品
     /// </summary>
     public class Goods : Entity
     {
         /// <summary>
-        /// 类别
+        /// 编码
         /// </summary>
-        public virtual CommonCode EquiType { get; set; }
-        
+        public virtual String CodeNo { get; set; }
+
+        /// <summary>
+        /// 条码
+        /// </summary>
+        public virtual String BarCode { get; set; }
+
         /// <summary>
         /// 名称
         /// </summary>
-        public virtual string Name { get; set; }
-        
+        public virtual String Name { get; set; }
+
         /// <summary>
-        /// 型号
+        /// 商品缩略图
         /// </summary>
-        public virtual string Model { get; set; }
+        public virtual String Picture { get; set; }
+
+        /// <summary>
+        /// 规格型号
+        /// </summary>
+        public virtual String Model { get; set; }
 
         /// <summary>
         /// 单位
         /// </summary>
-        public virtual string Unit { get; set; }
-        
+        public virtual CommonCode Unit { get; set; }
+
         /// <summary>
-        /// 数量
+        /// 库存数量
         /// </summary>
-        public virtual int Quantity { get; set; }
+        public virtual decimal Quantity { get; set; }
 
         /// <summary>
         /// 最低数量
         /// </summary>
-        public virtual int MinQuantity { get; set; }
+        public virtual decimal MinQuantity { get; set; }
 
         /// <summary>
-        /// 单价
+        /// 最高数量
         /// </summary>
-        public virtual decimal Price { get; set; }
+        public virtual decimal MaxQuantity { get; set; }
         
+        /// <summary>
+        /// 商品品牌
+        /// </summary>
+        public virtual CommonCode Brand { get; set; }
+
+        /// <summary>
+        /// 陈列架
+        /// </summary>
+        public virtual CommonCode DisplayStands { get; set; }
+
+        /// <summary>
+        /// 进价
+        /// 采购价
+        /// </summary>
+        public virtual decimal PurchasePrice { get; set; }
+
+        /// <summary>
+        /// 零售价
+        /// </summary>
+        public virtual decimal RetailPrice { get; set; }
+
+        /// <summary>
+        /// 最低限价
+        /// </summary>
+        public virtual decimal MinPrice { get; set; }
+
+        /// <summary>
+        /// 是否特价
+        /// </summary>
+        public virtual Boolean IsBargin { get; set; }
+
+        /// <summary>
+        /// 特价
+        /// </summary>
+        public virtual decimal BarginPrice { get; set; }
+         
+        /// <summary>
+        /// 是否允许前台改价销售
+        /// </summary>
+        public virtual Boolean IsFreePrice { get; set; }
+
+        /// <summary>
+        /// 积分金额
+        /// 消费多少元获得1积分，0代表按系统设置统一积分
+        /// </summary>
+        public virtual decimal PointBase { get; set; }
+
+        /// <summary>
+        /// 商品状态
+        /// </summary>
+        public virtual GoodsStatus GoodsStatus { get; set; }
+
         /// <summary>
         /// 备注
         /// </summary>
-        public virtual string Note { get; set; }
+        public virtual String Note { get; set; }
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public virtual DateTime CreateTime { get; set; }
+     
+        
     }
 
-    public class EquipmentQuery : QueryBase
+    public class GoodsQuery : QueryBase
     {
         /// <summary>
         /// 类别

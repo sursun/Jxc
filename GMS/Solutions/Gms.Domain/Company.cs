@@ -135,6 +135,13 @@ namespace Gms.Domain
         public virtual InventoryPricing InventoryPricing { get; set; }
 
         /// <summary>
+        /// 积分金额
+        /// 系统统一设置积分金额
+        /// 消费多少元获得1积分
+        /// </summary>
+        public virtual decimal PointBase { get; set; }
+
+        /// <summary>
         /// 备注
         /// </summary>
         public virtual String Note { get; set; }

@@ -6,36 +6,27 @@ using SharpArch.Domain.DomainModel;
 
 namespace Gms.Domain
 {
-    /// <summary>
-    /// 收支记账
-    /// </summary>
-    public class Charge:Entity
+    public class GoodsPriceAlter:Entity
     {
         /// <summary>
-        /// 记账账户
+        /// 商品
         /// </summary>
-        public virtual Account Account { get; set; }
+        public virtual Goods Goods { get; set; }
 
         /// <summary>
-        /// 记账前
-        /// 账户金额
+        /// 修改前价格
         /// </summary>
-        public virtual decimal OldAmount { get; set; }
+        public virtual decimal OldPrice { get; set; }
 
         /// <summary>
-        /// 收支类型
+        /// 新价格
         /// </summary>
-        public virtual CommonCode ChargeType { get; set; }
+        public virtual decimal NewPrice { get; set; }
 
         /// <summary>
-        /// 记账金额
+        /// 原库存量
         /// </summary>
-        public virtual decimal Amount { get; set; }
-
-        /// <summary>
-        /// 经手人
-        /// </summary>
-        public virtual User User { get; set; }
+        public virtual decimal Quantity { get; set; }
 
         /// <summary>
         /// 审核人
@@ -58,6 +49,11 @@ namespace Gms.Domain
         public virtual String AuditNote { get; set; }
 
         /// <summary>
+        /// 生效日期
+        /// </summary>
+        public virtual DateTime StartTime { get; set; }
+
+        /// <summary>
         /// 登记人
         /// </summary>
         public virtual User Creator { get; set; }
@@ -66,11 +62,6 @@ namespace Gms.Domain
         /// 登记日期
         /// </summary>
         public virtual DateTime CreateTime { get; set; }
-
-        /// <summary>
-        /// 是否自动记账？
-        /// </summary>
-        public virtual Boolean AutoCreate { get; set; }
 
         /// <summary>
         /// 备注
