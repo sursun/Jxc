@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gms.Common;
+using Gms.Domain.Attribute;
 using SharpArch.Domain.DomainModel;
 
 namespace Gms.Domain
 {
-    public class GoodsPriceAlter:Entity
+    public class GoodsPriceAlter:AuditBase
     {
         /// <summary>
         /// 商品
@@ -24,48 +26,66 @@ namespace Gms.Domain
         public virtual decimal NewPrice { get; set; }
 
         /// <summary>
+        /// 修改差额
+        /// </summary>
+        [NotMap]
+        public virtual decimal Balance {
+            get
+            {
+                return Math.Abs( NewPrice - OldPrice);
+            }
+        }
+
+        /// <summary>
+        /// 修改差额比
+        /// </summary>
+        [NotMap]
+        public virtual decimal BalanceRatio
+        {
+            get
+            {
+                decimal nVal = (Balance*100)/OldPrice;
+                return nVal/100;
+            }
+        }
+
+        /// <summary>
         /// 原库存量
         /// </summary>
         public virtual decimal Quantity { get; set; }
-
-        /// <summary>
-        /// 审核人
-        /// </summary>
-        public virtual User Auditor { get; set; }
-
-        /// <summary>
-        /// 审核日期
-        /// </summary>
-        public virtual DateTime AuditTime { get; set; }
-
-        /// <summary>
-        /// 审核状态
-        /// </summary>
-        public virtual AuditState AuditState { get; set; }
-
-        /// <summary>
-        /// 审核说明
-        /// </summary>
-        public virtual String AuditNote { get; set; }
-
+        
         /// <summary>
         /// 生效日期
         /// </summary>
         public virtual DateTime StartTime { get; set; }
-
-        /// <summary>
-        /// 登记人
-        /// </summary>
-        public virtual User Creator { get; set; }
-
-        /// <summary>
-        /// 登记日期
-        /// </summary>
-        public virtual DateTime CreateTime { get; set; }
-
+        
         /// <summary>
         /// 备注
         /// </summary>
         public virtual String Note { get; set; }
+    }
+
+    public class GoodsPriceAlterQuery : AuditBaseQuery
+    {
+        /// <summary>
+        /// 商品
+        /// Id
+        /// </summary>
+        public int? GoodsId { get; set; }
+
+        /// <summary>
+        /// 修改差额比
+        /// </summary>
+        public Range<decimal?> BalanceRatio { get; set; }
+
+        /// <summary>
+        /// 生效日期
+        /// </summary>
+        public Range<DateTime?>  StartTime { get; set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        public String Note { get; set; }
     }
 }

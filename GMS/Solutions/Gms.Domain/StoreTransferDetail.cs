@@ -7,14 +7,14 @@ using SharpArch.Domain.DomainModel;
 namespace Gms.Domain
 {
     /// <summary>
-    /// 商品入库 详单
+    /// 商品调拨 详单
     /// </summary>
-    public class StoreInDetail : StoreGoods
+    public class StoreTransferDetail : StoreGoods
     {
         /// <summary>
-        /// 入库单
+        /// 商品调拨
         /// </summary>
-        public virtual StoreIn StoreIn { get; set; }
+        public virtual StoreTransfer GoodsTransfer { get; set; }
 
     }
 }

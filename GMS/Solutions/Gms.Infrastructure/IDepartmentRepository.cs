@@ -6,7 +6,7 @@ using Gms.Domain;
 
 namespace Gms.Infrastructure
 {
-    public interface IEquiPriceChangeRepository : IRepositoryBase<EquiPriceChange>
+    public interface IDepartmentRepository : IRepositoryBase<Department>
     {
     }
 }

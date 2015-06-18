@@ -127,39 +127,75 @@ namespace Gms.Domain
     public class GoodsQuery : QueryBase
     {
         /// <summary>
-        /// 类别
+        /// 编码
         /// </summary>
-        public int? EquiType { get; set; }
+        public String CodeNo { get; set; }
+
+        /// <summary>
+        /// 条码
+        /// </summary>
+        public String BarCode { get; set; }
 
         /// <summary>
         /// 名称
         /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// 型号
-        /// </summary>
-        public string Model { get; set; }
-
+        public String Name { get; set; }
+        
         /// <summary>
         /// 数量
         /// </summary>
         public Range<int?> Quantity { get; set; }
 
         /// <summary>
-        /// 单价
+        /// 低值预警
         /// </summary>
-        public Range<decimal?> Price { get; set; }
+        public Boolean? IsMinWarning { get; set; }
 
         /// <summary>
-        /// 预警
+        /// 高值预警
         /// </summary>
-        public bool? IsWarning { get; set; }
+        public Boolean? IsMaxWarning { get; set; }
+   
+        /// <summary>
+        /// 商品品牌
+        /// </summary>
+        public int? BrandId { get; set; }
+
+        /// <summary>
+        /// 陈列架
+        /// </summary>
+        public int? DisplayStandsId { get; set; }
+
+        /// <summary>
+        /// 是否特价
+        /// </summary>
+        public Boolean? IsBargin { get; set; }
+        
+        /// <summary>
+        /// 是否允许前台改价销售
+        /// </summary>
+        public Boolean? IsFreePrice { get; set; }
+
+        /// <summary>
+        /// 积分金额
+        /// 消费多少元获得1积分，0代表按系统设置统一积分
+        /// </summary>
+        public Range<decimal?> PointBase { get; set; }
+
+        /// <summary>
+        /// 商品状态
+        /// </summary>
+        public GoodsStatus? GoodsStatus { get; set; }
 
         /// <summary>
         /// 备注
         /// </summary>
-        public string Note { get; set; }
+        public String Note { get; set; }
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public Range<DateTime?>  CreateTime { get; set; }
 
     }
 }

@@ -6,7 +6,7 @@ using Gms.Domain;
 
 namespace Gms.Infrastructure
 {
-    public interface IProductCureRepository : IRepositoryBase<ProductCure>
+    public interface IGoodsTypeRepository : IRepositoryBase<GoodsType>
     {
     }
 }

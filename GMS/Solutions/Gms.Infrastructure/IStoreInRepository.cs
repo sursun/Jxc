@@ -6,8 +6,8 @@ using Gms.Domain;
 
 namespace Gms.Infrastructure
 {
-    public interface IEquiInRepository : IRepositoryBase<EquiIn>
+    public interface IStoreInRepository : IRepositoryBase<StoreIn>
     {
-        IList<EquiIn> GetBy(int equiStoreInId);
+        
     }
 }

@@ -19,7 +19,7 @@ namespace Gms.Web.Mvc.Controllers
     {
         public ICompanyRepository CompanyRepository { get; set; }
         public ICommonCodeRepository CommonCodeRepository { get; set; }
-        public ICureProcessRepository CureProcessRepository { get; set; }
+        public IAccountRepository CureProcessRepository { get; set; }
 
         public IRoleAuthRepository RoleAuthRepository { get; set; }
         public IUserRepository UserRepository { get; set; }
@@ -32,7 +32,7 @@ namespace Gms.Web.Mvc.Controllers
         public IProductCureRepository ProductCureRepository { get; set; }
 
         public IEquipmentRepository EquipmentRepository { get; set; }
-        public IEquiInRepository EquiInRepository { get; set; }
+        public IStoreInRepository EquiInRepository { get; set; }
         public IEquiOutRepository EquiOutRepository { get; set; }
         public IEquiStoreInRepository EquiStoreInRepository { get; set; }
         public IEquiStoreOutRepository EquiStoreOutRepository { get; set; }

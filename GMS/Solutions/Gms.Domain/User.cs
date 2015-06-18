@@ -12,8 +12,6 @@ namespace Gms.Domain
         /// </summary>
         public virtual Guid MemberShipId { get; set; }
 
-       
-
         /// <summary>
         /// 登录名（编号）
         /// </summary>
@@ -126,17 +124,40 @@ namespace Gms.Domain
         /// <summary>
         /// 登录名
         /// </summary>
-        public string LoginName { get; set; }
+        public String LoginName { get; set; }
+
+        /// <summary>
+        /// 部门
+        /// Id
+        /// </summary>
+        public int? DepartmentId { get; set; }
+
+        /// <summary>
+        /// 部门
+        /// 名称
+        /// </summary>
+        public String DepartmentName { get; set; }
+
+        /// <summary>
+        /// 职务
+        /// </summary>
+        public String Duty { get; set; }
 
         /// <summary>
         /// 真实姓名
         /// </summary>
-        public string RealName { get; set; }
+        public String RealName { get; set; }
+
+        /// <summary>
+        /// 简拼
+        /// 真实姓名
+        /// </summary>
+        public String Pinyin { get; set; }
 
         /// <summary>
         /// 昵称
         /// </summary>
-        public string NickName { get; set; }
+        public String NickName { get; set; }
 
         /// <summary>
         /// 性别
@@ -144,14 +165,39 @@ namespace Gms.Domain
         public Gender? Gender { get; set; }
 
         /// <summary>
+        /// 身份证号
+        /// </summary>
+        public String IdCard { get; set; }
+
+        /// <summary>
+        /// 入职日期
+        /// </summary>
+        public Range<DateTime?> EntryDate { get; set; }
+
+        /// <summary>
         /// 手机号码
         /// </summary>
-        public string Mobile { get; set; }
+        public String Mobile { get; set; }
+
+        /// <summary>
+        /// 员工类别
+        /// </summary>
+        public int? EmployeeType { get; set; }
+
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public EmployeeStatus? EmployeeStatus { get; set; }
 
         /// <summary>
         /// 说明
         /// </summary>
-        public string Note { get; set; }
+        public String Note { get; set; }
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public Range<DateTime?>  CreateTime { get; set; }
         
     }
 

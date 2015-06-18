@@ -24,7 +24,7 @@ namespace Gms.Domain
         /// <summary>
         /// 编码
         /// </summary>
-        public virtual String CondeNo { get; set; }
+        public virtual String CodeNo { get; set; }
 
         /// <summary>
         /// 名称
@@ -81,7 +81,7 @@ namespace Gms.Domain
         /// <summary>
         /// 编码
         /// </summary>
-        public String CondeNo { get; set; }
+        public String CodeNo { get; set; }
 
         /// <summary>
         /// 层级

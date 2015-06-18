@@ -6,7 +6,7 @@ using Gms.Domain;
 
 namespace Gms.Infrastructure
 {
-    public class CureProcessRepository : RepositoryBase<CureProcess>, ICureProcessRepository
+    public interface IContactRepository : IRepositoryBase<Contact>
     {
     }
 }

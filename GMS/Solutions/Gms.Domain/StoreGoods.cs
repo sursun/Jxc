@@ -6,30 +6,31 @@ using SharpArch.Domain.DomainModel;
 
 namespace Gms.Domain
 {
-    /// <summary>
-    /// 客户等级
-    /// </summary>
-    public class CustomerGrade : Entity
+    public class StoreGoods:Entity
     {
         /// <summary>
-        /// 编码
+        /// 商品
         /// </summary>
-        public virtual String CodeNo { get; set; }
+        public virtual Goods Goods { get; set; }
 
         /// <summary>
-        /// 名称
+        /// 数量
         /// </summary>
-        public virtual String Name { get; set; }
+        public virtual decimal Quantity { get; set; }
 
         /// <summary>
-        /// 折扣
+        /// 单价
         /// </summary>
-        public virtual decimal Discount { get; set; }
+        public virtual decimal Price { get; set; }
+
+        /// <summary>
+        /// 总额
+        /// </summary>
+        public virtual decimal TotalAomount { get; set; }
 
         /// <summary>
         /// 备注
         /// </summary>
         public virtual String Note { get; set; }
- 
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gms.Common;
 using SharpArch.Domain.DomainModel;
 
 namespace Gms.Domain
@@ -9,7 +10,7 @@ namespace Gms.Domain
     /// <summary>
     /// 商品调拨
     /// </summary>
-    public class GoodsTransfer : Entity
+    public class StoreTransfer : AuditBase
     {
         /// <summary>
         /// 票号
@@ -35,40 +36,45 @@ namespace Gms.Domain
         /// 调入仓库
         /// </summary>
         public virtual CommonCode ToStore { get; set; }
-
-        /// <summary>
-        /// 审核人
-        /// </summary>
-        public virtual User Auditor { get; set; }
-
-        /// <summary>
-        /// 审核日期
-        /// </summary>
-        public virtual DateTime AuditTime { get; set; }
-
-        /// <summary>
-        /// 审核状态
-        /// </summary>
-        public virtual AuditState AuditState { get; set; }
-
-        /// <summary>
-        /// 审核说明
-        /// </summary>
-        public virtual String AuditNote { get; set; }
-
+        
         /// <summary>
         /// 备注
         /// </summary>
         public virtual String Note { get; set; }
+        
+    }
+
+    public class StoreTransferQuery : AuditBaseQuery
+    {
+        /// <summary>
+        /// 票号
+        /// </summary>
+        public String CodeNo { get; set; }
 
         /// <summary>
-        /// 登记人
+        /// 单据编号
         /// </summary>
-        public virtual User Creator { get; set; }
+        public String OrderCode { get; set; }
 
         /// <summary>
-        /// 登记日期
+        /// 单据日期
         /// </summary>
-        public virtual DateTime CreateTime { get; set; }
+        public Range<DateTime?>  OrderTime { get; set; }
+
+        /// <summary>
+        /// 调出仓库
+        /// </summary>
+        public int? FromStoreId { get; set; }
+
+        /// <summary>
+        /// 调入仓库
+        /// </summary>
+        public int? ToStoreId { get; set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        public String Note { get; set; }
+
     }
 }

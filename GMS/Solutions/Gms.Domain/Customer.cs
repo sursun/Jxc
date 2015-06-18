@@ -22,22 +22,22 @@ namespace Gms.Domain
         /// <summary>
         /// 客户等级 
         /// </summary>
-        public virtual CustomerGrade CustomerGrade { get; set; }
+        public virtual CommonCode CustomerGrade { get; set; }
 
         /// <summary>
         /// 期初应收款
         /// </summary>
-        public virtual Decimal ShoukuanQc { get; set; }
+        public virtual decimal ShoukuanQc { get; set; }
 
         /// <summary>
         /// 应收款
         /// </summary>
-        public virtual Decimal ShoukuanYing { get; set; }
+        public virtual decimal ShoukuanYing { get; set; }
 
         /// <summary>
         /// 预收款
         /// </summary>
-        public virtual Decimal ShoukuanYu { get; set; }
+        public virtual decimal ShoukuanYu { get; set; }
 
         /// <summary>
         /// 是否允许欠款
@@ -47,10 +47,8 @@ namespace Gms.Domain
         /// <summary>
         /// 允许欠款金额
         /// </summary>
-        public virtual Boolean Debt { get; set; }
-
+        public virtual decimal Debt { get; set; }
         
-
         /// <summary>
         /// 累计积分
         /// </summary>
@@ -60,12 +58,45 @@ namespace Gms.Domain
 
     public class CustomerQuery : QueryBase
     {
-        public string Name { get; set; }
-        public string Mobile { get; set; }
-        public string Company { get; set; }
         /// <summary>
-        /// 在任意属性中查找
+        /// 客户类型
         /// </summary>
-        public string AllInOne { get; set; }
+        public int? CustomerTypeId { get; set; }
+
+        /// <summary>
+        /// 客户等级 
+        /// </summary>
+        public int? CustomerGradeId { get; set; }
+
+        /// <summary>
+        /// 期初应收款
+        /// </summary>
+        public Range<decimal?> ShoukuanQc { get; set; }
+
+        /// <summary>
+        /// 应收款
+        /// </summary>
+        public Range<decimal?> ShoukuanYing { get; set; }
+
+        /// <summary>
+        /// 预收款
+        /// </summary>
+        public Range<decimal?> ShoukuanYu { get; set; }
+
+        /// <summary>
+        /// 是否允许欠款
+        /// </summary>
+        public Boolean? AllowDebt { get; set; }
+
+        /// <summary>
+        /// 允许欠款金额
+        /// </summary>
+        public Range<decimal?> Debt { get; set; }
+
+        /// <summary>
+        /// 累计积分
+        /// </summary>
+        public Range<int?> Point { get; set; }
+
     }
 }

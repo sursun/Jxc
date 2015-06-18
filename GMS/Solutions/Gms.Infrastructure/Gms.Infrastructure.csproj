@@ -108,14 +108,11 @@
     <Compile Include="..\..\Common\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="CureProcessRepository.cs" />
+    <Compile Include="AccountRepository.cs" />
     <Compile Include="CustomerRepository.cs" />
     <Compile Include="CommonCodeRepository.cs" />
-    <Compile Include="IGlassStoreRepository.cs" />
     <Compile Include="ICustomerRepository.cs" />
     <Compile Include="ICommonCodeRepository.cs" />
-    <Compile Include="IOrderRepository.cs" />
-    <Compile Include="IProductRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IRoleAuthRepository.cs" />
     <Compile Include="IUserRepository.cs" />
@@ -132,31 +129,26 @@
     <Compile Include="NHibernateMaps\AutoPersistenceModelGenerator.cs" />
     <Compile Include="NHibernateMaps\CureProcessMap.cs" />
     <Compile Include="NHibernateMaps\OrderMap.cs" />
-    <Compile Include="OrderRepository.cs" />
-    <Compile Include="ProductRepository.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="RoleAuthRepository.cs" />
     <Compile Include="UserRepository.cs" />
-    <Compile Include="ICureProcessRepository.cs" />
-    <Compile Include="IStoreChangeRepository.cs" />
-    <Compile Include="StoreChangeRepository.cs" />
-    <Compile Include="GlassStoreRepository.cs" />
+    <Compile Include="IAccountRepository.cs" />
     <Compile Include="ICompanyRepository.cs" />
     <Compile Include="CompanyRepository.cs" />
-    <Compile Include="IProductCureRepository.cs" />
-    <Compile Include="ProductCureRepository.cs" />
-    <Compile Include="IEquipmentRepository.cs" />
-    <Compile Include="EquipmentRepository.cs" />
-    <Compile Include="IEquiInRepository.cs" />
-    <Compile Include="IEquiOutRepository.cs" />
-    <Compile Include="IEquiStoreOutRepository.cs" />
-    <Compile Include="IEquiStoreInRepository.cs" />
-    <Compile Include="IEquiPriceChangeRepository.cs" />
-    <Compile Include="EquiInRepository.cs" />
-    <Compile Include="EquiOutRepository.cs" />
-    <Compile Include="EquiStoreInRepository.cs" />
-    <Compile Include="EquiStoreOutRepository.cs" />
-    <Compile Include="EquiPriceChangeRepository.cs" />
+    <Compile Include="IStoreInRepository.cs" />
+    <Compile Include="StoreInRepository.cs" />
+    <Compile Include="IContactRepository.cs" />
+    <Compile Include="ContactRepository.cs" />
+    <Compile Include="IDepartmentRepository.cs" />
+    <Compile Include="DepartmentRepository.cs" />
+    <Compile Include="IGoodsRepository.cs" />
+    <Compile Include="GoodsRepository.cs" />
+    <Compile Include="IGoodsTypeRepository.cs" />
+    <Compile Include="GoodsTypeRepository.cs" />
+    <Compile Include="IStoreGoodsRepository.cs" />
+    <Compile Include="StoreGoodsRepository.cs" />
+    <Compile Include="ISysLogRepository.cs" />
+    <Compile Include="SysLogRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gms.Common\Gms.Common.csproj">

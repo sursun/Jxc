@@ -93,6 +93,7 @@
     </Compile>
     <Compile Include="Attribute\FieldLengthAttribute.cs" />
     <Compile Include="Attribute\NotMapAttribute.cs" />
+    <Compile Include="AuditBase.cs" />
     <Compile Include="ChargeSwap.cs" />
     <Compile Include="CommonCode.cs" />
     <Compile Include="Contact.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Enums.cs" />
     <Compile Include="GoodsPriceAlter.cs" />
     <Compile Include="RoleConstants.cs" />
+    <Compile Include="StoreGoods.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Goods.cs" />
@@ -108,15 +110,15 @@
     <Compile Include="RelationPerson.cs" />
     <Compile Include="SysLog.cs" />
     <Compile Include="Account.cs" />
-    <Compile Include="CustomerGrade.cs" />
     <Compile Include="Charge.cs" />
     <Compile Include="GoodsType.cs" />
-    <Compile Include="GoodsTransfer.cs" />
-    <Compile Include="GoodsTransferDetail.cs" />
+    <Compile Include="StoreTransfer.cs" />
+    <Compile Include="StoreTransferDetail.cs" />
     <Compile Include="StoreIn.cs" />
     <Compile Include="StoreOut.cs" />
     <Compile Include="StoreInDetail.cs" />
     <Compile Include="StoreOutDetail.cs" />
+    <Compile Include="StoreAlter.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

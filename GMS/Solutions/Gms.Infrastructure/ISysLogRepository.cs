@@ -6,8 +6,7 @@ using Gms.Domain;
 
 namespace Gms.Infrastructure
 {
-    public interface IEquiOutRepository : IRepositoryBase<EquiOut>
+    public interface ISysLogRepository : IRepositoryBase<SysLog>
     {
-        IList<EquiOut> GetBy(int equiStoreOutId);
     }
 }

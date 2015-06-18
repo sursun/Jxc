@@ -6,7 +6,7 @@ using Gms.Domain;
 
 namespace Gms.Infrastructure
 {
-    public interface IEquiStoreOutRepository : IRepositoryBase<EquiStoreOut>
+    public interface IAccountRepository : IRepositoryBase<Account>
     {
     }
 }

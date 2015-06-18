@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gms.Common;
 using SharpArch.Domain.DomainModel;
 
 namespace Gms.Domain
@@ -14,7 +15,7 @@ namespace Gms.Domain
         /// <summary>
         /// 所属联系人
         /// </summary>
-        public virtual RelationPerson LinkMan { get; set; }
+        public virtual RelationPerson RelationPerson { get; set; }
 
         /// <summary>
         /// 姓名
@@ -70,5 +71,43 @@ namespace Gms.Domain
         /// 创建时间
         /// </summary>
         public virtual DateTime CreateTime { get; set; }
+    }
+
+    public class ContactQuery : QueryBase
+    {
+        /// <summary>
+        /// 所属联系人
+        /// </summary>
+        public int? RelationPersonId { get; set; }
+
+        /// <summary>
+        /// 姓名
+        /// </summary>
+        public String Name { get; set; }
+
+        /// <summary>
+        /// 性别
+        /// </summary>
+        public Gender? Gender { get; set; }
+
+        /// <summary>
+        /// 证件号码
+        /// </summary>
+        public String CardNo { get; set; }
+
+        /// <summary>
+        /// 手机号码
+        /// </summary>
+        public String Mobile { get; set; }
+        
+        /// <summary>
+        /// 是否为默认联系方式？
+        /// </summary>
+        public Yesno? IsDefault { get; set; }
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public Range<DateTime?> CreateTime { get; set; }
     }
 }

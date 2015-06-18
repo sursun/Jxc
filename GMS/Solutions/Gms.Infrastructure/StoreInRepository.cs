@@ -7,17 +7,17 @@ using Gms.Domain;
 
 namespace Gms.Infrastructure
 {
-    public class EquiOutRepository : RepositoryBase<EquiOut>, IEquiOutRepository
+    public class StoreInRepository : RepositoryBase<StoreIn>, IStoreInRepository
     {
-        protected override IQueryable<EquiOut> LoadQuery<TQ>(TQ query)
+        protected override IQueryable<StoreIn> LoadQuery<TQ>(TQ query)
         {
-            IQueryable<EquiOut> q = base.LoadQuery(query);
-            var entityQuery = query as EquiOutQuery;
+            IQueryable<StoreIn> q = base.LoadQuery(query);
+            var entityQuery = query as StoreInQuery;
             if (entityQuery == null) return q;
 
-            if (entityQuery.EquiStoreOutId.HasValue)
+            if (entityQuery.EquiStoreInId.HasValue)
             {
-                q = q.Where(c => c.EquiStoreOut.Id == entityQuery.EquiStoreOutId);
+                q = q.Where(c => c.EquiStoreIn.Id == entityQuery.EquiStoreInId);
             }
 
             if (entityQuery.EquipmentId.HasValue)
@@ -45,10 +45,6 @@ namespace Gms.Infrastructure
 
             return q;
         }
-
-        public IList<EquiOut> GetBy(int equiStoreOutId)
-        {
-            return Query.Where(c => c.EquiStoreOut.Id == equiStoreOutId).ToList();
-        }
+        
     }
 }

@@ -15,7 +15,6 @@ namespace Gms.Domain
     /// </summary>
     public class GoodsType : Entity
     {
-
         /// <summary>
         /// 商品
         /// </summary>
@@ -26,6 +25,15 @@ namespace Gms.Domain
         /// </summary>
         public virtual CommonCode Type { get; set; }
    
+    }
+
+    public class GoodsTypeQuery : QueryBase
+    {
+        /// <summary>
+        /// 商品
+        /// </summary>
+        public int? GoodsId { get; set; }
+ 
     }
   
 }

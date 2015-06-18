@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gms.Common;
 using SharpArch.Domain.DomainModel;
 
 namespace Gms.Domain
@@ -9,7 +10,7 @@ namespace Gms.Domain
     /// <summary>
     /// 收支记账
     /// </summary>
-    public class Charge:Entity
+    public class Charge : AuditBase
     {
         /// <summary>
         /// 记账账户
@@ -36,36 +37,7 @@ namespace Gms.Domain
         /// 经手人
         /// </summary>
         public virtual User User { get; set; }
-
-        /// <summary>
-        /// 审核人
-        /// </summary>
-        public virtual User Auditor { get; set; }
-
-        /// <summary>
-        /// 审核日期
-        /// </summary>
-        public virtual DateTime AuditTime { get; set; }
-
-        /// <summary>
-        /// 审核状态
-        /// </summary>
-        public virtual AuditState AuditState { get; set; }
-
-        /// <summary>
-        /// 审核说明
-        /// </summary>
-        public virtual String AuditNote { get; set; }
-
-        /// <summary>
-        /// 登记人
-        /// </summary>
-        public virtual User Creator { get; set; }
-
-        /// <summary>
-        /// 登记日期
-        /// </summary>
-        public virtual DateTime CreateTime { get; set; }
+        
 
         /// <summary>
         /// 是否自动记账？
@@ -76,5 +48,45 @@ namespace Gms.Domain
         /// 备注
         /// </summary>
         public virtual String Note { get; set; }
+    }
+
+    public class ChargeQuery : AuditBaseQuery
+    {
+        /// <summary>
+        /// 记账账户
+        /// </summary>
+        public int? AccountId { get; set; }
+
+        /// <summary>
+        /// 收支类型
+        /// </summary>
+        public int? ChargeTypeId { get; set; }
+
+        /// <summary>
+        /// 记账金额
+        /// </summary>
+        public Range<decimal?> Amount { get; set; }
+        
+        /// <summary>
+        /// 经手人
+        /// Id
+        /// </summary>
+        public int? UserId { get; set; }
+
+        /// <summary>
+        /// 经手人
+        /// 姓名
+        /// </summary>
+        public String UserName { get; set; }
+        
+        /// <summary>
+        /// 是否自动记账？
+        /// </summary>
+        public Boolean? AutoCreate { get; set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        public String Note { get; set; }
     }
 }
