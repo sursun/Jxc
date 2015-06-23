@@ -17,6 +17,22 @@ namespace Gms.Web.Mvc.Controllers
 
         public ActionResult TypeInfo(CommonCodeType type)
         {
+            switch (type)
+            {
+                case CommonCodeType.客户等级:
+                    break;
+                case CommonCodeType.入库业务类型:
+                    break;
+                case CommonCodeType.出库业务类型:
+                    break;
+                case CommonCodeType.收入记账类型:
+                    break;
+                case CommonCodeType.支出记账类型:
+                    break;
+                default:break;
+            }
+           
+            
             return View(type);
         }
 
