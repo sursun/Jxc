@@ -7,7 +7,7 @@ using SharpArch.Domain.DomainModel;
 
 namespace Gms.Domain
 {
-    public class AuditBase:Entity
+    public abstract class AuditBase : Entity
     {
         /// <summary>
         /// 登记人

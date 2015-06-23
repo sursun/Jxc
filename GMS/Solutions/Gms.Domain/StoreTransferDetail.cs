@@ -17,4 +17,13 @@ namespace Gms.Domain
         public virtual StoreTransfer GoodsTransfer { get; set; }
 
     }
+    
+    public class StoreTransferDetailQuery : StoreGoodsQuery
+    {
+        /// <summary>
+        /// 商品调拨
+        /// </summary>
+        public int? GoodsTransferId { get; set; }
+
+    }
 }

@@ -40,9 +40,6 @@ namespace Gms.Infrastructure
                 q = q.Where(c => c.Note.Contains(entityQuery.Note));
             }
             
-
-
-
             return q;
         }
     }

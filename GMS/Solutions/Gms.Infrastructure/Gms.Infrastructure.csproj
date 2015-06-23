@@ -114,7 +114,6 @@
     <Compile Include="ICustomerRepository.cs" />
     <Compile Include="ICommonCodeRepository.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="IRoleAuthRepository.cs" />
     <Compile Include="IUserRepository.cs" />
     <Compile Include="NHibernateMaps\AutomappingConfiguration.cs" />
     <Compile Include="NHibernateMaps\CommonCodeMap.cs" />
@@ -127,10 +126,7 @@
     <Compile Include="NHibernateMaps\Conventions\ReferenceConvention.cs" />
     <Compile Include="NHibernateMaps\Conventions\TableNameConvention.cs" />
     <Compile Include="NHibernateMaps\AutoPersistenceModelGenerator.cs" />
-    <Compile Include="NHibernateMaps\CureProcessMap.cs" />
-    <Compile Include="NHibernateMaps\OrderMap.cs" />
     <Compile Include="Repository.cs" />
-    <Compile Include="RoleAuthRepository.cs" />
     <Compile Include="UserRepository.cs" />
     <Compile Include="IAccountRepository.cs" />
     <Compile Include="ICompanyRepository.cs" />
@@ -149,6 +145,30 @@
     <Compile Include="StoreGoodsRepository.cs" />
     <Compile Include="ISysLogRepository.cs" />
     <Compile Include="SysLogRepository.cs" />
+    <Compile Include="IAuditBaseRepository.cs" />
+    <Compile Include="AuditBaseRepository.cs" />
+    <Compile Include="IRelationPersonRepository.cs" />
+    <Compile Include="RelationPersonRepository.cs" />
+    <Compile Include="IChargeRepository.cs" />
+    <Compile Include="ChargeRepository.cs" />
+    <Compile Include="IChargeSwapRepository.cs" />
+    <Compile Include="ChargeSwapRepository.cs" />
+    <Compile Include="IGoodsPriceAlterRepository.cs" />
+    <Compile Include="GoodsPriceAlterRepository.cs" />
+    <Compile Include="IStoreAlterRepository.cs" />
+    <Compile Include="StoreAlterRepository.cs" />
+    <Compile Include="IStoreInDetailRepository.cs" />
+    <Compile Include="StoreInDetailRepository.cs" />
+    <Compile Include="IStoreOutDetailRepository.cs" />
+    <Compile Include="StoreOutDetailRepository.cs" />
+    <Compile Include="IStoreTransferDetailRepository.cs" />
+    <Compile Include="StoreTransferDetailRepository.cs" />
+    <Compile Include="IStoreOutRepository.cs" />
+    <Compile Include="StoreOutRepository.cs" />
+    <Compile Include="IStoreTransferRepository.cs" />
+    <Compile Include="StoreTransferRepository.cs" />
+    <Compile Include="SupplierRepository.cs" />
+    <Compile Include="ISupplierRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gms.Common\Gms.Common.csproj">

@@ -182,12 +182,7 @@
     <Compile Include="Controllers\HtmlCommonCodeExtentions.cs" />
     <Compile Include="Controllers\MembershipController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
-    <Compile Include="Controllers\CureProcessController.cs" />
-    <Compile Include="Controllers\GlassStoreController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
-    <Compile Include="Controllers\ProductCureController.cs" />
-    <Compile Include="Controllers\EquipmentController.cs" />
-    <Compile Include="Controllers\EquiStoreController.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\DashboardViewModel.cs" />
     <Compile Include="Models\ForgotPasswordViewModel.cs" />
@@ -205,8 +200,6 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\OrderController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RouteRegistrar.cs" />
     <Compile Include="Controllers\SGAccountController.cs" />
     <Compile Include="Controllers\UserController.cs" />

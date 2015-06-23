@@ -10,7 +10,7 @@ namespace Gms.Domain
     /// <summary>
     /// 商品出入库
     /// </summary>
-    public class StoreAlter : AuditBase
+    public abstract class StoreAlter : AuditBase
     {
         /// <summary>
         /// 票号

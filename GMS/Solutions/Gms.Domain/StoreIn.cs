@@ -29,12 +29,10 @@ namespace Gms.Domain
         /// </summary>
         public virtual CommonCode StoreInType { get; set; }
         
-
         /// <summary>
         /// 本次付款
         /// </summary>
         public virtual decimal AmountPay { get; set; }
-
   
     }
 
@@ -69,7 +67,7 @@ namespace Gms.Domain
         /// 采购入库|其他入库
         /// </summary>
         /// 
-        public CommonCode StoreInType { get; set; }
+        public int? StoreInTypeId { get; set; }
 
 
         /// <summary>

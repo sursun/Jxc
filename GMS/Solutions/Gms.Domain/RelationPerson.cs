@@ -11,7 +11,7 @@ namespace Gms.Domain
     /// 联系人
     /// 客户|供应商
     /// </summary>
-    public class RelationPerson:Entity
+    public class RelationPerson : Entity
     {
         /// <summary>
         /// 联系人类型
@@ -66,7 +66,7 @@ namespace Gms.Domain
         /// <summary>
         /// 联系人类型
         /// </summary>
-        public RelationType RelationType { get; set; }
+        public RelationType? RelationType { get; set; }
 
         /// <summary>
         /// 编号
@@ -77,7 +77,7 @@ namespace Gms.Domain
         /// 姓名
         /// </summary>
         public String Name { get; set; }
-
+         
         /// <summary>
         /// 拼音（姓名）
         /// </summary>

@@ -6,7 +6,7 @@ using Gms.Domain;
 
 namespace Gms.Infrastructure
 {
-    public interface ICustomerRepository:IRepositoryBase<Customer>
+    public interface ICustomerRepository : IRelationPersonRepository<Customer>
     {
     }
 }

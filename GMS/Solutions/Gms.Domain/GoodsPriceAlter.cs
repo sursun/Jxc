@@ -74,6 +74,11 @@ namespace Gms.Domain
         public int? GoodsId { get; set; }
 
         /// <summary>
+        /// 修改差额
+        /// </summary>
+        public Range<decimal?> Balance { get; set; }
+
+        /// <summary>
         /// 修改差额比
         /// </summary>
         public Range<decimal?> BalanceRatio { get; set; }

@@ -7,7 +7,7 @@ using Gms.Domain;
 
 namespace Gms.Infrastructure
 {
-    public class StoreInRepository : RepositoryBase<StoreIn>, IStoreInRepository
+    public class StoreInRepository : AuditBaseRepository<StoreIn>, IStoreInRepository
     {
         protected override IQueryable<StoreIn> LoadQuery<TQ>(TQ query)
         {
@@ -15,31 +15,41 @@ namespace Gms.Infrastructure
             var entityQuery = query as StoreInQuery;
             if (entityQuery == null) return q;
 
-            if (entityQuery.EquiStoreInId.HasValue)
+            if (entityQuery.SupplierId.HasValue)
             {
-                q = q.Where(c => c.EquiStoreIn.Id == entityQuery.EquiStoreInId);
+                q = q.Where(c => c.Supplier.Id == entityQuery.SupplierId);
+            }
+            
+            if (entityQuery.SupplierName.NotNullAndEmpty())
+            {
+                q = q.Where(c => c.Supplier.Name.Contains(entityQuery.SupplierName));
             }
 
-            if (entityQuery.EquipmentId.HasValue)
+            if (entityQuery.BuyerId.HasValue)
             {
-                q = q.Where(c => c.Equipment.Id == entityQuery.EquipmentId);
+                q = q.Where(c => c.Buyer.Id == entityQuery.BuyerId);
             }
 
-            if (entityQuery.EquipmentName.NotNullAndEmpty())
+            if (entityQuery.BuyerName.NotNullAndEmpty())
             {
-                q = q.Where(c => c.Equipment.Name.Contains(entityQuery.EquipmentName));
+                q = q.Where(c => c.Buyer.LoginName.Contains(entityQuery.BuyerName));
             }
 
-            if (entityQuery.Price != null)
+            if (entityQuery.StoreInTypeId.HasValue)
             {
-                if (entityQuery.Price.Start.HasValue)
+                q = q.Where(c => c.StoreInType.Id == entityQuery.StoreInTypeId);
+            }
+
+            if (entityQuery.AmountPay != null)
+            {
+                if (entityQuery.AmountPay.Start.HasValue)
                 {
-                    q = q.Where(c => c.Price >= entityQuery.Price.Start);
+                    q = q.Where(c => c.AmountPay >= entityQuery.AmountPay.Start);
                 }
 
-                if (entityQuery.Price.End.HasValue)
+                if (entityQuery.AmountPay.End.HasValue)
                 {
-                    q = q.Where(c => c.Price < entityQuery.Price.End);
+                    q = q.Where(c => c.AmountPay < entityQuery.AmountPay.End);
                 }
             }
 

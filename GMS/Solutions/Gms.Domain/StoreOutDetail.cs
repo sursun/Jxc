@@ -17,4 +17,13 @@ namespace Gms.Domain
         public virtual StoreOut StoreOut { get; set; }
         
     }
+    
+    public class StoreOutDetailQuery : StoreGoodsQuery 
+    {
+        /// <summary>
+        /// 出库单
+        /// </summary>
+        public int? StoreOutId { get; set; }
+        
+    }
 }

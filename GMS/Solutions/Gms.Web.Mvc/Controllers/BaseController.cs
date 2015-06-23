@@ -21,23 +21,11 @@ namespace Gms.Web.Mvc.Controllers
         public ICommonCodeRepository CommonCodeRepository { get; set; }
         public IAccountRepository CureProcessRepository { get; set; }
 
-        public IRoleAuthRepository RoleAuthRepository { get; set; }
         public IUserRepository UserRepository { get; set; }
         public ICustomerRepository CustomerRepository { get; set; }
 
-        public IOrderRepository OrderRepository { get; set; }
-        public IProductRepository ProductRepository { get; set; }
-        public IGlassStoreRepository GlassStoreRepository { get; set; }
-        public IStoreChangeRepository StoreChangeRepository { get; set; }
-        public IProductCureRepository ProductCureRepository { get; set; }
-
-        public IEquipmentRepository EquipmentRepository { get; set; }
         public IStoreInRepository EquiInRepository { get; set; }
-        public IEquiOutRepository EquiOutRepository { get; set; }
-        public IEquiStoreInRepository EquiStoreInRepository { get; set; }
-        public IEquiStoreOutRepository EquiStoreOutRepository { get; set; }
-        public IEquiPriceChangeRepository EquiPriceChangeRepository { get; set; }
-
+ 
         public bool IsSystem()
         {
             return this.HttpContext.User.IsInRole(RoleConstants.SYSTEM);

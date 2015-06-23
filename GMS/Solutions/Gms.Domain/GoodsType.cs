@@ -33,6 +33,11 @@ namespace Gms.Domain
         /// 商品
         /// </summary>
         public int? GoodsId { get; set; }
+
+        /// <summary>
+        /// 类型
+        /// </summary>
+        public int? TypeId { get; set; }
  
     }
   

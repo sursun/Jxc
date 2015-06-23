@@ -6,7 +6,8 @@ using Gms.Domain;
 
 namespace Gms.Infrastructure
 {
-    public interface IStoreGoodsRepository<T> : IRepositoryBase<T> where T : Gms.Domain.StoreGoods
+    public interface IStoreOutDetailRepository : IStoreGoodsRepository<StoreOutDetail>
     {
+        
     }
 }

@@ -7,12 +7,10 @@ using Gms.Domain;
 
 namespace Gms.Infrastructure
 {
-    public class CustomerRepository:RepositoryBase<Customer>,ICustomerRepository
+    public class CustomerRepository : RelationPersonRepository<Customer>, ICustomerRepository
     {
-   
         protected override IQueryable<Customer> LoadQuery<TQ>(TQ query)
         {
-
             IQueryable<Customer> q = base.LoadQuery(query);
             var entityQuery = query as CustomerQuery;
             if (entityQuery == null) return q;

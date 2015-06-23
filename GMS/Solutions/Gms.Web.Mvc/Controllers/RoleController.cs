@@ -64,310 +64,310 @@ namespace Gms.Web.Mvc.Controllers
             return Json(result);
         }
 
-        public virtual ActionResult GetRoleAuths(string rolename)
-        {
-            IList<AuthViewModel> datas = new List<AuthViewModel>();
-
-            Array authTypes = Enum.GetValues(typeof (AuthType));
-            foreach (var authType in authTypes)
-            {
-                FillDataFrom(datas, (AuthType)authType, rolename);
-            }
-
-            return Json(new { total = datas.Count, rows = datas });
-        }
-
-        private void FillDataFrom( IList<AuthViewModel> datas,AuthType authType,string rolename)
-        {
-            RoleAuth roleAuth = this.RoleAuthRepository.GetBy(rolename, (AuthType)authType);
-
-            string group = Enum.GetName(typeof(AuthType), authType);
-
-            switch (authType)
-            {
-                case AuthType.角色管理:
-                    {
-                        AddData2List(datas, rolename, group, roleAuth, ActionPoint.添加);
-
-                        AddData2List(datas, rolename, group, roleAuth, ActionPoint.删除);
-
-                        AddData2List(datas, rolename, group, roleAuth, ActionPoint.修改);
-                    }
-                    break;
-                case AuthType.用户管理:
-                    {
-                        AddData2List(datas, rolename, group, roleAuth, ActionPoint.添加);
-
-                        AddData2List(datas, rolename, group, roleAuth, ActionPoint.删除);
-
-                        AddData2List(datas, rolename, group, roleAuth, ActionPoint.修改);
-                    }
-                    break;
-                case AuthType.客户管理:
-                    {
-                        AddData2List(datas, rolename, group, roleAuth, ActionPoint.添加);
-
-                        AddData2List(datas, rolename, group, roleAuth, ActionPoint.删除);
-
-                        AddData2List(datas, rolename, group, roleAuth, ActionPoint.修改);
-                    }
-                    break;
-                case AuthType.订单管理:
-                    {
-                        AddData2List(datas, rolename, group, roleAuth, ActionPoint.添加);
-
-                        AddData2List(datas, rolename, group, roleAuth, ActionPoint.删除);
-
-                        AddData2List(datas, rolename, group, roleAuth, ActionPoint.修改);
-                    }
-                    break;
-                case AuthType.日志管理:
-                    {
-                        AddData2List(datas, rolename, group, roleAuth, ActionPoint.添加);
-
-                        AddData2List(datas, rolename, group, roleAuth, ActionPoint.删除);
-
-                        AddData2List(datas, rolename, group, roleAuth, ActionPoint.修改);
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        public void AddData2List(IList<AuthViewModel> datas,string rolename, string group, RoleAuth roleAuth, ActionPoint actionPoint)
-        {
-            
-            string strGroup = group;
-            string strValue = "";
-            string strName = Enum.GetName(typeof(ActionPoint), actionPoint);
-
-            if (this.RoleAuthRepository.IsAuthorized(roleAuth, actionPoint))
-            {
-                strValue = "允许";
-            }
-            datas.Add(new AuthViewModel(rolename, strGroup, strName, strValue));
-        }
-
-        [Transaction]
-        public ActionResult ChangeRoleAuth(string role,string authType,string actionPoint,bool bFlag)
-        {
-            AuthType aType = (AuthType) Enum.Parse(typeof (AuthType), authType);
-            RoleAuth roleAuth = this.RoleAuthRepository.GetBy(role,aType);
-
-            if (roleAuth == null)
-            {
-                roleAuth = new RoleAuth();
-                roleAuth.Role = role;
-                roleAuth.AuthType = aType;
-            }
-
-            ActionPoint point = (ActionPoint) Enum.Parse(typeof (ActionPoint), actionPoint);
-
-            if (bFlag)
-            {
-                int n = (int) point;
-                roleAuth.Auths = (roleAuth.Auths | (int)point);
-            }
-            else
-            {
-                roleAuth.Auths = (roleAuth.Auths & (~((int) point)));
-            }
-
-            this.RoleAuthRepository.SaveOrUpdate(roleAuth);
-
-            return JsonSuccess();
-        }
-
-
-        #region Create Roles Methods
-
-        //[HttpGet]
-        //public virtual ActionResult CreateRole()
+        //public virtual ActionResult GetRoleAuths(string rolename)
         //{
-        //    return View(new RoleViewModel());
+        //    IList<AuthViewModel> datas = new List<AuthViewModel>();
+
+        //    Array authTypes = Enum.GetValues(typeof (AuthType));
+        //    foreach (var authType in authTypes)
+        //    {
+        //        FillDataFrom(datas, (AuthType)authType, rolename);
+        //    }
+
+        //    return Json(new { total = datas.Count, rows = datas });
         //}
 
-        [HttpPost]
-        public virtual ActionResult CreateRole(string roleName)
-        {
-            JsonResponse response = new JsonResponse();
+        //private void FillDataFrom( IList<AuthViewModel> datas,AuthType authType,string rolename)
+        //{
+        //    RoleAuth roleAuth = this.RoleAuthRepository.GetBy(rolename, (AuthType)authType);
 
-            if (string.IsNullOrEmpty(roleName))
-            {
-                response.Success = false;
-                response.Message = "You must enter a role name.";
-                response.CssClass = "red";
+        //    string group = Enum.GetName(typeof(AuthType), authType);
 
-                return Json(response);
-            }
+        //    switch (authType)
+        //    {
+        //        case AuthType.角色管理:
+        //            {
+        //                AddData2List(datas, rolename, group, roleAuth, ActionPoint.添加);
 
-            try
-            {
-                roleService.CreateRole(roleName);
+        //                AddData2List(datas, rolename, group, roleAuth, ActionPoint.删除);
 
-                if (Request.IsAjaxRequest())
-                {
-                    response.Success = true;
-                    response.Message = "Role created successfully!";
-                    response.CssClass = "green";
+        //                AddData2List(datas, rolename, group, roleAuth, ActionPoint.修改);
+        //            }
+        //            break;
+        //        case AuthType.用户管理:
+        //            {
+        //                AddData2List(datas, rolename, group, roleAuth, ActionPoint.添加);
 
-                    return Json(response);
-                }
+        //                AddData2List(datas, rolename, group, roleAuth, ActionPoint.删除);
 
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                if (Request.IsAjaxRequest())
-                {
-                    response.Success = false;
-                    response.Message = ex.Message;
-                    response.CssClass = "red";
+        //                AddData2List(datas, rolename, group, roleAuth, ActionPoint.修改);
+        //            }
+        //            break;
+        //        case AuthType.客户管理:
+        //            {
+        //                AddData2List(datas, rolename, group, roleAuth, ActionPoint.添加);
 
-                    return Json(response);
-                }
+        //                AddData2List(datas, rolename, group, roleAuth, ActionPoint.删除);
 
-                ModelState.AddModelError("", ex.Message);
-            }
+        //                AddData2List(datas, rolename, group, roleAuth, ActionPoint.修改);
+        //            }
+        //            break;
+        //        case AuthType.订单管理:
+        //            {
+        //                AddData2List(datas, rolename, group, roleAuth, ActionPoint.添加);
 
-            return RedirectToAction("Index");
-        }
+        //                AddData2List(datas, rolename, group, roleAuth, ActionPoint.删除);
 
-        #endregion
+        //                AddData2List(datas, rolename, group, roleAuth, ActionPoint.修改);
+        //            }
+        //            break;
+        //        case AuthType.日志管理:
+        //            {
+        //                AddData2List(datas, rolename, group, roleAuth, ActionPoint.添加);
 
-        #region Delete Roles Methods
+        //                AddData2List(datas, rolename, group, roleAuth, ActionPoint.删除);
 
-        /// <summary>
-        /// This is an Ajax method.
-        /// </summary>
-        /// <param name="roleName"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public virtual ActionResult DeleteRole(string roleName)
-        {
-            JsonResponse response = new JsonResponse();
+        //                AddData2List(datas, rolename, group, roleAuth, ActionPoint.修改);
+        //            }
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
 
-            if (string.IsNullOrEmpty(roleName))
-            {
-                response.Success = false;
-                response.Message = "You must select a Role Name to delete.";
-                response.CssClass = "red";
+        //public void AddData2List(IList<AuthViewModel> datas,string rolename, string group, RoleAuth roleAuth, ActionPoint actionPoint)
+        //{
+            
+        //    string strGroup = group;
+        //    string strValue = "";
+        //    string strName = Enum.GetName(typeof(ActionPoint), actionPoint);
 
-                return Json(response);
-            }
+        //    if (this.RoleAuthRepository.IsAuthorized(roleAuth, actionPoint))
+        //    {
+        //        strValue = "允许";
+        //    }
+        //    datas.Add(new AuthViewModel(rolename, strGroup, strName, strValue));
+        //}
 
-            roleService.DeleteRole(roleName);
+        //[Transaction]
+        //public ActionResult ChangeRoleAuth(string role,string authType,string actionPoint,bool bFlag)
+        //{
+        //    AuthType aType = (AuthType) Enum.Parse(typeof (AuthType), authType);
+        //    RoleAuth roleAuth = this.RoleAuthRepository.GetBy(role,aType);
 
-            response.Success = true;
-            response.Message = roleName + " was deleted successfully!";
-            response.CssClass = "green";
+        //    if (roleAuth == null)
+        //    {
+        //        roleAuth = new RoleAuth();
+        //        roleAuth.Role = role;
+        //        roleAuth.AuthType = aType;
+        //    }
 
-            return Json(response);
+        //    ActionPoint point = (ActionPoint) Enum.Parse(typeof (ActionPoint), actionPoint);
 
+        //    if (bFlag)
+        //    {
+        //        int n = (int) point;
+        //        roleAuth.Auths = (roleAuth.Auths | (int)point);
+        //    }
+        //    else
+        //    {
+        //        roleAuth.Auths = (roleAuth.Auths & (~((int) point)));
+        //    }
 
-        }
+        //    this.RoleAuthRepository.SaveOrUpdate(roleAuth);
 
-        public virtual ActionResult Delete(string roleName)
-        {
-
-            if (string.IsNullOrEmpty(roleName))
-            {
-                return JsonError("请选择要删除的角色");
-            }
-
-            roleService.DeleteRole(roleName);
-
-            return JsonSuccess();
-
-
-        }
-        [HttpPost]
-        public ActionResult DeleteRoles(string roles, bool throwOnPopulatedRole)
-        {
-            JsonResponse response = new JsonResponse();
-            response.Messages = new List<ResponseItem>();
-
-            if (string.IsNullOrEmpty(roles))
-            {
-                response.Success = false;
-                response.Message = "You must select at least one role.";
-                return Json(response);
-            }
-
-            string[] roleNames = roles.Split(',');
-            StringBuilder sb = new StringBuilder();
-
-            ResponseItem item = null;
-
-            foreach (var role in roleNames)
-            {
-                if (!string.IsNullOrEmpty(role))
-                {
-                    try
-                    {
-                        roleService.DeleteRole(role, throwOnPopulatedRole);
-
-                        item = new ResponseItem();
-                        item.Success = true;
-                        item.Message = "Deleted this role successfully - " + role;
-                        item.CssClass = "green";
-                        response.Messages.Add(item);
-
-                        //sb.AppendLine("Deleted this role successfully - " + role + "<br />");
-                    }
-                    catch (System.Configuration.Provider.ProviderException ex)
-                    {
-                        //sb.AppendLine(role + " - " + ex.Message + "<br />");
-
-                        item = new ResponseItem();
-                        item.Success = false;
-                        item.Message = ex.Message;
-                        item.CssClass = "yellow";
-                        response.Messages.Add(item);
-                    }
-                }
-            }
-
-            response.Success = true;
-            response.Message = sb.ToString();
-
-            return Json(response);
-        }
-
-        #endregion
-
-        #region Get Users In Role methods
-
-        /// <summary>
-        /// This is an Ajax method that populates the 
-        /// Roles drop down list.
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult GetAllRoles()
-        {
-            var list = roleService.GetAllRoles();
-
-            List<SelectObject> selectList = new List<SelectObject>();
-
-            foreach (var item in list)
-            {
-                selectList.Add(new SelectObject() { caption = item, value = item });
-            }
-
-            return Json(selectList, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpGet]
-        public ActionResult GetUsersInRole(string roleName)
-        {
-            var list = roleService.GetUsersInRole(roleName);
-
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
+        //    return JsonSuccess();
+        //}
 
 
-        #endregion
+        //#region Create Roles Methods
+
+        ////[HttpGet]
+        ////public virtual ActionResult CreateRole()
+        ////{
+        ////    return View(new RoleViewModel());
+        ////}
+
+        //[HttpPost]
+        //public virtual ActionResult CreateRole(string roleName)
+        //{
+        //    JsonResponse response = new JsonResponse();
+
+        //    if (string.IsNullOrEmpty(roleName))
+        //    {
+        //        response.Success = false;
+        //        response.Message = "You must enter a role name.";
+        //        response.CssClass = "red";
+
+        //        return Json(response);
+        //    }
+
+        //    try
+        //    {
+        //        roleService.CreateRole(roleName);
+
+        //        if (Request.IsAjaxRequest())
+        //        {
+        //            response.Success = true;
+        //            response.Message = "Role created successfully!";
+        //            response.CssClass = "green";
+
+        //            return Json(response);
+        //        }
+
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        if (Request.IsAjaxRequest())
+        //        {
+        //            response.Success = false;
+        //            response.Message = ex.Message;
+        //            response.CssClass = "red";
+
+        //            return Json(response);
+        //        }
+
+        //        ModelState.AddModelError("", ex.Message);
+        //    }
+
+        //    return RedirectToAction("Index");
+        //}
+
+        //#endregion
+
+        //#region Delete Roles Methods
+
+        ///// <summary>
+        ///// This is an Ajax method.
+        ///// </summary>
+        ///// <param name="roleName"></param>
+        ///// <returns></returns>
+        //[HttpPost]
+        //public virtual ActionResult DeleteRole(string roleName)
+        //{
+        //    JsonResponse response = new JsonResponse();
+
+        //    if (string.IsNullOrEmpty(roleName))
+        //    {
+        //        response.Success = false;
+        //        response.Message = "You must select a Role Name to delete.";
+        //        response.CssClass = "red";
+
+        //        return Json(response);
+        //    }
+
+        //    roleService.DeleteRole(roleName);
+
+        //    response.Success = true;
+        //    response.Message = roleName + " was deleted successfully!";
+        //    response.CssClass = "green";
+
+        //    return Json(response);
+
+
+        //}
+
+        //public virtual ActionResult Delete(string roleName)
+        //{
+
+        //    if (string.IsNullOrEmpty(roleName))
+        //    {
+        //        return JsonError("请选择要删除的角色");
+        //    }
+
+        //    roleService.DeleteRole(roleName);
+
+        //    return JsonSuccess();
+
+
+        //}
+        //[HttpPost]
+        //public ActionResult DeleteRoles(string roles, bool throwOnPopulatedRole)
+        //{
+        //    JsonResponse response = new JsonResponse();
+        //    response.Messages = new List<ResponseItem>();
+
+        //    if (string.IsNullOrEmpty(roles))
+        //    {
+        //        response.Success = false;
+        //        response.Message = "You must select at least one role.";
+        //        return Json(response);
+        //    }
+
+        //    string[] roleNames = roles.Split(',');
+        //    StringBuilder sb = new StringBuilder();
+
+        //    ResponseItem item = null;
+
+        //    foreach (var role in roleNames)
+        //    {
+        //        if (!string.IsNullOrEmpty(role))
+        //        {
+        //            try
+        //            {
+        //                roleService.DeleteRole(role, throwOnPopulatedRole);
+
+        //                item = new ResponseItem();
+        //                item.Success = true;
+        //                item.Message = "Deleted this role successfully - " + role;
+        //                item.CssClass = "green";
+        //                response.Messages.Add(item);
+
+        //                //sb.AppendLine("Deleted this role successfully - " + role + "<br />");
+        //            }
+        //            catch (System.Configuration.Provider.ProviderException ex)
+        //            {
+        //                //sb.AppendLine(role + " - " + ex.Message + "<br />");
+
+        //                item = new ResponseItem();
+        //                item.Success = false;
+        //                item.Message = ex.Message;
+        //                item.CssClass = "yellow";
+        //                response.Messages.Add(item);
+        //            }
+        //        }
+        //    }
+
+        //    response.Success = true;
+        //    response.Message = sb.ToString();
+
+        //    return Json(response);
+        //}
+
+        //#endregion
+
+        //#region Get Users In Role methods
+
+        ///// <summary>
+        ///// This is an Ajax method that populates the 
+        ///// Roles drop down list.
+        ///// </summary>
+        ///// <returns></returns>
+        //public ActionResult GetAllRoles()
+        //{
+        //    var list = roleService.GetAllRoles();
+
+        //    List<SelectObject> selectList = new List<SelectObject>();
+
+        //    foreach (var item in list)
+        //    {
+        //        selectList.Add(new SelectObject() { caption = item, value = item });
+        //    }
+
+        //    return Json(selectList, JsonRequestBehavior.AllowGet);
+        //}
+
+        //[HttpGet]
+        //public ActionResult GetUsersInRole(string roleName)
+        //{
+        //    var list = roleService.GetUsersInRole(roleName);
+
+        //    return Json(list, JsonRequestBehavior.AllowGet);
+        //}
+
+
+        //#endregion
     }
 
     public class RoleModel

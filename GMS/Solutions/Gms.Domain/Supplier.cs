@@ -58,7 +58,7 @@ namespace Gms.Domain
         /// <summary>
         /// 供应商类别
         /// </summary>
-        public int? SupplierType { get; set; }
+        public int? SupplierTypeId { get; set; }
 
         /// <summary>
         /// 税号

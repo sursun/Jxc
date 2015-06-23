@@ -5,6 +5,7 @@ using System.Text;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using Gms.Common;
+using Gms.Domain.Attribute;
 using SharpArch.Domain.DomainModel;
 
 namespace Gms.Domain
@@ -58,7 +59,23 @@ namespace Gms.Domain
         /// 最高数量
         /// </summary>
         public virtual decimal MaxQuantity { get; set; }
-        
+
+        /// <summary>
+        /// 低值预警
+        /// </summary>
+        [NotMap]
+        public virtual Boolean IsMinWarning {
+            get { return Quantity <= MinQuantity; }
+        }
+
+        /// <summary>
+        /// 高值预警
+        /// </summary>
+        [NotMap]
+        public virtual Boolean IsMaxWarning {
+            get { return Quantity >= MaxQuantity; }
+        }
+
         /// <summary>
         /// 商品品牌
         /// </summary>

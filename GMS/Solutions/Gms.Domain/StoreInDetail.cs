@@ -17,4 +17,13 @@ namespace Gms.Domain
         public virtual StoreIn StoreIn { get; set; }
 
     }
+
+    public class StoreInDetailQuery : StoreGoodsQuery
+    {
+        /// <summary>
+        /// 入库单
+        /// </summary>
+        public int? StoreInId { get; set; }
+
+    }
 }
