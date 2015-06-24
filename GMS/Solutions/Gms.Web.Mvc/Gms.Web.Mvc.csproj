@@ -1228,6 +1228,9 @@
     <Content Include="Views\Equipment\Edit.cshtml" />
     <Content Include="Views\EquiStore\EditIn.cshtml" />
     <Content Include="Views\EquiStore\EditOut.cshtml" />
+    <Content Include="Views\CommonCode\TypeInfoKhdj.cshtml" />
+    <Content Include="Views\CommonCode\EditKhdj.cshtml" />
+    <Content Include="Views\CommonCode\SelectKhdj.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

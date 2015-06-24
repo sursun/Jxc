@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FluentNHibernate.Utils;
 using Gms.Domain;
 using SharpArch.NHibernate.Web.Mvc;
 
@@ -17,33 +18,26 @@ namespace Gms.Web.Mvc.Controllers
 
         public ActionResult TypeInfo(CommonCodeType type)
         {
-            switch (type)
-            {
-                case CommonCodeType.客户等级:
-                    break;
-                case CommonCodeType.入库业务类型:
-                    break;
-                case CommonCodeType.出库业务类型:
-                    break;
-                case CommonCodeType.收入记账类型:
-                    break;
-                case CommonCodeType.支出记账类型:
-                    break;
-                default:break;
-            }
-           
-            
-            return View(type);
+            String viewName = "TypeInfo";
+
+            viewName += ParseExtName(type);
+
+            return View(viewName,type);
         }
 
         public ActionResult Select(CommonCodeType type)
         {
-            return View(type);
+            String viewName = "Select";
+
+            viewName += ParseExtName(type);
+
+            return View(viewName, type);
         }
 
         public ActionResult Edit(int? id, int? parentid, CommonCodeType? type)
         {
             CommonCode item = null;
+            String viewName = "Edit";
 
             if (id.HasValue)
             {
@@ -57,7 +51,24 @@ namespace Gms.Web.Mvc.Controllers
                 item.Parent = this.CommonCodeRepository.Get(parentid.Value);
             }
 
-            return View(item);
+            if (item != null)
+            {
+                viewName += ParseExtName(item.Type);
+            }
+            
+            return View(viewName,item);
+        }
+
+        public String ParseExtName(CommonCodeType type)
+        {
+            String strRet = "";
+
+            if (type == CommonCodeType.客户等级)
+            {
+                strRet = "Khdj";
+            }
+            
+            return strRet;
         }
 
         [Transaction]
@@ -124,6 +135,14 @@ namespace Gms.Web.Mvc.Controllers
 
         public String FullName { get; set; }
 
+        public String CodeNo { get; set; }
+
+        public String ParamString { get; set; }
+
+        public Boolean ParamFlag { get; set; }
+
+        public decimal ParamDecimal { get; set; }
+
         public String Note { get; set; }
 
         public bool isLoaded
@@ -144,6 +163,11 @@ namespace Gms.Web.Mvc.Controllers
                 this.ParentId = commonCode.Parent.Id;
             this.Name = commonCode.Name;
             this.FullName = commonCode.FullNameString();
+            this.CodeNo = commonCode.CodeNo;
+            this.ParamString = commonCode.ParamString;
+            this.ParamFlag = commonCode.ParamFlag;
+            this.ParamDecimal = commonCode.ParamDecimal;
+
             this.Note = commonCode.Note;
         }
 

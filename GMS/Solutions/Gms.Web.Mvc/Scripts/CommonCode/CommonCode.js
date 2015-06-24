@@ -19,23 +19,33 @@ CommonCode.Init = function () {
     });
 };
 
-CommonCode.TypeInfo = function () {
- 
+CommonCode.TypeInfo = function (extName) {
+
+    var cols = [
+        [
+            { title: '名称', field: 'Name', width: 100 },
+            { title: '编码', field: 'CodeNo', width: 100 },
+            { title: '备注', field: 'Note', width: 200 }
+        ]
+    ];
+
+    if (extName == "Khdj") {
+        cols = [
+            [
+                { title: '名称', field: 'Name', width: 100 },
+                { title: '编码', field: 'CodeNo', width: 100 },
+                { title: '折扣', field: 'ParamDecimal', width: 100 },
+                { title: '备注', field: 'Note', width: 200 }
+            ]
+        ];
+    }
+
+
     $('#commoncode_tree').treegrid({
         toolbar: '#toolbar',
         idField: 'Id',
         treeField: 'Name',
-        columns: [[
-        { title: '名称', field: 'Name', width: 100 },
-        { title: '备注', field: 'Note', width: 200 }
-        ]],
-        onClickRow: function (row) {
-            if (row != null) {
-                $('#commoncode_selected_Id').val(row.Id);
-                $('#commoncode_selected_Name').val(row.Name);
-                $('#commoncode_selected_FullName').val(row.FullName);
-            }
-        }
+        columns: cols
     });
 
     $("#btnAdd").click(function () {
@@ -154,5 +164,44 @@ CommonCode.TypeInfo = function () {
         $('#commoncode_tree').treegrid("unselectAll");
 
     });
+};
+
+CommonCode.Select = function (extName) {
+
+    var cols = [
+        [
+            { title: '名称', field: 'Name', width: 100 },
+            { title: '编码', field: 'CodeNo', width: 100 },
+            { title: '备注', field: 'Note', width: 200 }
+        ]
+    ];
+
+    if (extName == "Khdj") {
+        cols = [
+            [
+                { title: '名称', field: 'Name', width: 100 },
+                { title: '编码', field: 'CodeNo', width: 100 },
+                { title: '折扣', field: 'ParamDecimal', width: 100 },
+                { title: '备注', field: 'Note', width: 200 }
+            ]
+        ];
+    }
+
+    $('#commoncode_tree').treegrid({
+        toolbar: '#toolbar',
+        idField: 'Id',
+        treeField: 'Name',
+        columns: cols,
+        onSelect: function (rowIndex, rowData) {
+            if (rowData != null) {
+                $('#commoncode_selected_Id').val(rowData.Id);
+                $('#commoncode_selected_Name').val(rowData.Name);
+                $('#commoncode_selected_FullName').val(rowData.FullName);
+            }
+
+        }
+    });
+
+ 
 };
 

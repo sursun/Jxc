@@ -46,7 +46,12 @@ namespace Gms.Domain
         /// <summary>
         /// 扩展2
         /// </summary>
-        public virtual String ParamFlag { get; set; }
+        public virtual Boolean ParamFlag { get; set; }
+
+        /// <summary>
+        /// 扩展3
+        /// </summary>
+        public virtual decimal ParamDecimal { get; set; }
 
         /// <summary>
         /// 备注

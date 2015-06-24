@@ -119,6 +119,10 @@
     <Compile Include="StoreInDetail.cs" />
     <Compile Include="StoreOutDetail.cs" />
     <Compile Include="StoreAlter.cs" />
+    <Compile Include="PurchaseReturn.cs" />
+    <Compile Include="PurchaseReturnDetail.cs" />
+    <Compile Include="SellReturn.cs" />
+    <Compile Include="SellReturnDetail.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

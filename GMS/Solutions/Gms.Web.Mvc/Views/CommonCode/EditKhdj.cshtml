@@ -19,25 +19,23 @@
         </tr>
         
         <tr>
-            <td>上级名称</td>
-            <td>
-                @Html.TextBoxFor(c => c.Parent.Id,new{@style="display: none"})
-                @Html.TextBoxFor(c => c.Parent.Name,new{@disabled="disabled"})
-            </td>
-        </tr>
-        
-        <tr>
             <td>编码</td>
             <td>
                 @Html.TextBoxFor(c => c.CodeNo)
             </td>
         </tr>
-
         <tr>
             <td>名称</td>
             <td>
                 @Html.TextBoxFor(c => c.Id,new{@style="display: none"})
                 @Html.TextBoxFor(c => c.Name)
+            </td>
+        </tr>
+        
+        <tr>
+            <td>折扣</td>
+            <td>
+                <input type="text" class="easyui-numberbox" name="ParamDecimal" value="@Model.ParamDecimal" data-options="max:1,min:0,precision:2">
             </td>
         </tr>
         

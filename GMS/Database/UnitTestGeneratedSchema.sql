@@ -123,6 +123,22 @@ alter table GoodsPriceAlters  drop constraint FKDE6B5D2ECCC289EC
 alter table GoodsPriceAlters  drop constraint FKDE6B5D2EE9450CB1
 
 
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK57D4410472D29080]') AND parent_object_id = OBJECT_ID('PurchaseReturnDetails'))
+alter table PurchaseReturnDetails  drop constraint FK57D4410472D29080
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK57D44104C00C1785]') AND parent_object_id = OBJECT_ID('PurchaseReturnDetails'))
+alter table PurchaseReturnDetails  drop constraint FK57D44104C00C1785
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKA0FE19590CB4A44]') AND parent_object_id = OBJECT_ID('SellReturnDetails'))
+alter table SellReturnDetails  drop constraint FKA0FE19590CB4A44
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKA0FE195C00C1785]') AND parent_object_id = OBJECT_ID('SellReturnDetails'))
+alter table SellReturnDetails  drop constraint FKA0FE195C00C1785
+
+
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKA571125AE162C59]') AND parent_object_id = OBJECT_ID('StoreInDetails'))
 alter table StoreInDetails  drop constraint FKA571125AE162C59
 
@@ -161,6 +177,62 @@ alter table StoreTransferDetails  drop constraint FK5DDDDAAB888E2EC5
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK5DDDDAABC00C1785]') AND parent_object_id = OBJECT_ID('StoreTransferDetails'))
 alter table StoreTransferDetails  drop constraint FK5DDDDAABC00C1785
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK6CB887D62C7EDB5F]') AND parent_object_id = OBJECT_ID('PurchaseReturns'))
+alter table PurchaseReturns  drop constraint FK6CB887D62C7EDB5F
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK6CB887D6EB4908C1]') AND parent_object_id = OBJECT_ID('PurchaseReturns'))
+alter table PurchaseReturns  drop constraint FK6CB887D6EB4908C1
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK6CB887D6CC7854D8]') AND parent_object_id = OBJECT_ID('PurchaseReturns'))
+alter table PurchaseReturns  drop constraint FK6CB887D6CC7854D8
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK6CB887D61A94EE5E]') AND parent_object_id = OBJECT_ID('PurchaseReturns'))
+alter table PurchaseReturns  drop constraint FK6CB887D61A94EE5E
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK6CB887D6DAE3D55]') AND parent_object_id = OBJECT_ID('PurchaseReturns'))
+alter table PurchaseReturns  drop constraint FK6CB887D6DAE3D55
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK6CB887D6CCC289EC]') AND parent_object_id = OBJECT_ID('PurchaseReturns'))
+alter table PurchaseReturns  drop constraint FK6CB887D6CCC289EC
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK6CB887D6E9450CB1]') AND parent_object_id = OBJECT_ID('PurchaseReturns'))
+alter table PurchaseReturns  drop constraint FK6CB887D6E9450CB1
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKA71504CCF9F6F3D]') AND parent_object_id = OBJECT_ID('SellReturns'))
+alter table SellReturns  drop constraint FKA71504CCF9F6F3D
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKA71504CCBC383037]') AND parent_object_id = OBJECT_ID('SellReturns'))
+alter table SellReturns  drop constraint FKA71504CCBC383037
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKA71504CCB6BF4206]') AND parent_object_id = OBJECT_ID('SellReturns'))
+alter table SellReturns  drop constraint FKA71504CCB6BF4206
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKA71504CC1A94EE5E]') AND parent_object_id = OBJECT_ID('SellReturns'))
+alter table SellReturns  drop constraint FKA71504CC1A94EE5E
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKA71504CCDAE3D55]') AND parent_object_id = OBJECT_ID('SellReturns'))
+alter table SellReturns  drop constraint FKA71504CCDAE3D55
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKA71504CCCCC289EC]') AND parent_object_id = OBJECT_ID('SellReturns'))
+alter table SellReturns  drop constraint FKA71504CCCCC289EC
+
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKA71504CCE9450CB1]') AND parent_object_id = OBJECT_ID('SellReturns'))
+alter table SellReturns  drop constraint FKA71504CCE9450CB1
 
 
     if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK5D751C1F2C7EDB5F]') AND parent_object_id = OBJECT_ID('StoreIns'))
@@ -249,6 +321,10 @@ alter table StoreOuts  drop constraint FKBBA7E4A5E9450CB1
 
     if exists (select * from dbo.sysobjects where id = object_id(N'GoodsPriceAlters') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table GoodsPriceAlters
 
+    if exists (select * from dbo.sysobjects where id = object_id(N'PurchaseReturnDetails') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table PurchaseReturnDetails
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'SellReturnDetails') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table SellReturnDetails
+
     if exists (select * from dbo.sysobjects where id = object_id(N'StoreInDetails') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table StoreInDetails
 
     if exists (select * from dbo.sysobjects where id = object_id(N'StoreOutDetails') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table StoreOutDetails
@@ -256,6 +332,10 @@ alter table StoreOuts  drop constraint FKBBA7E4A5E9450CB1
     if exists (select * from dbo.sysobjects where id = object_id(N'StoreTransfers') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table StoreTransfers
 
     if exists (select * from dbo.sysobjects where id = object_id(N'StoreTransferDetails') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table StoreTransferDetails
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'PurchaseReturns') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table PurchaseReturns
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'SellReturns') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table SellReturns
 
     if exists (select * from dbo.sysobjects where id = object_id(N'StoreIns') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table StoreIns
 
@@ -279,7 +359,8 @@ alter table StoreOuts  drop constraint FKBBA7E4A5E9450CB1
        Name NVARCHAR(255) null,
        Level INT null,
        ParamString NVARCHAR(255) null,
-       ParamFlag NVARCHAR(255) null,
+       ParamFlag BIT null,
+       ParamDecimal DECIMAL(19,5) null,
        Note NVARCHAR(255) null,
        ParentFk INT null,
        primary key (Id)
@@ -501,6 +582,28 @@ alter table StoreOuts  drop constraint FKBBA7E4A5E9450CB1
        primary key (Id)
     )
 
+    create table PurchaseReturnDetails (
+        Id INT IDENTITY NOT NULL,
+       Quantity DECIMAL(19,5) null,
+       Price DECIMAL(19,5) null,
+       TotalAomount DECIMAL(19,5) null,
+       Note NVARCHAR(255) null,
+       PurchaseReturnFk INT null,
+       GoodsFk INT null,
+       primary key (Id)
+    )
+
+    create table SellReturnDetails (
+        Id INT IDENTITY NOT NULL,
+       Quantity DECIMAL(19,5) null,
+       Price DECIMAL(19,5) null,
+       TotalAomount DECIMAL(19,5) null,
+       Note NVARCHAR(255) null,
+       SellReturnFk INT null,
+       GoodsFk INT null,
+       primary key (Id)
+    )
+
     create table StoreInDetails (
         Id INT IDENTITY NOT NULL,
        Quantity DECIMAL(19,5) null,
@@ -548,6 +651,56 @@ alter table StoreOuts  drop constraint FKBBA7E4A5E9450CB1
        Note NVARCHAR(255) null,
        GoodsTransferFk INT null,
        GoodsFk INT null,
+       primary key (Id)
+    )
+
+    create table PurchaseReturns (
+        Id INT IDENTITY NOT NULL,
+       AmountPay DECIMAL(19,5) null,
+       CodeNo NVARCHAR(255) null,
+       OrderCode NVARCHAR(255) null,
+       OrderTime DATETIME null,
+       Amount DECIMAL(19,5) null,
+       Debt DECIMAL(19,5) null,
+       Payer NVARCHAR(255) null,
+       Payee NVARCHAR(255) null,
+       Note NVARCHAR(255) null,
+       CreateTime DATETIME null,
+       AuditTime DATETIME null,
+       AuditState INT null,
+       AuditNote NVARCHAR(255) null,
+       SupplierFk INT null,
+       BuyerFk INT null,
+       StoreOutTypeFk INT null,
+       StoreFk INT null,
+       AccountFk INT null,
+       CreatorFk INT null,
+       AuditorFk INT null,
+       primary key (Id)
+    )
+
+    create table SellReturns (
+        Id INT IDENTITY NOT NULL,
+       AmountReceipt DECIMAL(19,5) null,
+       CodeNo NVARCHAR(255) null,
+       OrderCode NVARCHAR(255) null,
+       OrderTime DATETIME null,
+       Amount DECIMAL(19,5) null,
+       Debt DECIMAL(19,5) null,
+       Payer NVARCHAR(255) null,
+       Payee NVARCHAR(255) null,
+       Note NVARCHAR(255) null,
+       CreateTime DATETIME null,
+       AuditTime DATETIME null,
+       AuditState INT null,
+       AuditNote NVARCHAR(255) null,
+       CustomerFk INT null,
+       SellerFk INT null,
+       StoreInTypeFk INT null,
+       StoreFk INT null,
+       AccountFk INT null,
+       CreatorFk INT null,
+       AuditorFk INT null,
        primary key (Id)
     )
 
@@ -756,6 +909,26 @@ alter table StoreOuts  drop constraint FKBBA7E4A5E9450CB1
         foreign key (AuditorFk) 
         references Users
 
+    alter table PurchaseReturnDetails 
+        add constraint FK57D4410472D29080 
+        foreign key (PurchaseReturnFk) 
+        references PurchaseReturns
+
+    alter table PurchaseReturnDetails 
+        add constraint FK57D44104C00C1785 
+        foreign key (GoodsFk) 
+        references Goods
+
+    alter table SellReturnDetails 
+        add constraint FKA0FE19590CB4A44 
+        foreign key (SellReturnFk) 
+        references SellReturns
+
+    alter table SellReturnDetails 
+        add constraint FKA0FE195C00C1785 
+        foreign key (GoodsFk) 
+        references Goods
+
     alter table StoreInDetails 
         add constraint FKA571125AE162C59 
         foreign key (StoreInFk) 
@@ -805,6 +978,76 @@ alter table StoreOuts  drop constraint FKBBA7E4A5E9450CB1
         add constraint FK5DDDDAABC00C1785 
         foreign key (GoodsFk) 
         references Goods
+
+    alter table PurchaseReturns 
+        add constraint FK6CB887D62C7EDB5F 
+        foreign key (SupplierFk) 
+        references Supplier
+
+    alter table PurchaseReturns 
+        add constraint FK6CB887D6EB4908C1 
+        foreign key (BuyerFk) 
+        references Users
+
+    alter table PurchaseReturns 
+        add constraint FK6CB887D6CC7854D8 
+        foreign key (StoreOutTypeFk) 
+        references CommonCodes
+
+    alter table PurchaseReturns 
+        add constraint FK6CB887D61A94EE5E 
+        foreign key (StoreFk) 
+        references CommonCodes
+
+    alter table PurchaseReturns 
+        add constraint FK6CB887D6DAE3D55 
+        foreign key (AccountFk) 
+        references Accounts
+
+    alter table PurchaseReturns 
+        add constraint FK6CB887D6CCC289EC 
+        foreign key (CreatorFk) 
+        references Users
+
+    alter table PurchaseReturns 
+        add constraint FK6CB887D6E9450CB1 
+        foreign key (AuditorFk) 
+        references Users
+
+    alter table SellReturns 
+        add constraint FKA71504CCF9F6F3D 
+        foreign key (CustomerFk) 
+        references Customer
+
+    alter table SellReturns 
+        add constraint FKA71504CCBC383037 
+        foreign key (SellerFk) 
+        references Users
+
+    alter table SellReturns 
+        add constraint FKA71504CCB6BF4206 
+        foreign key (StoreInTypeFk) 
+        references CommonCodes
+
+    alter table SellReturns 
+        add constraint FKA71504CC1A94EE5E 
+        foreign key (StoreFk) 
+        references CommonCodes
+
+    alter table SellReturns 
+        add constraint FKA71504CCDAE3D55 
+        foreign key (AccountFk) 
+        references Accounts
+
+    alter table SellReturns 
+        add constraint FKA71504CCCCC289EC 
+        foreign key (CreatorFk) 
+        references Users
+
+    alter table SellReturns 
+        add constraint FKA71504CCE9450CB1 
+        foreign key (AuditorFk) 
+        references Users
 
     alter table StoreIns 
         add constraint FK5D751C1F2C7EDB5F 
