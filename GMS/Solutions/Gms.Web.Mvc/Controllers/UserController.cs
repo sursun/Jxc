@@ -10,8 +10,8 @@ using SharpArch.NHibernate.Web.Mvc;
 
 namespace Gms.Web.Mvc.Controllers
 {
-    [HandleError]
-    [Authorize]
+    //[HandleError]
+    //[Authorize]
     public class UserController : BaseController
     {
         public ActionResult Index()

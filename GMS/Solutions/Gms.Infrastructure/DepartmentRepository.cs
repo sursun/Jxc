@@ -42,5 +42,15 @@ namespace Gms.Infrastructure
             
             return q;
         }
+
+        public IList<Department> GetRoot()
+        {
+            return Query.Where(c => (c.Parent == null )).ToList();
+        }
+
+        public IList<Department> GetChildren(int parentId)
+        {
+            return Query.Where(c => c.Parent.Id == parentId).ToList();
+        }
     }
 }

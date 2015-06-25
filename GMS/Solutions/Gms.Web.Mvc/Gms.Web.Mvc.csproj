@@ -183,6 +183,7 @@
     <Compile Include="Controllers\MembershipController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\DashboardViewModel.cs" />
     <Compile Include="Models\ForgotPasswordViewModel.cs" />
@@ -314,6 +315,7 @@
     <Content Include="Scripts\equi\pricechange.js" />
     <Content Include="Scripts\equi\equistore.js" />
     <Content Include="Scripts\equi\equi.js" />
+    <Content Include="Scripts\IdCard.js" />
     <Content Include="Scripts\jquery-1.7.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.2.js" />
     <Content Include="Scripts\jquery-1.7.2.min.js" />
@@ -1057,6 +1059,7 @@
     <Content Include="Scripts\User\Role.js" />
     <Content Include="Scripts\User\User.js" />
     <Content Include="Scripts\home.js" />
+    <Content Include="Scripts\Department\Department.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1231,6 +1234,9 @@
     <Content Include="Views\CommonCode\TypeInfoKhdj.cshtml" />
     <Content Include="Views\CommonCode\EditKhdj.cshtml" />
     <Content Include="Views\CommonCode\SelectKhdj.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Department\Edit.cshtml" />
+    <Content Include="Views\Department\Select.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -24,6 +24,43 @@ User.Init = function () {
         }
     });
 
+    $.extend($.fn.validatebox.defaults.rules, {
+        IdCard: {
+            validator: function (value, param) {
+                var bRet = IdCardValidate(value);
+
+                if (bRet) {
+                    var brith = getBrith(value);
+                    var strBrith = brith.getFullYear();//getFullYear(); getMonth()//.getDate()
+                    strBrith += "-";
+                    strBrith += (brith.getMonth() + 1);
+                    strBrith += "-";
+                    strBrith += brith.getDate();
+
+                    $(param[1]).datebox('setValue', strBrith);
+
+                    var nSex = 0;
+                    var strSex = maleOrFemalByIdCard(value);
+                    if (strSex == "female") {
+                        nSex = 1;
+                    }
+
+                    var selObj = document.getElementById(param[0]);
+
+                    for (var i = 0; i < selObj.length; i++) {//给select赋值  
+                        if (nSex == selObj.options[i].value) {
+                            selObj.options[i].selected = true;
+                        }
+                    }
+
+                }
+
+                return bRet;
+            },
+            message: '身份证号无效！'
+        }
+    });
+
     $("#userform").validate({
         onkeyup: false,
         onfocusout: false,

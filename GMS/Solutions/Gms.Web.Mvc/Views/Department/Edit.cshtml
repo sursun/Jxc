@@ -1,22 +1,14 @@
 ﻿
 @using Gms.Common
-@model Gms.Domain.CommonCode
+@model Gms.Domain.Department
 
 @{
     Layout = null;
 }
 
-<form  method="post" action="/CommonCode/SaveOrUpdate">
+<form method="post" action="/Department/SaveOrUpdate">
 
     <table>
-        <tr>
-            <td>类型</td>
-            <td>
-                @*@Html.DropDownListForEnum(c=>c.Type,"",null)*@
-                <input name="Type" style="display: none" value="@Model.Type"/>
-                <input disabled="disabled" value="@Model.Type"/>
-            </td>
-        </tr>
         
         <tr>
             <td>上级名称</td>

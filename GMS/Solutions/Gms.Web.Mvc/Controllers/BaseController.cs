@@ -19,6 +19,7 @@ namespace Gms.Web.Mvc.Controllers
     {
         public ICompanyRepository CompanyRepository { get; set; }
         public ICommonCodeRepository CommonCodeRepository { get; set; }
+        public IDepartmentRepository DepartmentRepository { get; set; }
         public IAccountRepository CureProcessRepository { get; set; }
 
         public IUserRepository UserRepository { get; set; }

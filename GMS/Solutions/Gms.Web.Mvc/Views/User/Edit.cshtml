@@ -1,4 +1,5 @@
-﻿@model Gms.Domain.User
+﻿@using Gms.Domain
+@model Gms.Domain.User
 
 @{
     Layout = null;
@@ -8,7 +9,7 @@
 
     <table>
         <tr>
-            <td>登录名</td>
+            <td>编号</td>
             <td>
  
                 @Html.TextBoxFor(c => c.LoginName,new{@class="editdisabled"})
@@ -23,13 +24,19 @@
                 <input name="psw" value=""/>
             </td>
         </tr>
-
+        
         <tr>
             <td>真实姓名</td>
             <td>
    
                 @Html.TextBoxFor(c => c.RealName)
-        @*, new { id="cRealName"},required="*",message="eeeeeeeeeeee"*@
+                @*, new { id="cRealName"},required="*",message="eeeeeeeeeeee"*@
+            </td>
+        </tr>
+        <tr>
+            <td>姓名简拼</td>
+            <td>
+                @Html.TextBoxFor(c=>c.Pinyin)
             </td>
         </tr>
 
@@ -39,11 +46,62 @@
                 @Html.TextBoxFor(c=>c.NickName)
             </td>
         </tr>
-
+        
         <tr>
+            <td>身份证号</td>
+            <td>
+                @*<input class="messager-input" name="IdCard"  />*@
+                <input class="easyui-validatebox" name="IdCard" validType="IdCard['Gender','#Birthday']" >
+            </td>
+        </tr>
+        
+        <tr>
+            <td>生日</td>
+            <td>
+                <input type="text" id="Birthday" name="Birthday" class="easyui-datebox" >
+            </td>
+        </tr>
+        
+
+@*        <tr>
             <td>性别</td>
             <td>
                 @Html.DropDownListFor(c=>c.Gender)
+            </td>
+        </tr>*@
+        
+          <tr>
+            <td>部门</td>
+            <td>
+                @Html.TextBoxFor(c=>c.NickName)
+            </td>
+        </tr>
+        
+        <tr>
+            <td>职务</td>
+            <td>
+                @Html.TextBoxFor(c=>c.Duty)
+            </td>
+        </tr>
+        
+        <tr>
+            <td>民族</td>
+            <td>
+                @Html.DropDownListForCommonCode(c=>c.Nation,CommonCodeType.民族)
+            </td>
+        </tr>
+        
+        <tr>
+            <td>教育水平</td>
+            <td>
+                @Html.DropDownListForCommonCode(c=>c.Diploma,CommonCodeType.教育水平)
+            </td>
+        </tr>
+        
+        <tr>
+            <td>入职日期</td>
+            <td>
+                <input type="text" name="EntryDate" class="easyui-datebox" >
             </td>
         </tr>
 
@@ -53,7 +111,21 @@
                 @Html.TextBoxFor(c=>c.Mobile)
             </td>
         </tr>
+ 
+        <tr>
+            <td>地址</td>
+            <td>
+                @Html.TextBoxFor(c=>c.Address)
+            </td>
+        </tr>
 
+        <tr>
+            <td>状态</td>
+            <td>
+                @Html.DropDownListForEnum(c=>c.EmployeeStatus,"",null)
+            </td>
+        </tr>
+        
         <tr>
             <td>备注</td>
             <td>

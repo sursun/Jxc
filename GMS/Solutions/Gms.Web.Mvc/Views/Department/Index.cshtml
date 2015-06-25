@@ -1,0 +1,42 @@
+﻿@using Gms.Domain
+
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body>
+    
+    <div id="toolbar" style="padding: 5px; height: auto">
+        <div>
+            <a href="#" id="btnAdd" class="easyui-linkbutton" iconcls="icon-add" plain="true">添加</a>
+            <a href="#" id="btnEdit" class="easyui-linkbutton" iconcls="icon-remove" plain="true">修改</a>
+            <a href="#" id="btnDelete" class="easyui-linkbutton" iconcls="icon-edit" plain="true">删除</a>
+            <a href="#" id="btnUnSelect" class="easyui-linkbutton" >取消选择</a>
+        </div>
+    </div>
+
+    <table id="department_tree" data-options="url:'/Department/GetData'" ></table>
+    
+    <div id="department_edit" style="display: none">
+        <div id="department_edit_content">
+            @{
+                Html.RenderPartial("Edit", new Department());
+            }
+        </div>
+    </div>
+    
+     @*记录选择的科室，便于其他页面调用*@
+    <div style="display: none;">
+        <input id="department_selected_Id" />
+        <input id="department_selected_Name" />
+    </div>
+
+</body>
+
+<script type="text/javascript" src="@Url.Content("/Scripts/Department/Department.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Department.Init();
+    });
+
+</script>
