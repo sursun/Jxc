@@ -8,9 +8,9 @@
 
     <div id="toolbar" style="padding: 5px; height: auto">
         <div style="margin-bottom: 5px">
-            <a href="#" class="easyui-linkbutton add" forgid="user_search_list" iconcls="icon-add" plain="true">添加</a>
-            <a href="#" class="easyui-linkbutton del" forgid="user_search_list" iconcls="icon-remove" plain="true">删除</a>
-            <a href="#" class="easyui-linkbutton edit" forgid="user_search_list" iconcls="icon-edit" plain="true">修改</a>
+            <a href="#" class="easyui-linkbutton" id="btnAdd" iconcls="icon-add" plain="true">添加</a>
+            <a href="#" class="easyui-linkbutton" id="btnDelete" iconcls="icon-remove" plain="true">删除</a>
+            <a href="#" class="easyui-linkbutton" id="btnEdit" iconcls="icon-edit" plain="true">修改</a>
             <a href="#" class="easyui-linkbutton reset" plain="true">重置密码</a>
         </div>
         <div>
@@ -24,11 +24,13 @@
             
     </table>
         
-    <div id="user_search_edit" dlgtitle="客户信息" style="display: none">
-        @{
+    <div id="user_search_edit" dlgtitle="职工信息" style="display: none">
+        <div id="user_search_edit_content"></div>
+@*        @{
             Html.RenderPartial("Edit",new User());
-        }
+        }*@
     </div>
+ 
     
     @*记录选择的用户，便于其他页面调用*@
     <div style="display: none;">
@@ -38,7 +40,6 @@
         
 </body>
 
-<script type="text/javascript" src="@Url.Content("/Scripts/IdCard.js")"></script>
 <script type="text/javascript" src="@Url.Content("/Scripts/User/User.js")"></script>
 <script type="text/javascript">
     $(document).ready(function () {

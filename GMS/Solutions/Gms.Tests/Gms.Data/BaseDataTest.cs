@@ -90,6 +90,8 @@ namespace Gms.Tests.Gms.Data
         {
             ICommonCodeRepository commonCodeRepository = new CommonCodeRepository();
 
+            CommonCode commonCode = null;
+
             //地区
             //commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.地区, Name = "北京"});
             //commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.地区, Name = "天津" });
@@ -172,36 +174,88 @@ namespace Gms.Tests.Gms.Data
             commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.教育水平, Name = "博士后" });
 
             //客户类别
-            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.客户类别, Name = "1型糖尿病" });
-            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.客户类别, Name = "2型糖尿病" });
-            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.客户类别, Name = "正常耐糖量" });
-            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.客户类别, Name = "妊娠糖尿病" });
-            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.客户类别, Name = "特殊类型糖尿病" });
+            //commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.客户类别, Name = "客户类别" });
+            //commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.客户类别, Name = "客户类别" });
+            //commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.客户类别, Name = "客户类别" });
+            //commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.客户类别, Name = "客户类别" });
+            //commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.客户类别, Name = "客户类别" });
 
             //客户等级
-            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.客户等级, Name = "在校学生" });
-            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.客户等级, Name = "计算机/网络/IT技术" });
-            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.客户等级, Name = "经营管理" });
-            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.客户等级, Name = "娱乐业" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.客户等级, Name = "普通客户" ,ParamDecimal = 0});
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.客户等级, Name = "会员", ParamDecimal = 0 });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.客户等级, Name = "贵宾", ParamDecimal = 0 });
 
-        //,
-        //供应商类别,
-        //商品类别,
-        //商品品牌,
-        //商品陈列,
-        //仓库,
-        //入库业务类型,//采购入库、其他入库
-        //出库业务类型,
-        //收入记账类型,
-        //支出记账类型,
-        //计量单位
+            //供应商类别
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.供应商类别, Name = "一级供应商" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.供应商类别, Name = "二级供应商" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.供应商类别, Name = "零散供应商" });
 
-            //药品类别
-            //commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.药品类别, Name = "降压药" });
-            //commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.药品类别, Name = "降糖药" });
-            //commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.药品类别, Name = "降脂药" });
-            //commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.药品类别, Name = "其他" });
+            //商品类别
+            commonCode = commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品类别, Name = "食品" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品类别, Parent = commonCode, Name = "小食品" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品类别, Parent = commonCode, Name = "调料" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品类别, Parent = commonCode, Name = "水果" });
 
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品类别, Name = "日化" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品类别, Name = "烟类" });
+            commonCode = commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品类别, Name = "酒类" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品类别, Parent = commonCode, Name = "高档" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品类别, Parent = commonCode, Name = "中档" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品类别, Parent = commonCode, Name = "低档" });
+
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品类别, Name = "五金" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品类别, Name = "文具" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品类别, Name = "粮油" });
+
+            //商品品牌
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品品牌, Name = "茅台" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品品牌, Name = "康师傅" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品品牌, Name = "二锅头" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品品牌, Name = "哇哈哈" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品品牌, Name = "公牛" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品品牌, Name = "金龙鱼" });
+
+            //商品陈列
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品陈列, Name = "酒水区" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品陈列, Name = "面包区" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品陈列, Name = "水产区" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品陈列, Name = "洗化区" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.商品陈列, Name = "饮料区" });
+
+            //仓库
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.仓库, Name = "门市" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.仓库, Name = "备库" });
+
+            //入库业务类型
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.入库业务类型, Name = "采购入库" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.入库业务类型, Name = "盘盈" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.入库业务类型, Name = "其他入库" });
+
+            //出库业务类型
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.出库业务类型, Name = "销售出库" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.出库业务类型, Name = "盘亏" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.出库业务类型, Name = "其他出库" });
+
+            //收入记账类型
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.收入记账类型, Name = "销售收入" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.收入记账类型, Name = "采购退货" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.收入记账类型, Name = "利息" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.收入记账类型, Name = "柜台费" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.收入记账类型, Name = "服装押金" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.收入记账类型, Name = "入店上架费" });
+
+            //支出记账类型
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.支出记账类型, Name = "采购支付" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.支出记账类型, Name = "销售退货" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.支出记账类型, Name = "房租" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.支出记账类型, Name = "水费" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.支出记账类型, Name = "电费" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.支出记账类型, Name = "其他" });
+
+            //计量单位
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.计量单位, Name = "袋" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.计量单位, Name = "条" });
+            commonCodeRepository.SaveOrUpdate(new CommonCode() { Type = CommonCodeType.计量单位, Name = "箱" });
         }
 
         [Test]
@@ -215,13 +269,13 @@ namespace Gms.Tests.Gms.Data
 
             departmentRepository.SaveOrUpdate(new Department()
             {
-                Parent = deppart,
+                //Parent = deppart,
                 Name = "客服部"
             });
 
             return departmentRepository.SaveOrUpdate(new Department()
             {
-                Parent = deppart,
+                //Parent = deppart,
                 Name = "销售部"
             });
         }

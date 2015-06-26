@@ -7,6 +7,13 @@ namespace Gms.Domain
 
     public class User : Entity
     {
+        public User()
+        {
+            Birthday = DateTime.Now;
+            EntryDate = DateTime.Now;
+            CreateTime = DateTime.Now;
+        }
+
         /// <summary>
         /// 用户验证用的Id
         /// </summary>

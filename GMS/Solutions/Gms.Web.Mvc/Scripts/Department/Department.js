@@ -138,8 +138,7 @@ Department.Init = function () {
 };
 
 Department.Select = function () {
-
-
+    
     $('#department_tree').treegrid({
         idField: 'Id',
         treeField: 'Name',
@@ -150,7 +149,7 @@ Department.Select = function () {
             { title: '备注', field: 'Note', width: 200 }
         ]
         ],
-        onSelect: function (rowIndex, rowData) {
+        onSelect: function (rowData) {
             if (rowData != null) {
                 $('#department_selected_Id').val(rowData.Id);
                 $('#department_selected_Name').val(rowData.Name);

@@ -13,6 +13,11 @@ namespace Gms.Domain
     /// </summary>
     public class Company:Entity
     {
+        public Company()
+        {
+            this.CreateTime = DateTime.Now;
+        }
+
         /// <summary>
         /// 单位编号
         /// </summary>

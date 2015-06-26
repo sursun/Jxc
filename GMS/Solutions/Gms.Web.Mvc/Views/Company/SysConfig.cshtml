@@ -1,0 +1,188 @@
+﻿@using Gms.Domain
+@using NHibernate.Loader.Collection
+@model Gms.Domain.Company
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body>
+
+    <div class="easyui-panel" style=" padding: 10px; background: #fafafa;">
+    
+            
+        <form id="companyform" method="post" action="/Company/SaveOrUpdate">
+                
+            @Html.HiddenFor(c=>c.Id)
+
+            <table>
+                   
+                <tr>
+                    <td>单位名称：</td>
+                    <td colspan="3">
+                        @Html.DisplayTextFor(c=>c.Name)
+                        【
+                        @Html.DisplayTextFor(c=>c.CodeNo)
+                        】
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>传真</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.Fax)
+                    </td>
+            
+                    <td>电话</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.Telephone)
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>邮编</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.PostCode)
+                    </td>
+   
+                    <td>地址</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.Address)
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>库存计价法</td>
+                    <td colspan="3">
+                        @Html.DropDownListFor(c=>c.InventoryPricing)
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>积分金额</td>
+                    <td colspan="3">
+                        @Html.TextBoxFor(c=>c.PointBase)元。
+                        系统统一设置积分金额，消费多少元获得1积分
+                    </td>
+                </tr>    
+                    
+                <tr>
+                    <td>配置审核</td>
+                    <td colspan="3">
+                        <table style="margin-bottom: 10px;margin-top: 10px;">
+                            <tr>
+                                <td style="width: 20px;">
+                                    @Html.CheckBoxFor(c=>c.Caigou)
+                                </td>
+                                <td style="width: 150px;">审核采购单</td>
+
+                                <td style="width: 20px;">
+                                    @Html.CheckBoxFor(c=>c.CaigouTh)
+                                </td>
+                                <td style="width: 150px;">审核采购退货单</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.CheckBoxFor(c=>c.Xiaoshou)
+                                </td>
+                                <td>审核销售单</td>
+                            
+                                <td>
+                                    @Html.CheckBoxFor(c=>c.XiaoshouTh)
+                                </td>
+                                <td>审核销售退货单</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.CheckBoxFor(c=>c.JizhangLiu)
+                                </td>
+                                <td>审核流转记账</td>
+                  
+                                <td>
+                                    @Html.CheckBoxFor(c=>c.JizhangShou)
+                                </td>
+                                <td>审核收入记账</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.CheckBoxFor(c=>c.JizhangZhi)
+                                </td>
+                                <td>审核支出记账</td>
+                        
+                                <td>
+                                    @Html.CheckBoxFor(c=>c.Ruku)
+                                </td>
+                                <td>审核商品入库</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.CheckBoxFor(c=>c.Chuku)
+                                </td>
+                                <td>审核商品出库</td>
+                         
+                                <td>
+                                    @Html.CheckBoxFor(c=>c.Tiaojia)
+                                </td>
+                                <td>审核商品调价</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>备注</td>
+                    <td colspan="3">
+                        @Html.TextAreaFor(c=>c.Note)
+                    </td>
+                </tr>
+                    
+                <tr>
+                    <td>创建时间</td>
+                    <td colspan="3">
+                        @Html.DisplayTextFor(c=>c.CreateTime)
+                    </td>
+                </tr>
+
+            </table>
+
+        </form>
+
+    </div>
+  
+    
+    <div align="center" style="margin-top: 10px;">
+        <a href="#" id="btnSave" class="easyui-linkbutton" iconcls="icon-save" >保存</a>
+    </div>
+    
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+
+            var formOptions = {
+                defaultbefore: false,
+                beforeSubmit: function (arr, $form) {
+                    var result = $form.valid();
+                    return result;
+                },
+                success: function (data) {
+
+                    if (data.success) {
+                        $.messager.alert('提示', '保存成功', 'info');
+
+                        window.returnValue = "true";
+                        window.close();
+
+                    } else {
+                        $.messager.alert('错误', '保存失败：' + data.data, 'error');
+                    }
+                }
+            };
+
+            formOptions.dataType = 'json';
+
+            $('#companyform').submitForm(formOptions);
+
+        });
+    })
+</script>

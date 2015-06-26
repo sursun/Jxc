@@ -51,6 +51,7 @@
     <Compile Include="RecordList.cs" />
     <Compile Include="ReflectionExtensions.cs" />
     <Compile Include="StringExtensions.cs" />
+    <Compile Include="StrToPinyin.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

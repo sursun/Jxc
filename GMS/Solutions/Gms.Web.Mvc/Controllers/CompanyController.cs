@@ -9,7 +9,7 @@ using SharpArch.NHibernate.Web.Mvc;
 namespace Gms.Web.Mvc.Controllers
 {
     using System.Web.Mvc;
-    [HandleError]
+    //[HandleError]
     public class CompanyController : BaseController
     {
         public ActionResult Index()
@@ -26,7 +26,7 @@ namespace Gms.Web.Mvc.Controllers
         }
         
         [Transaction]
-        public ActionResult SaveOrUpdate(string regkey)
+        public ActionResult RegisterSoft(string regkey)
         {
             try
             {
@@ -61,7 +61,6 @@ namespace Gms.Web.Mvc.Controllers
                 {
                     company = new Company();
                 }
-
                 
                 company.CodeNo = regInfo.CompanyCode;
                 company.Name = regInfo.CompanyName;
@@ -75,7 +74,45 @@ namespace Gms.Web.Mvc.Controllers
             }
 
             return JsonSuccess();
+        }        
+
+        [Transaction]
+        public ActionResult SaveOrUpdate(Company company)
+        {
+            try
+            {
+                if (company.Id > 0)
+                {
+                    company = this.CompanyRepository.Get(company.Id);
+                    TryUpdateModel(company);
+                }
+               
+                CompanyRepository.SaveOrUpdate(company);
+            }
+            catch (Exception ex)
+            {
+                return JsonError(ex.Message);
+            }
+
+            return JsonSuccess();
         }
-    
+
+        public ActionResult SysConfig()
+        {
+            Company company = null;
+
+            var list = CompanyRepository.GetAll();
+            if (list != null && list.Count > 0)
+            {
+                company = list[0];
+            }
+
+            if (company == null)
+            {
+                company = new Company();
+            }
+
+            return View(company);
+        }
     }
 }

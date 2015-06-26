@@ -1,0 +1,45 @@
+﻿@using Gms.Domain
+
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body>
+
+    <div id="toolbar" style="padding: 5px; height: auto">
+        <div>
+            操作人：<input name="UserName" class="messager-input" style="width: 80px" />
+            内容：<input name="Content" class="messager-input" style="width: 80px" />
+            
+            时间：<input type="text" name="CreateTime.Start" class="easyui-datebox" >
+            至<input type="text" name="CreateTime.End" class="easyui-datebox" >
+
+            <a href="#" id="syslog_search" class="easyui-linkbutton search" iconcls="icon-search">搜索</a>
+        </div>
+    </div>
+     
+    <table id="syslog_search_list" url="@Url.Action("List","SysLog")" >
+            
+    </table>
+        
+</body>
+
+<script type="text/javascript">
+    
+    $(document).ready(function () {
+
+        $('#syslog_search_list').datagridEx({
+            toolbar: '#toolbar',
+            pagination: true,
+            singleSelect: true,
+            columns: [[
+                { field: 'UserName', title: '操作人', width: 100 },
+                { field: 'Content', title: '内容', width: 300 },
+                { field: 'CreateTimeString', title: '时间', width: 150 }
+            ]]
+        });
+
+    });
+
+</script>
+

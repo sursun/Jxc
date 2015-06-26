@@ -26,7 +26,9 @@ namespace Gms.Web.Mvc.Controllers
         public ICustomerRepository CustomerRepository { get; set; }
 
         public IStoreInRepository EquiInRepository { get; set; }
- 
+
+        public ISysLogRepository SysLogRepository { get; set; }
+
         public bool IsSystem()
         {
             return this.HttpContext.User.IsInRole(RoleConstants.SYSTEM);

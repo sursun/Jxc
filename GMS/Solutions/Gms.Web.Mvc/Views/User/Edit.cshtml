@@ -1,138 +1,184 @@
 ﻿@using Gms.Domain
 @model Gms.Domain.User
-
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
 }
 
-<form id="userform" method="post" action="/User/CreateOrUpdate">
+<body>
 
-    <table>
-        <tr>
-            <td>编号</td>
-            <td>
- 
-                @Html.TextBoxFor(c => c.LoginName,new{@class="editdisabled"})
-               
-                <input id="Id" name="Id" style="display: none" type="number" value=""/>
-            </td>
-        </tr>
+        <div class="easyui-panel" style=" padding: 10px; background: #fafafa;">
+    
+            <form id="userform" method="post" action="/User/SaveOrUpdate">
+                
+                @Html.HiddenFor(c=>c.Id)
 
-        <tr class="edithide">
-            <td>密码</td>
-            <td>
-                <input name="psw" value=""/>
-            </td>
-        </tr>
+                <table>
+                    @{
+                        if (@Model.Id > 0)
+                        {
+                            <tr>
+                                <td>编号</td>
+                                <td>
+                                    <input type="text" disabled="disabled"  value="@Model.LoginName">
+                                </td>
+            
+                                <td>
+                                    &emsp;
+                                </td>
+                                <td>
+                                    &emsp;
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>编号</td>
+                                <td>
+                                    <input type="text" name="LoginName"  value="@Model.LoginName">
+                                </td>
+            
+                                <td>
+                                    <span >密码</span>
+                                </td>
+                                <td>
+                                    <input name="psw" value=""/>
+                                </td>
+                            </tr>
+                        }
+                    }
+       
+                    <tr>
+                        <td>真实姓名</td>
+                        <td>
+                            @Html.TextBoxFor(c => c.RealName)
+                        </td>
+     
+                        <td>姓名简拼</td>
+                        <td>
+                            @Html.TextBoxFor(c=>c.Pinyin)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>昵称</td>
+                        <td>
+                            @Html.TextBoxFor(c=>c.NickName)
+                        </td>
+            
+                        <td>性别</td>
+                        <td>
+                            @Html.DropDownListFor(c=>c.Gender)
+                        </td>
+                    </tr>
         
-        <tr>
-            <td>真实姓名</td>
-            <td>
+                    <tr>
+                        <td>身份证号</td>
+                        <td>
+                            @*<input class="messager-input" name="IdCard" required="required" />*@
+                            <input class="easyui-validatebox" name="IdCard" validType="IdCard['Gender','#Birthday']"  value="@Model.IdCard" >
+                        </td>
    
-                @Html.TextBoxFor(c => c.RealName)
-                @*, new { id="cRealName"},required="*",message="eeeeeeeeeeee"*@
-            </td>
-        </tr>
-        <tr>
-            <td>姓名简拼</td>
-            <td>
-                @Html.TextBoxFor(c=>c.Pinyin)
-            </td>
-        </tr>
+                        <td>生日</td>
+                        <td>
+                            <input type="text" id="Birthday" name="Birthday" class="easyui-datebox" value="@Model.Birthday">
+                        </td>
+                    </tr>
+        
+                    <tr>
+                        <td>民族</td>
+                        <td>
+                            @Html.DropDownListForCommonCode(c=>c.Nation,CommonCodeType.民族)
+                        </td>
+                    </tr>
+        
+                    <tr>
+                        <td>教育水平</td>
+                        <td>
+                            @Html.DropDownListForCommonCode(c=>c.Diploma,CommonCodeType.教育水平)
+                        </td>
+                    </tr>        
 
-        <tr>
-            <td>昵称</td>
-            <td>
-                @Html.TextBoxFor(c=>c.NickName)
-            </td>
-        </tr>
-        
-        <tr>
-            <td>身份证号</td>
-            <td>
-                @*<input class="messager-input" name="IdCard"  />*@
-                <input class="easyui-validatebox" name="IdCard" validType="IdCard['Gender','#Birthday']" >
-            </td>
-        </tr>
-        
-        <tr>
-            <td>生日</td>
-            <td>
-                <input type="text" id="Birthday" name="Birthday" class="easyui-datebox" >
-            </td>
-        </tr>
-        
+                    <tr>
+                        <td>科室</td>
+                        <td>
+                            @{
+                                int deptId = 0;
+                                string deptName = "";
+                                if ( Model != null && Model.Department != null)
+                                {
+                                    deptId = Model.Department.Id;
+                                    deptName = Model.Department.Name;
+                                }
+                            }
 
-@*        <tr>
-            <td>性别</td>
-            <td>
-                @Html.DropDownListFor(c=>c.Gender)
-            </td>
-        </tr>*@
-        
-          <tr>
-            <td>部门</td>
-            <td>
-                @Html.TextBoxFor(c=>c.NickName)
-            </td>
-        </tr>
-        
-        <tr>
-            <td>职务</td>
-            <td>
-                @Html.TextBoxFor(c=>c.Duty)
-            </td>
-        </tr>
-        
-        <tr>
-            <td>民族</td>
-            <td>
-                @Html.DropDownListForCommonCode(c=>c.Nation,CommonCodeType.民族)
-            </td>
-        </tr>
-        
-        <tr>
-            <td>教育水平</td>
-            <td>
-                @Html.DropDownListForCommonCode(c=>c.Diploma,CommonCodeType.教育水平)
-            </td>
-        </tr>
-        
-        <tr>
-            <td>入职日期</td>
-            <td>
-                <input type="text" name="EntryDate" class="easyui-datebox" >
-            </td>
-        </tr>
+                            <input id="Department_Id" name="Department.Id" style="display: none" value="@deptId" />
+                            <input id="Department_Name" name="Department.Name"  disabled="disabled" value="@deptName" />
 
-        <tr>
-            <td>手机号码</td>
-            <td>
-                @Html.TextBoxFor(c=>c.Mobile)
-            </td>
-        </tr>
- 
-        <tr>
-            <td>地址</td>
-            <td>
-                @Html.TextBoxFor(c=>c.Address)
-            </td>
-        </tr>
+                            <a id="selectDept" href="#">选择部门</a>
+                        </td>
 
-        <tr>
-            <td>状态</td>
-            <td>
-                @Html.DropDownListForEnum(c=>c.EmployeeStatus,"",null)
-            </td>
-        </tr>
+                        <td>职务</td>
+                        <td>
+                            @Html.TextBoxFor(c=>c.Duty)
+                        </td>
+                    </tr>
         
-        <tr>
-            <td>备注</td>
-            <td>
-                @Html.TextAreaFor(c=>c.Note)
-            </td>
-        </tr>
+                    <tr>
+                        <td>入职日期</td>
+                        <td>
+                            <input type="text" name="EntryDate" class="easyui-datebox" value="@Model.EntryDate" >
+                        </td>
+     
+                        <td>状态</td>
+                        <td>
+                            @Html.DropDownListFor(c=>c.EmployeeStatus)
+                        </td>
+                    </tr>
+        
+                    <tr>
+                        <td>手机号码</td>
+                        <td>
+                            @Html.TextBoxFor(c=>c.Mobile)
+                        </td>
+   
+                        <td>地址</td>
+                        <td>
+                            @Html.TextBoxFor(c=>c.Address)
+                        </td>
+                    </tr>
 
-    </table>
+                    <tr>
+                        <td>备注</td>
+                        <td colspan="3">
+                            @Html.TextAreaFor(c=>c.Note)
+                        </td>
+                    </tr>
 
- </form>
+                </table>
+
+            </form>
+
+            <div id="selcet_dept_dlg" dlgtitle="选择部门" style="display: none;padding:8px;">
+                <iframe id="selcet_dept_dlg_content" style="width: 100%; height: 100%; border: none;" frameborder="no">
+                    @*动态加载*@
+                </iframe>
+            </div>
+
+        </div>
+    @*   </div>*@
+    
+    <div align="center" style="margin-top: 10px;">
+        <a href="#" id="btnSave" class="easyui-linkbutton" iconcls="icon-save" >保存</a>
+    </div>
+    
+</body>
+
+<script type="text/javascript" src="@Url.Content("/Scripts/IdCard.js")"></script>
+<script type="text/javascript" src="@Url.Content("/Scripts/User/User.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        User.Edit();
+    });
+
+</script>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Gms.Common;
 using Gms.Domain;
 using SecurityGuard.ViewModels;
 using SharpArch.NHibernate.Web.Mvc;
@@ -18,6 +19,24 @@ namespace Gms.Web.Mvc.Controllers
         {
             return View();
         }
+
+        public ActionResult Edit(int? id)
+        {
+            User item = null;
+
+            if (id.HasValue)
+            {
+                item = this.UserRepository.Get(id.Value);
+            }
+
+            if (item == null)
+            {
+                item = new User();
+            }
+
+            return View(item);
+        }
+
 
         public ActionResult List(UserQuery query)
         {
@@ -40,7 +59,7 @@ namespace Gms.Web.Mvc.Controllers
         } 
 
         [Transaction]
-        public ActionResult CreateOrUpdate(User user,string psw)
+        public ActionResult SaveOrUpdate(User user, string psw)
         {
             try
             {
@@ -58,6 +77,7 @@ namespace Gms.Web.Mvc.Controllers
                     membershipuser = Membership.CreateUser(strUserName, psw);
 
                     user.MemberShipId = (Guid)membershipuser.ProviderUserKey;
+
                 }
                 else
                 {
@@ -66,6 +86,10 @@ namespace Gms.Web.Mvc.Controllers
                     TryUpdateModel(user);
                 }
 
+                if (user.Pinyin.IsNullOrEmpty() && !user.RealName.IsNullOrEmpty())
+                {
+                    user.Pinyin = ChineseToSpell.GetChineseSpell(user.RealName);
+                }
 
                 user = this.UserRepository.SaveOrUpdate(user);
 

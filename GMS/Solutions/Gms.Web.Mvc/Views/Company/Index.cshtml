@@ -48,7 +48,7 @@
     $(document).ready(function () {
         $("#SaveKey").click(function() {
 
-            $.post("/Company/SaveOrUpdate", { regkey: $("#reginfo").val() }, function (data) {
+            $.post("/Company/RegisterSoft", { regkey: $("#reginfo").val() }, function (data) {
                 if (data.success) {
                     alert("导入成功");
                     window.location.reload();
