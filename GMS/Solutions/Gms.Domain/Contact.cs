@@ -12,6 +12,12 @@ namespace Gms.Domain
     /// </summary>
     public class Contact:Entity
     {
+        public Contact()
+        {
+            this.Birthday = DateTime.Now;
+            this.CreateTime = DateTime.Now;
+        }
+
         /// <summary>
         /// 所属联系人
         /// </summary>

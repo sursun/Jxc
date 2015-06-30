@@ -1,0 +1,37 @@
+﻿@using Gms.Domain
+
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body>
+
+    <div id="toolbar" style="padding: 5px; height: auto">
+        
+        <div style="margin-bottom: 5px">
+            <a href="#" class="easyui-linkbutton add" forgid="contact_search_list" iconcls="icon-add" plain="true">添加</a>
+            <a href="#" class="easyui-linkbutton del" forgid="contact_search_list" iconcls="icon-remove" plain="true">删除</a>
+            <a href="#" class="easyui-linkbutton edit" forgid="contact_search_list" iconcls="icon-edit" plain="true">修改</a>
+        </div>
+     
+    </div>
+     
+    <table id="contact_search_list" url="@Url.Action("List","Contact")" edit="@Url.Action("GetContact","Contact")" del="@Url.Action("Delete","Contact")">
+            
+    </table>
+    
+    <div id="contact_search_edit" dlgtitle="联系人信息" style="display: none">
+        @{
+            Html.RenderPartial("Edit", new Contact());
+        }
+    </div>
+        
+        
+</body>
+<script type="text/javascript" src="@Url.Content("/Scripts/Contact/Contact.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Contact.Init();
+    });
+
+</script>

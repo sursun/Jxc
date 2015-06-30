@@ -5,14 +5,15 @@
 }
 
 <body>
+    @*data-options="fit:true"*@
+    <div id="tabCustomer" >	
+        <div title="基本资料" style="padding:10px">	
 
-        <div class="easyui-panel" style=" padding: 10px; background: #fafafa;">
-    
             <form id="entityform" method="post" action="/Customer/SaveOrUpdate">
                 
                 @Html.HiddenFor(c=>c.Id)
                 
-                <table style="width: 800px;">
+                <table style="width: 100%;">
                     
                     <tr>
                         <td>编号</td>
@@ -49,6 +50,7 @@
                         </td>
 
                     </tr>
+
                     <tr>
                         <td>默认结算账户</td>
                         <td colspan="3">
@@ -117,7 +119,6 @@
                             @Html.TextBoxFor(c=>c.Amount)
                         </td>
                     </tr>
-               
 
                     <tr>
                         <td>备注</td>
@@ -129,20 +130,24 @@
                 </table>
 
             </form>
-            创建日期：
-            <input type="text" name="CreateTime" class="easyui-datebox" disabled="disabled" value="@Model.CreateTime" >
-
-            <div id="selcet_acc_dlg" dlgtitle="选择账户" style="display: none;padding:8px;">
-                <iframe id="selcet_acc_dlg_content" style="width: 100%; height: 100%; border: none;" frameborder="no">
-                    @*动态加载*@
-                </iframe>
-            </div>
-
+        </div>	
+        <div title="联系方式" style="padding:10px">
+            ttttt
         </div>
-    @*   </div>*@
+    </div>
+    创建日期：
+    <input type="text" name="CreateTime" class="easyui-datebox" disabled="disabled" value="@Model.CreateTime" >
     
-    <div align="center" style="margin-top: 10px;">
-        <a href="#" id="btnSave" class="easyui-linkbutton" iconcls="icon-save" >保存</a>
+    <div id="selcet_acc_dlg" dlgtitle="选择账户" style="display: none;padding:8px;">
+        <iframe id="selcet_acc_dlg_content" style="width: 100%; height: 100%; border: none;" frameborder="no">
+            @*动态加载*@
+        </iframe>
+    </div>
+    
+    <div id="btnBottom" align="center" style="margin-top: 10px;">
+        <a href="#" id="btnSave1" class="easyui-linkbutton" iconcls="icon-save" >保存</a>
+        <span>|</span>
+        <a href="#" id="btnSave2" class="easyui-linkbutton" iconcls="icon-save" >保存，并关闭页面</a>
     </div>
     
 </body>

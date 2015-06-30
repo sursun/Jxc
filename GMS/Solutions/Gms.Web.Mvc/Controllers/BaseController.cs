@@ -24,6 +24,7 @@ namespace Gms.Web.Mvc.Controllers
 
         public IUserRepository UserRepository { get; set; }
         public ICustomerRepository CustomerRepository { get; set; }
+        public IContactRepository ContactRepository { get; set; }
 
         public IStoreInRepository StoreInRepository { get; set; }
 

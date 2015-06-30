@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Gms.Common;
 using Gms.Domain;
 using Gms.Infrastructure;
 using SharpArch.NHibernate.Contracts.Repositories;
@@ -45,11 +46,32 @@ namespace Gms.Web.Mvc.Controllers
         }
 
         [Transaction]
-        public ActionResult CreateOrUpdate(Customer customer)
+        public ActionResult SaveOrUpdate(Customer customer)
         {
-            this.CustomerRepository.SaveOrUpdate(customer);
+            try
+            {
+                if (customer.Id > 0)
+                {
+                    customer = this.CustomerRepository.Get(customer.Id);
 
-            return JsonSuccess(customer);
+                    TryUpdateModel(customer);
+                }
+
+                if (customer.Pinyin.IsNullOrEmpty() && !customer.Name.IsNullOrEmpty())
+                {
+                    customer.Pinyin = ChineseToSpell.GetChineseSpell(customer.Name);
+                }
+
+                customer = this.CustomerRepository.SaveOrUpdate(customer);
+
+                return JsonSuccess(customer);
+
+            }
+            catch (Exception ex)
+            {
+                return JsonError(ex.Message);
+            }
+
         }
 
         [Transaction]
@@ -66,12 +88,10 @@ namespace Gms.Web.Mvc.Controllers
 
         public ActionResult GetCustomer(int id)
         {
-            return JsonSuccess(this.CustomerRepository.Get(id));
-        }
-
-        public ActionResult GetCustomers(CustomerQuery query)
-        {
-            return JsonSuccess(this.CustomerRepository.GetAll(query));
+            var item = this.CustomerRepository.Get(id);
+            if(item == null)
+                item = new Customer();
+            return JsonSuccess(item);
         }
         
     }

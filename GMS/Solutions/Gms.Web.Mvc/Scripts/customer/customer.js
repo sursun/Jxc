@@ -38,6 +38,22 @@ Customer.Init = function () {
         }
 
     });
+
+    $("#btnEdit").click(function () {
+
+        var rec = $('#customer_search_list').datagridEx("getSelected");
+
+        if (rec == null) {
+            return;
+        }
+
+        var vReturnValue = window.showModalDialog('/Customer/Edit?id=' + rec.Id, '', features);
+        if (vReturnValue != undefined) {
+            $('#customer_search_list').datagridEx("reload");
+        }
+
+    });
+
 };
 
 
@@ -73,40 +89,40 @@ Customer.Edit = function () {
     //----------------------------------------- 选择账户 -------------------------------------//
     $("#selectAccount").live("click", function () {
 
-        $("#selcet_dept_dlg_content").attr("src", "/CommonCode/Select");
+        $("#selcet_acc_dlg_content").attr("src", "/Account/Select");
 
         var opt = {
-            title: '选择部门',
-            width: 300,
-            height: 200,
+            title: '选择账户',
+            width: 680,
+            height: 380,
             buttons: [{
                 text: '确定',
                 iconCls: 'icon-ok',
                 handler: function () {
-                    var deptContents = $("#selcet_dept_dlg_content").contents();
+                    var deptContents = $("#selcet_acc_dlg_content").contents();
 
-                    $("#Department_Id").val(deptContents.find("#department_selected_Id").val());
-                    $("#Department_Name").val(deptContents.find("#department_selected_Name").val());
+                    $("#Account_Id").val(deptContents.find("#account_selected_Id").val());
+                    $("#Account_Name").val(deptContents.find("#account_selected_Name").val());
 
-                    $("#selcet_dept_dlg").dialog('close');
+                    $("#selcet_acc_dlg").dialog('close');
                 }
             }, {
                 text: '取消',
                 iconCls: 'icon-cancel',
                 handler: function () {
-                    $("#selcet_dept_dlg").dialog('close');
+                    $("#selcet_acc_dlg").dialog('close');
                 }
             }]
         };
 
-        $("#selcet_dept_dlg").show();
-        $("#selcet_dept_dlg").dialog(opt);
+        $("#selcet_acc_dlg").show();
+        $("#selcet_acc_dlg").dialog(opt);
 
         return false;
 
     });
 
-    $("#btnSave").click(function () {
+    $("#btnSave2").click(function () {
 
         var formOptions = {
             defaultbefore: false,
@@ -130,8 +146,49 @@ Customer.Edit = function () {
 
         formOptions.dataType = 'json';
 
-        $('#userform').submitForm(formOptions);
+        $('#entityform').submitForm(formOptions);
 
+    });
+
+    $("#btnSave1").click(function () {
+
+        var formOptions = {
+            defaultbefore: false,
+            beforeSubmit: function (arr, $form) {
+                var result = $form.valid();
+                return result;
+            },
+            success: function (data) {
+
+                if (data.success) {
+                    $.messager.alert('提示', '保存成功', 'info');
+                    window.location = '/Customer/Edit?id=' + data.data.Id;
+                } else {
+                    $.messager.alert('错误', '保存失败：' + data.data, 'error');
+                }
+            }
+        };
+
+        formOptions.dataType = 'json';
+
+        $('#entityform').submitForm(formOptions);
+
+    });
+
+
+    $('#tabCustomer').tabs({
+        onUnselect: function (title, index) {
+            
+            if (index == 0) {
+                var cId = $("#Id").val();
+                if (cId == undefined || cId < 1) {
+                    $.messager.alert('提示', '请先保存客户资料，再添加联系人', 'info', function() {
+                        $('#tabCustomer').tabs("select", 0);
+                    });
+                    return false;
+                } 
+            }
+        }
     });
 
     //window.onunload = onunloadHandler;
