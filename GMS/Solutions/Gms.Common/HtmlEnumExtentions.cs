@@ -92,6 +92,7 @@ namespace Gms.Common
 
                 //selectList = new SelectList(values, "Value", "Text", Enum.Format(val.ModelType, val.Model, "d"));
             }
+            
             return selectList;
         }
 

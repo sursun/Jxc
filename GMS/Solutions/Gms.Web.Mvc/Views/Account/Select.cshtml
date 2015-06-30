@@ -1,0 +1,28 @@
+﻿@using Gms.Domain
+
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body>
+
+     
+    <table id="acc_search_list" url="@Url.Action("List","Account")" edit="@Url.Action("GetAccount","Account")" del="@Url.Action("Delete","Account")">
+            
+    </table>
+ 
+        
+    @*记录选择的项目，便于其他页面调用*@
+    <div style="display: none;">
+        <input id="account_selected_Id" />
+        <input id="account_selected_Name" />
+    </div>
+        
+</body>
+<script type="text/javascript" src="@Url.Content("/Scripts/Account/Account.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Account.Select();
+    });
+
+</script>

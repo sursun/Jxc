@@ -1,0 +1,51 @@
+﻿
+@using Gms.Common
+@model Gms.Domain.Account
+
+@{
+    Layout = null;
+}
+
+<form  method="post" action="/Account/SaveOrUpdate">
+
+    <table>
+      
+        <tr>
+            <td>编码</td>
+            <td>
+                @Html.TextBoxFor(c => c.CodeNo)
+            </td>
+        </tr>
+
+        <tr>
+            <td>名称</td>
+            <td>
+                @Html.TextBoxFor(c => c.Id,new{@style="display: none"})
+                @Html.TextBoxFor(c => c.Name)
+            </td>
+        </tr>
+        
+        <tr>
+            <td>当前金额</td>
+            <td>
+                @Html.TextBoxFor(c => c.CurAmount)
+            </td>
+        </tr>
+        
+        <tr>
+            <td>期初金额</td>
+            <td>
+                @Html.TextBoxFor(c=>c.BaseAmount)
+            </td>
+        </tr>
+        
+        <tr>
+            <td>备注</td>
+            <td>
+                @Html.TextAreaFor(c=>c.Note)
+            </td>
+        </tr>
+
+    </table>
+
+</form>

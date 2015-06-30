@@ -185,6 +185,7 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\SysLogController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\DashboardViewModel.cs" />
     <Compile Include="Models\ForgotPasswordViewModel.cs" />
@@ -1061,6 +1062,7 @@
     <Content Include="Scripts\User\User.js" />
     <Content Include="Scripts\home.js" />
     <Content Include="Scripts\Department\Department.js" />
+    <Content Include="Scripts\Account\Account.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1240,6 +1242,10 @@
     <Content Include="Views\Department\Select.cshtml" />
     <Content Include="Views\SysLog\Index.cshtml" />
     <Content Include="Views\Company\SysConfig.cshtml" />
+    <Content Include="Views\Customer\Select.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Select.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

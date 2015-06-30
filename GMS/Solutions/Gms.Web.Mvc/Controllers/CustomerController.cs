@@ -10,14 +10,31 @@ using SharpArch.NHibernate.Web.Mvc;
 
 namespace Gms.Web.Mvc.Controllers
 {
-    [HandleError]
-    [Authorize]
+    //[HandleError]
+    //[Authorize]
     public class CustomerController : BaseController
     {
 
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            Customer item = null;
+
+            if (id.HasValue)
+            {
+                item = this.CustomerRepository.Get(id.Value);
+            }
+
+            if (item == null)
+            {
+                item = new Customer();
+            }
+
+            return View(item);
         }
 
         public ActionResult List(CustomerQuery query)

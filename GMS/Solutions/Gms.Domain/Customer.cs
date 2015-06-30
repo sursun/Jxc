@@ -42,7 +42,7 @@ namespace Gms.Domain
         /// <summary>
         /// 是否允许欠款
         /// </summary>
-        public virtual Boolean AllowDebt { get; set; }
+        public virtual Yesno AllowDebt { get; set; }
 
         /// <summary>
         /// 允许欠款金额
@@ -86,7 +86,7 @@ namespace Gms.Domain
         /// <summary>
         /// 是否允许欠款
         /// </summary>
-        public Boolean? AllowDebt { get; set; }
+        public Yesno? AllowDebt { get; set; }
 
         /// <summary>
         /// 允许欠款金额

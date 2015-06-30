@@ -1,0 +1,37 @@
+﻿@using Gms.Domain
+
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body>
+
+    <div id="toolbar" style="padding: 5px; height: auto">
+        
+        <div style="margin-bottom: 5px">
+            <a href="#" class="easyui-linkbutton add" forgid="acc_search_list" iconcls="icon-add" plain="true">添加</a>
+            <a href="#" class="easyui-linkbutton del" forgid="acc_search_list" iconcls="icon-remove" plain="true">删除</a>
+            <a href="#" class="easyui-linkbutton edit" forgid="acc_search_list" iconcls="icon-edit" plain="true">修改</a>
+        </div>
+     
+    </div>
+     
+    <table id="acc_search_list" url="@Url.Action("List","Account")" edit="@Url.Action("GetAccount","Account")" del="@Url.Action("Delete","Account")">
+            
+    </table>
+    
+    <div id="acc_search_edit" dlgtitle="账户信息" style="display: none">
+        @{
+            Html.RenderPartial("Edit", new Account());
+        }
+    </div>
+        
+        
+</body>
+<script type="text/javascript" src="@Url.Content("/Scripts/Account/Account.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Account.Init();
+    });
+
+</script>

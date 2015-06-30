@@ -1,43 +1,156 @@
-﻿@model Gms.Domain.Customer
-
+﻿@using Gms.Domain
+@model Gms.Domain.Customer
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
 }
 
-<form id="customerform" method="post" action="/Customer/CreateOrUpdate">
-    <table>
+<body>
+
+        <div class="easyui-panel" style=" padding: 10px; background: #fafafa;">
+    
+            <form id="entityform" method="post" action="/Customer/SaveOrUpdate">
+                
+                @Html.HiddenFor(c=>c.Id)
+                
+                <table style="width: 800px;">
+                    
                     <tr>
-                        <td>姓名</td>
-                        <td>
-                            @Html.TextBoxFor(c=>c.Name)
-                            <input id="Id" name="Id" style="display: none" type="number" value=""/>
+                        <td>编号</td>
+                        <td colspan="3">
+                            @{
+                                if (@Model.Id > 0)
+                                {
+                                    <input type="text" disabled="disabled"  value="@Model.CodeNo">
+                                }
+                                else
+                                {
+                                    <input type="text" name="CodeNo"  value="@Model.CodeNo">
+                                }
+                            }
+                        </td>
+                    </tr>
+       
+                    <tr>
+                        <td style="width: 15%;">姓名</td>
+                        <td style="width: 35%;">
+                            @Html.TextBoxFor(c => c.Name)
+                        </td>
+     
+                        <td style="width: 15%;">姓名简拼</td>
+                        <td style="width: 35%;">
+                            @Html.TextBoxFor(c=>c.Pinyin)
                         </td>
                     </tr>
 
                     <tr>
-                        <td>电话</td>
-                        <td>
-                            @Html.TextBoxFor(c=>c.Mobile)
+                        <td>客户等级</td>
+                        <td colspan="3">
+                            @Html.DropDownListForCommonCode(c=>c.CustomerGrade,CommonCodeType.客户等级)
                         </td>
+
                     </tr>
                     <tr>
-                        <td>公司</td>
-                        <td>
-                            @Html.TextBoxFor(c=>c.Company)
+                        <td>默认结算账户</td>
+                        <td colspan="3">
+                            @{
+                                int accId = 0;
+                                string accName = "";
+                                if (Model != null && Model.Account != null)
+                                {
+                                    accId = Model.Account.Id;
+                                    accName = Model.Account.Name;
+                                }
+                            }
+
+                            <input id="Account_Id" name="Account.Id" style="display: none" value="@accId" />
+                            <input id="Account_Name" name="Account.Name"  disabled="disabled" value="@accName" />
+
+                            <a id="selectAccount" href="#">选择账户</a>
                         </td>
+
                     </tr>
+        
                     <tr>
-                        <td>地址</td>
+                        <td>期初日期</td>
                         <td>
-                            @Html.TextBoxFor(c=>c.Address)
+                            <input type="text" name="BaseTime" class="easyui-datebox" value="@Model.BaseTime" >
+                        </td>
+     
+                        <td>期初应收款</td>
+                        <td>
+                            @Html.TextBoxFor(c=>c.ShoukuanQc)
                         </td>
                     </tr>
+                    
+                    <tr>
+                        <td>应收款</td>
+                        <td>
+                            @Html.TextBoxFor(c=>c.ShoukuanYing)
+                        </td>
+     
+                        <td>预收款</td>
+                        <td>
+                            @Html.TextBoxFor(c=>c.ShoukuanYu)
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>是否允许欠款</td>
+                        <td>
+                            @Html.DropDownListFor(c=>c.AllowDebt)
+                        </td>
+     
+                        <td>允许欠款金额</td>
+                        <td>
+                            @Html.TextBoxFor(c=>c.Debt)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>累计积分</td>
+                        <td>
+                            @Html.DisplayTextFor(c=>c.Point)
+                        </td>
+     
+                        <td>累计消费金额</td>
+                        <td>
+                            @Html.TextBoxFor(c=>c.Amount)
+                        </td>
+                    </tr>
+               
+
                     <tr>
                         <td>备注</td>
-                        <td>
+                        <td colspan="3">
                             @Html.TextAreaFor(c=>c.Note)
                         </td>
                     </tr>
 
                 </table>
-    </form>
+
+            </form>
+            创建日期：
+            <input type="text" name="CreateTime" class="easyui-datebox" disabled="disabled" value="@Model.CreateTime" >
+
+            <div id="selcet_acc_dlg" dlgtitle="选择账户" style="display: none;padding:8px;">
+                <iframe id="selcet_acc_dlg_content" style="width: 100%; height: 100%; border: none;" frameborder="no">
+                    @*动态加载*@
+                </iframe>
+            </div>
+
+        </div>
+    @*   </div>*@
+    
+    <div align="center" style="margin-top: 10px;">
+        <a href="#" id="btnSave" class="easyui-linkbutton" iconcls="icon-save" >保存</a>
+    </div>
+    
+</body>
+
+<script type="text/javascript" src="@Url.Content("/Scripts/customer/customer.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Customer.Edit();
+    });
+
+</script>

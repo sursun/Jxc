@@ -13,6 +13,12 @@ namespace Gms.Domain
     /// </summary>
     public class RelationPerson : Entity
     {
+        public RelationPerson()
+        {
+            BaseTime = DateTime.Now;
+            CreateTime = DateTime.Now;
+        }
+        
         /// <summary>
         /// 联系人类型
         /// </summary>
