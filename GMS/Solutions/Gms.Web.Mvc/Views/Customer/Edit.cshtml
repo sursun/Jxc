@@ -116,7 +116,7 @@
      
                         <td>累计消费金额</td>
                         <td>
-                            @Html.TextBoxFor(c=>c.Amount)
+                            @Html.DisplayTextFor(c=>c.Amount) 元
                         </td>
                     </tr>
 
@@ -132,7 +132,9 @@
             </form>
         </div>	
         <div title="联系方式" style="padding:10px">
-            ttttt
+            <iframe style="width: 100%; height: 100%; border: none;" url="/Contact?id=@Model.Id" frameborder="no">
+            @*动态加载*@
+        </iframe>
         </div>
     </div>
     创建日期：

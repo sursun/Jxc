@@ -15,7 +15,6 @@ namespace Gms.Web.Mvc.Controllers
     //[Authorize]
     public class CustomerController : BaseController
     {
-
         public ActionResult Index()
         {
             return View();
@@ -41,7 +40,8 @@ namespace Gms.Web.Mvc.Controllers
         public ActionResult List(CustomerQuery query)
         {
             var list = this.CustomerRepository.GetList(query);
-            var result = new { total = list.RecordCount, rows = list.Data };
+            var data = list.Data.Select(c => CustomerModel.From(c)).ToList();
+            var result = new { total = list.RecordCount, rows = data };
             return Json(result);
         }
 
@@ -94,5 +94,153 @@ namespace Gms.Web.Mvc.Controllers
             return JsonSuccess(item);
         }
         
+    }
+
+    public class RelationPersonModel
+    {
+        public int Id { get; set; }
+
+        /// <summary>
+        /// 联系人类型
+        /// </summary>
+        public String RelationTypeName { get; set; }
+
+        /// <summary>
+        /// 编号
+        /// </summary>
+        public String CodeNo { get; set; }
+
+        /// <summary>
+        /// 姓名
+        /// </summary>
+        public String Name { get; set; }
+
+        /// <summary>
+        /// 拼音（姓名）
+        /// </summary>
+        public String Pinyin { get; set; }
+
+        /// <summary>
+        /// 默认结算账户
+        /// </summary>
+        public int AccountId { get; set; }
+        public String AccountName { get; set; }
+
+        /// <summary>
+        /// 期初日期
+        /// </summary>
+        public String BaseTimeString { get; set; }
+
+        /// <summary>
+        /// 累计金额
+        /// 消费（客户）
+        /// 采购（供应商）
+        /// </summary>
+        public decimal Amount { get; set; }
+
+        /// <summary>
+        /// 添加日期（开户时间）
+        /// </summary>
+        public String CreateTimeString { get; set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        public String Note { get; set; }
+
+        public RelationPersonModel(RelationPerson relationPerson)
+        {
+            this.Id = relationPerson.Id;
+            this.RelationTypeName = relationPerson.RelationType.ToString();
+            this.CodeNo = relationPerson.CodeNo;
+            this.Name = relationPerson.Name;
+            this.Pinyin = relationPerson.Pinyin;
+
+            if (relationPerson.Account != null)
+            {
+                this.AccountId = relationPerson.Account.Id;
+                this.AccountName = relationPerson.Account.Name;
+            }
+
+            this.BaseTimeString = relationPerson.BaseTime.ToString("yyyy-MM-dd HH:mm:ss dddd");
+            this.Amount = relationPerson.Amount;
+            this.CreateTimeString = relationPerson.CreateTime.ToString("yyyy-MM-dd HH:mm:ss dddd");
+            this.Note = relationPerson.Note;
+        }
+
+    }
+
+
+    public class CustomerModel:RelationPersonModel
+    {
+        /// <summary>
+        /// 客户类型
+        /// </summary>
+        public int CustomerTypeId { get; set; }
+        public String CustomerTypeString { get; set; }
+
+        /// <summary>
+        /// 客户等级 
+        /// </summary>
+        public int CustomerGradeId { get; set; }
+        public String CustomerGradeString { get; set; }
+
+        /// <summary>
+        /// 期初应收款
+        /// </summary>
+        public decimal ShoukuanQc { get; set; }
+
+        /// <summary>
+        /// 应收款
+        /// </summary>
+        public decimal ShoukuanYing { get; set; }
+
+        /// <summary>
+        /// 预收款
+        /// </summary>
+        public decimal ShoukuanYu { get; set; }
+
+        /// <summary>
+        /// 是否允许欠款
+        /// </summary>
+        public String AllowDebt { get; set; }
+
+        /// <summary>
+        /// 允许欠款金额
+        /// </summary>
+        public decimal Debt { get; set; }
+
+        /// <summary>
+        /// 累计积分
+        /// </summary>
+        public int Point { get; set; }
+
+        public CustomerModel(Customer customer) : base(customer)
+        {
+            if (customer.CustomerType != null)
+            {
+                this.CustomerTypeId = customer.CustomerType.Id;
+                this.CustomerTypeString = customer.CustomerType.Name;
+            }
+
+            if (customer.CustomerGrade != null)
+            {
+                this.CustomerGradeId = customer.CustomerGrade.Id;
+                this.CustomerGradeString = customer.CustomerGrade.Name;
+            }
+
+            this.ShoukuanQc = customer.ShoukuanQc;
+            this.ShoukuanYing = customer.ShoukuanYing;
+            this.ShoukuanYu = customer.ShoukuanYu;
+            this.AllowDebt = customer.AllowDebt.ToString();
+            this.Debt = customer.Debt;
+            this.Point = customer.Point;
+        }
+
+        public static CustomerModel From(Customer customer)
+        {
+            return new CustomerModel(customer);
+        }
+
     }
 }

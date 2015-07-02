@@ -1,100 +1,119 @@
 ﻿
-@using Gms.Common
+@using Gms.Domain
 @model Gms.Domain.Contact
-
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
 }
 
-<form  method="post" action="/Contact/SaveOrUpdate">
+<body>
 
-    <table>
+    <div class="easyui-panel" style=" padding: 10px; background: #fafafa;">
+
+        <form id="contactform" method="post" action="/Contact/SaveOrUpdate">
+
+            <table>
       
-        <tr>
-            <td>所属联系人</td>
-            <td>
-                @Html.DisplayTextFor(c=>c.RelationPerson)
-            </td>
-        </tr>
+                <tr>
+                    <td>所属联系人</td>
+                    <td>
+                        @Html.TextBoxFor(c => c.RelationPerson.Id,new{@style="display: none"})
+                        @Html.DisplayTextFor(c=>c.RelationPerson)
+                    </td>
+                </tr>
 
-        <tr>
-            <td>名称</td>
-            <td>
-                @Html.TextBoxFor(c => c.Id,new{@style="display: none"})
-                @Html.TextBoxFor(c => c.Name)
-            </td>
-        </tr>
+                <tr>
+                    <td>名称</td>
+                    <td>
+                        @Html.TextBoxFor(c => c.Id,new{@style="display: none"})
+                        @Html.TextBoxFor(c => c.Name)
+                    </td>
+                </tr>
         
-        <tr>
-            <td>性别</td>
-            <td>
-                @Html.DropDownListFor(c=>c.Gender)
-            </td>
-        </tr>
+                <tr>
+                    <td>性别</td>
+                    <td>
+                        @Html.DropDownListFor(c=>c.Gender)
+                    </td>
+                </tr>
         
-        <tr>
-            <td>证件号码</td>
-            <td>
-                @Html.TextBoxFor(c=>c.CardNo)
-            </td>
-        </tr>
+                <tr>
+                    <td>证件号码</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.CardNo)
+                    </td>
+                </tr>
         
-        <tr>
-            <td>生日</td>
-            <td>
-                @Html.TextBoxFor(c=>c.Birthday,new{@class="easyui-datebox",style="width: 100px;"})
-            </td>
-        </tr>
+                <tr>
+                    <td>生日</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.Birthday,new{@class="easyui-datebox",style="width: 100px;"})
+                    </td>
+                </tr>
         
-        <tr>
-            <td>手机号码</td>
-            <td>
-                @Html.TextBoxFor(c=>c.Mobile)
-            </td>
-        </tr>
+                <tr>
+                    <td>手机号码</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.Mobile)
+                    </td>
+                </tr>
         
-        <tr>
-            <td>QQ</td>
-            <td>
-                @Html.TextBoxFor(c=>c.QQ)
-            </td>
-        </tr>
+                <tr>
+                    <td>QQ</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.QQ)
+                    </td>
+                </tr>
         
-        <tr>
-            <td>电子邮箱</td>
-            <td>
-                @Html.TextBoxFor(c=>c.Email)
-            </td>
-        </tr>
+                <tr>
+                    <td>电子邮箱</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.Email)
+                    </td>
+                </tr>
         
-        <tr>
-            <td>地址</td>
-            <td>
-                @Html.TextBoxFor(c=>c.Address)
-            </td>
-        </tr>
+                <tr>
+                    <td>地址</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.Address)
+                    </td>
+                </tr>
         
-        <tr>
-            <td>是否为默认联系方式</td>
-            <td>
-                @Html.DropDownListFor(c=>c.IsDefault)
-            </td>
-        </tr>
+                <tr>
+                    <td>是否为默认联系方式</td>
+                    <td>
+                        @Html.DropDownListFor(c=>c.IsDefault)
+                    </td>
+                </tr>
         
-        <tr>
-            <td>备注</td>
-            <td>
-                @Html.TextAreaFor(c=>c.Note)
-            </td>
-        </tr>
+                <tr>
+                    <td>备注</td>
+                    <td>
+                        @Html.TextAreaFor(c=>c.Note)
+                    </td>
+                </tr>
   
-        <tr>
-            <td>创建时间</td>
-            <td>
-                <input type="text"  class="easyui-datebox" disabled="disabled"  value="@Model.CreateTime">
-            </td>
-        </tr>
+                <tr>
+                    <td>创建时间</td>
+                    <td>
+                        <input type="text"  class="easyui-datebox" disabled="disabled"  value="@Model.CreateTime">
+                    </td>
+                </tr>
 
-    </table>
+            </table>
 
-</form>
+        </form>
+    </div>
+            
+    <div align="center" style="margin-top: 10px;">
+        <a href="#" id="btnSave" class="easyui-linkbutton" iconcls="icon-save" >保存</a>
+    </div>
+    
+</body>
+
+<script type="text/javascript" src="@Url.Content("/Scripts/Contact/Contact.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Contact.Edit();
+    });
+
+</script>

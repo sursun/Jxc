@@ -6,7 +6,7 @@ if (!Customer) {
 
 Customer.Init = function () {
 
-    var features = 'dialogHeight=420px; dialogWidth=800px; center=yes;location=0; resizable=0; status=0';
+    var features = 'dialogHeight=800; dialogWidth=1000; center=yes;location=0; resizable=0; status=0';
 
     $('#customer_search_list').datagridEx({
         toolbar: '#toolbar',
@@ -14,25 +14,19 @@ Customer.Init = function () {
         singleSelect:true,
         columns: [[
             { field: 'Name', title: '姓名', width: 100 },
-            { field: 'Mobile', title: '电话', width: 100 },
-            { field: 'Company', title: '公司', width: 100 },
-            { field: 'Address', title: '地址', width: 100 },
-            { field: 'Note', title: '备注', width: 100 }//,
-            //{
-            //    field: 'Id', title: '操作', width: 100, formatter: function (value, row, index) {
-            //        if (row.Id) {
-            //            return "<a class='localedit' href='#" + row.Id + "' onclick='testfun()'>编辑</a>";
-            //        } else {
-            //            return "";
-            //        }
-            //    }
-            //}
+            { field: 'CodeNo', title: '编号', width: 100 },
+            { field: 'CustomerGradeString', title: '等级', width: 100 },
+            { field: 'AccountName', title: '默认结算账户', width: 100 },
+            { field: 'Amount', title: '累计消费金额', width: 100 },
+            { field: 'Point', title: '累计积分', width: 100 },
+            { field: 'CreateTimeString', title: '开户时间', width: 100 },
+            { field: 'Note', title: '备注', width: 100 }
         ]]
     });
 
     $("#btnAdd").click(function () {
 
-        var vReturnValue = window.showModalDialog('/Customer/Edit', '', features);
+        var vReturnValue = window.showModalDialog('/Customer/Edit', '添加客户', features);
         if (vReturnValue != undefined) {
             $('#customer_search_list').datagridEx("reload");
         }
@@ -47,7 +41,7 @@ Customer.Init = function () {
             return;
         }
 
-        var vReturnValue = window.showModalDialog('/Customer/Edit?id=' + rec.Id, '', features);
+        var vReturnValue = window.showModalDialog('/Customer/Edit?id=' + rec.Id, '编辑客户信息', features);
         if (vReturnValue != undefined) {
             $('#customer_search_list').datagridEx("reload");
         }
@@ -177,6 +171,15 @@ Customer.Edit = function () {
 
 
     $('#tabCustomer').tabs({
+        onSelect: function (title, index) {
+            var tab = $("#tabCustomer").tabs("getTab", index);
+
+            var src = $("iframe", tab).attr("src");
+            if (src == undefined || src.length < 2) {
+                var url = $("iframe", tab).attr("url");
+                $("iframe", tab).attr("src",url);
+            }
+        },
         onUnselect: function (title, index) {
             
             if (index == 0) {
@@ -198,8 +201,6 @@ Customer.Edit = function () {
     //}
 
 };
-
-
 
 
 Customer.Select = function () {

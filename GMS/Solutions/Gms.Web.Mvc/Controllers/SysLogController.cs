@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Gms.Domain;
 
 namespace Gms.Web.Mvc.Controllers
@@ -15,7 +16,8 @@ namespace Gms.Web.Mvc.Controllers
         public ActionResult List(SysLogQuery query)
         {
             var list = this.SysLogRepository.GetList(query);
-            var result = new { total = list.RecordCount, rows = list.Data };
+            var data = list.Data.Select(c => SysLogModel.From(c)).ToList();
+            var result = new { total = list.RecordCount, rows = data };
             return Json(result);
         }
     }

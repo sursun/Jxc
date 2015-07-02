@@ -16,9 +16,34 @@ namespace Gms.Web.Mvc.Controllers
     public class ContactController : BaseController
     {
 
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View();
+            if (!id.HasValue)
+            {
+                id = -1;
+            }
+            return View(id.Value);
+        }
+
+        public ActionResult Edit(int? id, int? relationId)
+        {
+            Contact item = null;
+
+            if (id.HasValue)
+            {
+                item = this.ContactRepository.Get(id.Value);
+            }
+
+            if (item == null)
+            {
+                item = new Contact();
+                if (relationId.HasValue)
+                {
+                    item.RelationPerson = this.CustomerRepository.Get(relationId.Value);
+                }
+            }
+
+            return View(item);
         }
         
         public ActionResult List(ContactQuery query)
@@ -63,16 +88,6 @@ namespace Gms.Web.Mvc.Controllers
             }
             
             return JsonSuccess();
-        }
-
-        public ActionResult GetContact(int id)
-        {
-            var item = this.ContactRepository.Get(id);
-            if (item == null)
-            {
-                item = new Contact();
-            }
-            return JsonSuccess(item);
         }
         
     }
