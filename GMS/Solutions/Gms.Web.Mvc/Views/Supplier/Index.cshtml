@@ -1,0 +1,44 @@
+﻿@using Gms.Domain
+
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+ 
+}
+
+<body>
+
+    <div id="toolbar" style="padding: 5px; height: auto">
+        <div style="margin-bottom: 5px">
+            <a href="#" id="btnAdd" class="easyui-linkbutton" iconcls="icon-add" plain="true">添加</a>
+            <a href="#" class="easyui-linkbutton del" forgid="customer_search_list" iconcls="icon-remove" plain="true">删除</a>
+            <a href="#" id="btnEdit" class="easyui-linkbutton" iconcls="icon-edit" plain="true">修改</a>
+        </div>
+        <div>
+            姓名：<input name="Name" class="messager-input" style="width: 80px" />
+            电话：<input name="Mobile" class="messager-input" style="width: 80px" />
+            公司：<input name="Company" class="messager-input" style="width: 80px" />
+            <a href="#" id="supplier_search" class="easyui-linkbutton search" iconcls="icon-search">搜索</a>
+        </div>
+    </div>
+     
+    <table id="supplier_search_list" url="@Url.Action("List","Supplier")" del="@Url.Action("Delete","Supplier")">
+            
+    </table>
+        
+    <div id="supplier_search_edit" dlgtitle="供应商信息" style="display: none">
+@*        @{
+            Html.RenderPartial("Edit",new Supplier());
+        }*@
+    </div>
+       
+        
+</body>
+<script type="text/javascript" src="@Url.Content("/Scripts/Supplier/Supplier.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Supplier.Init();
+    });
+    
+</script>
+
+@*</html>*@

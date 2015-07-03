@@ -20,6 +20,11 @@ namespace Gms.Web.Mvc.Controllers
             return View();
         }
 
+        public ActionResult Alert()
+        {
+            return View();
+        }
+
         public ActionResult Edit(int? id)
         {
             Customer item = null;
@@ -86,13 +91,13 @@ namespace Gms.Web.Mvc.Controllers
             return JsonSuccess();
         }
 
-        public ActionResult GetCustomer(int id)
-        {
-            var item = this.CustomerRepository.Get(id);
-            if(item == null)
-                item = new Customer();
-            return JsonSuccess(item);
-        }
+        //public ActionResult GetCustomer(int id)
+        //{
+        //    var item = this.CustomerRepository.Get(id);
+        //    if(item == null)
+        //        item = new Customer();
+        //    return JsonSuccess(item);
+        //}
         
     }
 

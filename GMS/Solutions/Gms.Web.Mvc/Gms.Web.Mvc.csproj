@@ -187,6 +187,8 @@
     <Compile Include="Controllers\SysLogController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\ChargeSwapController.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\DashboardViewModel.cs" />
     <Compile Include="Models\ForgotPasswordViewModel.cs" />
@@ -1398,6 +1400,8 @@
     <Content Include="Scripts\Department\Department.js" />
     <Content Include="Scripts\Account\Account.js" />
     <Content Include="Scripts\Contact\Contact.js" />
+    <Content Include="Scripts\Supplier\Supplier.js" />
+    <Content Include="Scripts\ChargeSwap\ChargeSwap.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1595,6 +1599,13 @@
     <Content Include="Scripts\jquery-easyui-1.4.2\demo\tree\tree_data2.json" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Contact\Edit.cshtml" />
+    <Content Include="Views\Supplier\Edit.cshtml" />
+    <Content Include="Views\Supplier\Index.cshtml" />
+    <Content Include="Views\Supplier\Select.cshtml" />
+    <Content Include="Views\Supplier\Alert.cshtml" />
+    <Content Include="Views\Customer\Alert.cshtml" />
+    <Content Include="Views\ChargeSwap\Edit.cshtml" />
+    <Content Include="Views\ChargeSwap\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

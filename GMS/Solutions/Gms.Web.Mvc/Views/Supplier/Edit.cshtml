@@ -1,15 +1,16 @@
 ﻿@using Gms.Domain
-@model Gms.Domain.Customer
+@using NHibernate.Loader.Collection
+@model Gms.Domain.Supplier
 @{
     Layout = "~/Views/Shared/EmptyLayout.cshtml";
 }
 
 <body>
-    @*data-options="fit:true"*@
-    <div id="tabCustomer" >	
+
+    <div id="tabSupplier" >	
         <div title="基本资料" style="padding:10px">	
 
-            <form id="entityform" method="post" action="/Customer/SaveOrUpdate">
+            <form id="entityform" method="post" action="/Supplier/SaveOrUpdate">
                 
                 @Html.HiddenFor(c=>c.Id)
                 @Html.HiddenFor(c=>c.RelationType)
@@ -46,21 +47,13 @@
                     </tr>
 
                     <tr>
-                        <td>客户类型</td>
+                        <td>供应商类别</td>
                         <td colspan="3">
-                            @Html.DropDownListForCommonCode(c=>c.CustomerType,CommonCodeType.客户类别)
+                            @Html.DropDownListForCommonCode(c=>c.SupplierType,CommonCodeType.供应商类别)
                         </td>
 
                     </tr>
-
-                    <tr>
-                        <td>客户等级</td>
-                        <td colspan="3">
-                            @Html.DropDownListForCommonCode(c=>c.CustomerGrade,CommonCodeType.客户等级)
-                        </td>
-
-                    </tr>
-
+                    
                     <tr>
                         <td>默认结算账户</td>
                         <td colspan="3">
@@ -81,6 +74,7 @@
                         </td>
 
                     </tr>
+
         
                     <tr>
                         <td>期初日期</td>
@@ -88,40 +82,40 @@
                             <input type="text" name="BaseTime" class="easyui-datebox" value="@Model.BaseTime" >
                         </td>
      
-                        <td>期初应收款</td>
+                        <td>期初应付款</td>
                         <td>
-                            @Html.TextBoxFor(c=>c.ShoukuanQc)
+                            @Html.TextBoxFor(c=>c.FukuanQc)
                         </td>
                     </tr>
                     
                     <tr>
-                        <td>应收款</td>
+                        <td>应付款</td>
                         <td>
-                            @Html.TextBoxFor(c=>c.ShoukuanYing)
+                            @Html.TextBoxFor(c=>c.FukuanYing)
                         </td>
      
-                        <td>预收款</td>
+                        <td>预付款</td>
                         <td>
-                            @Html.TextBoxFor(c=>c.ShoukuanYu)
+                            @Html.TextBoxFor(c=>c.FukuanYu)
                         </td>
                     </tr>
                     
                     <tr>
-                        <td>是否允许欠款</td>
+                        <td>税号</td>
                         <td>
-                            @Html.DropDownListFor(c=>c.AllowDebt)
+                            @Html.TextBoxFor(c=>c.ShuiHao)
                         </td>
      
-                        <td>允许欠款金额</td>
+                        <td>帐号</td>
                         <td>
-                            @Html.TextBoxFor(c=>c.Debt)
+                            @Html.TextBoxFor(c=>c.CardNo)
                         </td>
                     </tr>
 
                     <tr>
-                        <td>累计积分</td>
+                        <td>增值税率</td>
                         <td>
-                            @Html.DisplayTextFor(c=>c.Point)
+                            @Html.TextBoxFor(c=>c.TaxRate)
                         </td>
      
                         <td>累计消费金额</td>
@@ -142,19 +136,14 @@
             </form>
         </div>	
         <div title="联系方式" style="padding:10px">
-            <iframe style="width: 100%; height: 100%; border: none;" src="/Customer/Alert" url="/Contact?id=@Model.Id" frameborder="no">
-            @*动态加载*@
-        </iframe>
+            
+            <iframe style="width: 100%; height: 100%; border: none;" src="/Supplier/Alert" url="/Contact?id=@Model.Id" frameborder="no">
+                @*动态加载*@
+            </iframe>
         </div>
     </div>
     创建日期：
     <input type="text" name="CreateTime" class="easyui-datebox" disabled="disabled" value="@Model.CreateTime" >
-    
-    <div id="selcet_acc_dlg" dlgtitle="选择账户" style="display: none;padding:8px;">
-        <iframe id="selcet_acc_dlg_content" style="width: 100%; height: 100%; border: none;" frameborder="no">
-            @*动态加载*@
-        </iframe>
-    </div>
     
     <div id="btnBottom" align="center" style="margin-top: 10px;">
         <a href="#" id="btnSave1" class="easyui-linkbutton" iconcls="icon-save" >保存</a>
@@ -164,10 +153,10 @@
     
 </body>
 
-<script type="text/javascript" src="@Url.Content("/Scripts/customer/customer.js")"></script>
+<script type="text/javascript" src="@Url.Content("/Scripts/Supplier/Supplier.js")"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        Customer.Edit();
+        Supplier.Edit();
     });
 
 </script>

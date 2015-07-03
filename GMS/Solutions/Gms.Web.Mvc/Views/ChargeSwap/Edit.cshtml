@@ -1,0 +1,115 @@
+﻿
+@using Gms.Domain
+@model Gms.Domain.ChargeSwap
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body>
+
+    <div class="easyui-panel" style=" padding: 10px; background: #fafafa;">
+
+        <form id="entityform" method="post" action="/ChargeSwap/SaveOrUpdate">
+            
+            @Html.HiddenFor(c=>c.Id)
+
+            <table>
+      
+                <tr>
+                    <td>
+                        &ensp;
+                    </td>
+                    
+                    <td>
+                        @{
+                            int origAccId = 0;
+                            string origAccName = "";
+                            int destAccId = 0;
+                            string destAccName = "";
+                                
+                            if (Model.OrigAccount != null)
+                            {
+                                origAccId = Model.OrigAccount.Id;
+                                origAccName = Model.OrigAccount.Name;
+                            }
+
+                            if (Model.DestAccount != null)
+                            {
+                                destAccId = Model.DestAccount.Id;
+                                destAccName = Model.DestAccount.Name;
+                            }
+                        }
+                            
+                        <input id="OrigAccount_Id" name="OrigAccount.Id" style="display: none" value="@origAccId" />
+                        <input id="OrigAccount_Name" name="OrigAccount.Name"  disabled="disabled" value="@origAccName" />
+                        <a id="selectAccountOrig" href="#">选择账户</a>
+                            
+                    </td>
+
+                    <td>
+                        <span style="margin-left: 10px;margin-right: 10px;">→</span>
+                    </td>
+
+                    <td>
+                        <input id="DestAccount_Id" name="DestAccount.Id" style="display: none" value="@destAccId" />
+                        <input id="DestAccount_Name" name="DestAccount.Name"  disabled="disabled" value="@destAccName" />
+                        <a id="selectAccountDest" href="#">选择账户</a>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>记账前金额</td>
+                    <td>
+                        @Html.DisplayTextFor(c => c.OrigAccount)
+                    </td>
+                    <td>
+                       &ensp;
+                    </td>
+                    <td>
+                        @Html.DisplayTextFor(c => c.DestAccount)
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>记账金额</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.Amount)
+                    </td>
+              
+                    <td>备注</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.Note)
+                    </td>
+                </tr>
+  
+                <tr>
+                    <td>登记人</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.Creator.LoginName)
+                    </td>
+            
+                    <td>登记时间</td>
+                    <td>
+                        <input type="text"  class="easyui-datebox" disabled="disabled"  value="@Model.CreateTime">
+                    </td>
+                </tr>
+
+            </table>
+
+        </form>
+    </div>
+            
+    <div align="center" style="margin-top: 10px;">
+        <a href="#" id="btnSave" class="easyui-linkbutton" iconcls="icon-save" >保存</a>
+    </div>
+    
+</body>
+
+<script type="text/javascript" src="@Url.Content("/Scripts/ChargeSwap/ChargeSwap.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        ChargeSwap.Edit();
+    });
+
+</script>

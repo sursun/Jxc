@@ -20,10 +20,14 @@ namespace Gms.Web.Mvc.Controllers
         public ICompanyRepository CompanyRepository { get; set; }
         public ICommonCodeRepository CommonCodeRepository { get; set; }
         public IDepartmentRepository DepartmentRepository { get; set; }
+
         public IAccountRepository AccountRepository { get; set; }
+        public IChargeRepository ChargeRepository { get; set; }
+        public IChargeSwapRepository ChargeSwapRepository { get; set; }
 
         public IUserRepository UserRepository { get; set; }
         public ICustomerRepository CustomerRepository { get; set; }
+        public ISupplierRepository SupplierRepository { get; set; }
         public IContactRepository ContactRepository { get; set; }
 
         public IStoreInRepository StoreInRepository { get; set; }

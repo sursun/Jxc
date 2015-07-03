@@ -9,6 +9,12 @@ namespace Gms.Domain
 {
     public abstract class AuditBase : Entity
     {
+        public AuditBase()
+        {
+            this.CreateTime = DateTime.Now;
+            this.AuditTime = DateTime.Now;
+        }
+
         /// <summary>
         /// 登记人
         /// </summary>

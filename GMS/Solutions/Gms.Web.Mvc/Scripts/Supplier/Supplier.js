@@ -1,24 +1,24 @@
 ﻿
-var Customer;
-if (!Customer) {
-    Customer = {};
+var Supplier;
+if (!Supplier) {
+    Supplier = {};
 }
 
-Customer.Init = function () {
+Supplier.Init = function () {
 
     var features = 'dialogHeight=800; dialogWidth=1000; center=yes;location=0; resizable=0; status=0';
 
-    $('#customer_search_list').datagridEx({
+    $('#supplier_search_list').datagridEx({
         toolbar: '#toolbar',
         pagination: true,
         singleSelect:true,
         columns: [[
             { field: 'Name', title: '姓名', width: 100 },
             { field: 'CodeNo', title: '编号', width: 100 },
-            { field: 'CustomerGradeString', title: '等级', width: 100 },
+            { field: 'SupplierTypeString', title: '供应商类别', width: 100 },
             { field: 'AccountName', title: '默认结算账户', width: 100 },
-            { field: 'Amount', title: '累计消费金额', width: 100 },
-            { field: 'Point', title: '累计积分', width: 100 },
+            { field: 'TaxRate', title: '增值税率', width: 100 },
+            { field: 'Amount', title: '累计采购金额', width: 100 },
             { field: 'CreateTimeString', title: '开户时间', width: 100 },
             { field: 'Note', title: '备注', width: 100 }
         ]]
@@ -26,24 +26,24 @@ Customer.Init = function () {
 
     $("#btnAdd").click(function () {
 
-        var vReturnValue = window.showModalDialog('/Customer/Edit', '添加客户', features);
+        var vReturnValue = window.showModalDialog('/Supplier/Edit', '添加客户', features);
         if (vReturnValue != undefined) {
-            $('#customer_search_list').datagridEx("reload");
+            $('#supplier_search_list').datagridEx("reload");
         }
 
     });
 
     $("#btnEdit").click(function () {
 
-        var rec = $('#customer_search_list').datagridEx("getSelected");
+        var rec = $('#supplier_search_list').datagridEx("getSelected");
 
         if (rec == null) {
             return;
         }
 
-        var vReturnValue = window.showModalDialog('/Customer/Edit?id=' + rec.Id, '编辑客户信息', features);
+        var vReturnValue = window.showModalDialog('/Supplier/Edit?id=' + rec.Id, '编辑客户信息', features);
         if (vReturnValue != undefined) {
-            $('#customer_search_list').datagridEx("reload");
+            $('#supplier_search_list').datagridEx("reload");
         }
 
     });
@@ -51,7 +51,7 @@ Customer.Init = function () {
 };
 
 
-Customer.Edit = function () {
+Supplier.Edit = function () {
 
 
     $("#entityform").validate({
@@ -156,7 +156,7 @@ Customer.Edit = function () {
 
                 if (data.success) {
                     $.messager.alert('提示', '保存成功', 'info');
-                    window.location = '/Customer/Edit?id=' + data.data.Id;
+                    window.location = '/Supplier/Edit?id=' + data.data.Id;
                 } else {
                     $.messager.alert('错误', '保存失败：' + data.data, 'error');
                 }
@@ -170,9 +170,9 @@ Customer.Edit = function () {
     });
 
 
-    $('#tabCustomer').tabs({
+    $('#tabSupplier').tabs({
         onSelect: function (title, index) {
-            var tab = $("#tabCustomer").tabs("getTab", index);
+            var tab = $("#tabSupplier").tabs("getTab", index);
 
             if (index == 1) {
 
@@ -190,45 +190,47 @@ Customer.Edit = function () {
             }
 
         }
-       
+        //,
+        //onUnselect: function (title, index) {
+            
+        //    if (index == 0) {
+        //        var cId = $("#Id").val();
+        //        if (cId == undefined || cId < 1) {
+        //            $.messager.alert('提示', '请先保存供应商资料，再添加联系人', 'info', function() {
+        //                $('#tabSupplier').tabs("select", 0);
+        //            });
+        //            return false;
+        //        } 
+        //    }
+        //}
     });
 
 };
 
 
-Customer.Select = function () {
+Supplier.Select = function () {
 
-    $('#customer_search_list').datagridEx({
+    $('#supplier_search_list').datagridEx({
         toolbar: '#toolbar',
         pagination: true,
         singleSelect:true,
         columns: [[
             { field: 'Name', title: '姓名', width: 100 },
-            { field: 'Mobile', title: '电话', width: 100 },
-            { field: 'Company', title: '公司', width: 100 },
-            { field: 'Address', title: '地址', width: 100 },
-            { field: 'Note', title: '备注', width: 100 }//,
-            //{
-            //    field: 'Id', title: '操作', width: 100, formatter: function (value, row, index) {
-            //        if (row.Id) {
-            //            return "<a class='localedit' href='#" + row.Id + "' onclick='testfun()'>编辑</a>";
-            //        } else {
-            //            return "";
-            //        }
-            //    }
-            //}
+            { field: 'CodeNo', title: '编号', width: 100 },
+            { field: 'SupplierTypeString', title: '供应商类别', width: 100 },
+            { field: 'AccountName', title: '默认结算账户', width: 100 },
+            { field: 'TaxRate', title: '增值税率', width: 100 },
+            { field: 'Amount', title: '累计采购金额', width: 100 },
+            { field: 'CreateTimeString', title: '开户时间', width: 100 },
+            { field: 'Note', title: '备注', width: 100 }
         ]],
         onSelect: function (rowIndex, rowData) {
             if (rowData != null) {
-                $('#customer_selected_id').val(rowData.Id);
-                $('#customer_selected_name').val(rowData.Name);
-                $('#customer_selected_mobile').val(rowData.Mobile);
-                $('#customer_selected_company').val(rowData.Company);
-                $('#customer_selected_note').val(rowData.Note);
+                $('#supplier_selected_id').val(rowData.Id);
+                $('#supplier_selected_name').val(rowData.Name);
             }
             
         }
     });
-
-   
+    
 };

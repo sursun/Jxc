@@ -1,10 +1,10 @@
 ﻿
-var Customer;
-if (!Customer) {
-    Customer = {};
+var ChargeSwap;
+if (!ChargeSwap) {
+    ChargeSwap = {};
 }
 
-Customer.Init = function () {
+ChargeSwap.Init = function () {
 
     var features = 'dialogHeight=800; dialogWidth=1000; center=yes;location=0; resizable=0; status=0';
 
@@ -13,37 +13,39 @@ Customer.Init = function () {
         pagination: true,
         singleSelect:true,
         columns: [[
-            { field: 'Name', title: '姓名', width: 100 },
-            { field: 'CodeNo', title: '编号', width: 100 },
-            { field: 'CustomerGradeString', title: '等级', width: 100 },
-            { field: 'AccountName', title: '默认结算账户', width: 100 },
-            { field: 'Amount', title: '累计消费金额', width: 100 },
-            { field: 'Point', title: '累计积分', width: 100 },
-            { field: 'CreateTimeString', title: '开户时间', width: 100 },
+            { field: 'OrigAccountName', title: '源账户', width: 100 },
+            { field: 'DestAccountName', title: '目的账户', width: 100 },
+            { field: 'Amount', title: '记账金额', width: 100 },
+            { field: 'CreatorName', title: '登记人', width: 100 },
+            { field: 'CreateTimeString', title: '登记日期', width: 100 },
+            { field: 'AuditState', title: '审核状态', width: 100 },
+            { field: 'AuditorName', title: '审核人', width: 100 },
+            { field: 'AuditTimeString', title: '审核日期', width: 100 },
+            { field: 'AuditNote', title: '审核说明', width: 100 },
             { field: 'Note', title: '备注', width: 100 }
         ]]
     });
 
     $("#btnAdd").click(function () {
 
-        var vReturnValue = window.showModalDialog('/Customer/Edit', '添加客户', features);
+        var vReturnValue = window.showModalDialog('/ChargeSwap/Edit', '添加流转记账', features);
         if (vReturnValue != undefined) {
-            $('#customer_search_list').datagridEx("reload");
+            $('#entity_search_list').datagridEx("reload");
         }
 
     });
 
     $("#btnEdit").click(function () {
 
-        var rec = $('#customer_search_list').datagridEx("getSelected");
+        var rec = $('#entity_search_list').datagridEx("getSelected");
 
         if (rec == null) {
             return;
         }
 
-        var vReturnValue = window.showModalDialog('/Customer/Edit?id=' + rec.Id, '编辑客户信息', features);
+        var vReturnValue = window.showModalDialog('/ChargeSwap/Edit?id=' + rec.Id, '查看流转记账', features);
         if (vReturnValue != undefined) {
-            $('#customer_search_list').datagridEx("reload");
+            $('#entity_search_list').datagridEx("reload");
         }
 
     });
@@ -51,7 +53,7 @@ Customer.Init = function () {
 };
 
 
-Customer.Edit = function () {
+ChargeSwap.Edit = function () {
 
 
     $("#entityform").validate({
@@ -195,40 +197,3 @@ Customer.Edit = function () {
 
 };
 
-
-Customer.Select = function () {
-
-    $('#customer_search_list').datagridEx({
-        toolbar: '#toolbar',
-        pagination: true,
-        singleSelect:true,
-        columns: [[
-            { field: 'Name', title: '姓名', width: 100 },
-            { field: 'Mobile', title: '电话', width: 100 },
-            { field: 'Company', title: '公司', width: 100 },
-            { field: 'Address', title: '地址', width: 100 },
-            { field: 'Note', title: '备注', width: 100 }//,
-            //{
-            //    field: 'Id', title: '操作', width: 100, formatter: function (value, row, index) {
-            //        if (row.Id) {
-            //            return "<a class='localedit' href='#" + row.Id + "' onclick='testfun()'>编辑</a>";
-            //        } else {
-            //            return "";
-            //        }
-            //    }
-            //}
-        ]],
-        onSelect: function (rowIndex, rowData) {
-            if (rowData != null) {
-                $('#customer_selected_id').val(rowData.Id);
-                $('#customer_selected_name').val(rowData.Name);
-                $('#customer_selected_mobile').val(rowData.Mobile);
-                $('#customer_selected_company').val(rowData.Company);
-                $('#customer_selected_note').val(rowData.Note);
-            }
-            
-        }
-    });
-
-   
-};
