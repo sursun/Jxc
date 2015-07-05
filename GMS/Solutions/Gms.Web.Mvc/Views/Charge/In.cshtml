@@ -10,7 +10,6 @@
         
         <div style="margin-bottom: 5px">
             <a href="#" id="btnAdd" class="easyui-linkbutton" iconcls="icon-add" plain="true">添加</a>
-            <a href="#" id="btnInfo" class="easyui-linkbutton" iconcls="icon-edit" plain="true">查看</a>
             <a href="#" id="btnEdit" class="easyui-linkbutton" iconcls="icon-edit" plain="true">修改</a>
             <a href="#" class="easyui-linkbutton del" forgid="entity_search_list" iconcls="icon-remove" plain="true">删除</a>
         </div>
@@ -24,15 +23,15 @@
      
     </div>
      
-    <table id="entity_search_list" url="@Url.Action("List","ChargeSwap")" del="@Url.Action("Delete","ChargeSwap")">
+    <table id="entity_search_list" url="/Charge/List?ChargeType=@((int)CommonCodeType.收入记账类型)" del="@Url.Action("Delete","Charge")">
             
     </table>
     
 </body>
-<script type="text/javascript" src="@Url.Content("/Scripts/ChargeSwap/ChargeSwap.js")"></script>
+<script type="text/javascript" src="@Url.Content("/Scripts/Charge/Charge.js")"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        ChargeSwap.Init();
+        Charge.In();
     });
 
 </script>

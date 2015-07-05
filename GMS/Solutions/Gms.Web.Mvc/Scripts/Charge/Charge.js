@@ -1,10 +1,10 @@
 ﻿
-var ChargeSwap;
-if (!ChargeSwap) {
-    ChargeSwap = {};
+var Charge;
+if (!Charge) {
+    Charge = {};
 }
 
-ChargeSwap.Init = function () {
+Charge.In = function () {
 
     var features = 'dialogHeight=480; dialogWidth=800; center=yes;location=0; resizable=0; status=0';
 
@@ -13,9 +13,12 @@ ChargeSwap.Init = function () {
         pagination: true,
         singleSelect:true,
         columns: [[
-            { field: 'OrigAccountName', title: '源账户', width: 100 },
-            { field: 'DestAccountName', title: '目的账户', width: 100 },
+            { field: 'AccountName', title: '账户', width: 100 },
+            { field: 'ChargeTypeName', title: '收入类型', width: 100 },
+            { field: 'OldAmount', title: '记账前余额', width: 100 },
             { field: 'Amount', title: '记账金额', width: 100 },
+            { field: 'UserName', title: '经手人', width: 100 },
+            { field: 'AutoCreate', title: '自动记账', width: 100 },
             { field: 'CreatorName', title: '登记人', width: 100 },
             { field: 'CreateTimeString', title: '登记日期', width: 100 },
             { field: 'AuditState', title: '审核状态', width: 100 },
@@ -28,38 +31,27 @@ ChargeSwap.Init = function () {
 
     $("#btnAdd").click(function () {
 
-        var vReturnValue = window.showModalDialog('/ChargeSwap/Edit', '添加流转记账', features);
+        var vReturnValue = window.showModalDialog('/Charge/Edit', '', features);
         if (vReturnValue != undefined) {
             $('#entity_search_list').datagridEx("reload");
         }
 
     });
-
-    $("#btnInfo").click(function () {
-
-        var rec = $('#entity_search_list').datagridEx("getSelected");
-
-        if (rec == null) {
-            return;
-        }
-
-        var vReturnValue = window.showModalDialog('/ChargeSwap/Info?id=' + rec.Id, '查看流转记账', features);
-        if (vReturnValue != undefined) {
-            $('#entity_search_list').datagridEx("reload");
-        }
-
-    });
-
+    
     $("#btnEdit").click(function () {
 
         var rec = $('#entity_search_list').datagridEx("getSelected");
 
-        if (rec == null || rec.AuditState != "审核失败") {
-            $.messager.alert("提示", "只能修改审核失败的记账");
+        if (rec == null ) {
             return;
         }
 
-        var vReturnValue = window.showModalDialog('/ChargeSwap/Edit?id=' + rec.Id, '修改流转记账', features);
+        if ( rec.AuditState != "审核失败" && rec.AuditState != "未审核") {
+            $.messager.alert("提示", "只能修改‘未审核’和‘审核失败’的记账");
+            return;
+        }
+
+        var vReturnValue = window.showModalDialog('/Charge/Edit?id=' + rec.Id, '修改流转记账', features);
         if (vReturnValue != undefined) {
             $('#entity_search_list').datagridEx("reload");
         }
@@ -68,7 +60,7 @@ ChargeSwap.Init = function () {
 
 };
 
-ChargeSwap.Audit = function () {
+Charge.Audit = function () {
 
     var features = 'dialogHeight=480; dialogWidth=800; center=yes;location=0; resizable=0; status=0';
 
@@ -134,7 +126,7 @@ ChargeSwap.Audit = function () {
 
 };
 
-ChargeSwap.Edit = function () {
+Charge.Edit = function () {
 
 
     $("#entityform").validate({
@@ -162,7 +154,7 @@ ChargeSwap.Edit = function () {
     });
 
     //----------------------------------------- 选择账户 -------------------------------------//
-    $("#selectAccountOrig").live("click", function () {
+    $("#selectAccount").live("click", function () {
 
         $("#selcet_acc_dlg_content").attr("src", "/Account/Select");
 
@@ -176,9 +168,9 @@ ChargeSwap.Edit = function () {
                 handler: function () {
                     var deptContents = $("#selcet_acc_dlg_content").contents();
 
-                    $("#OrigAccount_Id").val(deptContents.find("#account_selected_Id").val());
-                    $("#OrigAccount_Name").val(deptContents.find("#account_selected_Name").val());
-                    $("#OrigAmount").val(deptContents.find("#account_selected_Amount").val());
+                    $("#Account_Id").val(deptContents.find("#account_selected_Id").val());
+                    $("#Account_Name").val(deptContents.find("#account_selected_Name").val());
+                    $("#OldAmount").val(deptContents.find("#account_selected_Amount").val());
 
                     $("#selcet_acc_dlg").dialog('close');
                 }
@@ -198,37 +190,36 @@ ChargeSwap.Edit = function () {
 
     });
 
-    $("#selectAccountDest").live("click", function () {
+    $("#selectUser").live("click", function () {
 
-        $("#selcet_acc_dlg_content").attr("src", "/Account/Select");
+        $("#selcet_user_dlg_content").attr("src", "/User/Select");
 
         var opt = {
-            title: '选择账户',
+            title: '选择经手人',
             width: 680,
             height: 380,
             buttons: [{
                 text: '确定',
                 iconCls: 'icon-ok',
                 handler: function () {
-                    var deptContents = $("#selcet_acc_dlg_content").contents();
+                    var deptContents = $("#selcet_user_dlg_content").contents();
 
-                    $("#DestAccount_Id").val(deptContents.find("#account_selected_Id").val());
-                    $("#DestAccount_Name").val(deptContents.find("#account_selected_Name").val());
-                    $("#DestAmount").val(deptContents.find("#account_selected_Amount").val());
+                    $("#User_Id").val(deptContents.find("#user_selected_Id").val());
+                    $("#User_Name").val(deptContents.find("#user_selected_LoginName").val());
 
-                    $("#selcet_acc_dlg").dialog('close');
+                    $("#selcet_user_dlg").dialog('close');
                 }
             }, {
                 text: '取消',
                 iconCls: 'icon-cancel',
                 handler: function () {
-                    $("#selcet_acc_dlg").dialog('close');
+                    $("#selcet_user_dlg").dialog('close');
                 }
             }]
         };
 
-        $("#selcet_acc_dlg").show();
-        $("#selcet_acc_dlg").dialog(opt);
+        $("#selcet_user_dlg").show();
+        $("#selcet_user_dlg").dialog(opt);
 
         return false;
 
@@ -264,12 +255,4 @@ ChargeSwap.Edit = function () {
     
 };
 
-ChargeSwap.Info = function () {
-
-    $("#btnClose").click(function() {
-
-        window.returnValue = "true";
-        window.close();
-    });
-};
 

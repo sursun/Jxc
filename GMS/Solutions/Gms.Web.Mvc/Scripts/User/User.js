@@ -17,13 +17,7 @@ User.Init = function () {
             { field: 'RealName', title: '真实姓名', width: 100 },
             { field: 'Mobile', title: '手机号', width: 100 },
             { field: 'Note', title: '备注', width: 100 }
-        ]],
-        onSelect: function (rowIndex, rowData) {
-            if (rowData != null) {
-                $('#user_selected_Id').val(rowData.Id);
-                $('#user_selected_LoginName').val(rowData.LoginName);
-            }
-        }
+        ]]
     });
 
     $("#btnAdd").click(function () {
@@ -124,6 +118,29 @@ User.Init = function () {
         return false;
 
     });
+};
+
+
+User.Select = function () {
+
+    $('#user_search_list').datagridEx({
+        toolbar: '#toolbar',
+        pagination: true,
+        singleSelect: true,
+        columns: [[
+            { field: 'LoginName', title: '登录名', width: 100 },
+            { field: 'RealName', title: '真实姓名', width: 100 },
+            { field: 'Mobile', title: '手机号', width: 100 },
+            { field: 'Note', title: '备注', width: 100 }
+        ]],
+        onSelect: function (rowIndex, rowData) {
+            if (rowData != null) {
+                $('#user_selected_Id').val(rowData.Id);
+                $('#user_selected_LoginName').val(rowData.LoginName);
+            }
+        }
+    });
+
 };
 
 

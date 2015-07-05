@@ -189,6 +189,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\ChargeSwapController.cs" />
+    <Compile Include="Controllers\ChargeController.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\DashboardViewModel.cs" />
     <Compile Include="Models\ForgotPasswordViewModel.cs" />
@@ -1402,6 +1403,7 @@
     <Content Include="Scripts\Contact\Contact.js" />
     <Content Include="Scripts\Supplier\Supplier.js" />
     <Content Include="Scripts\ChargeSwap\ChargeSwap.js" />
+    <Content Include="Scripts\Charge\Charge.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1606,6 +1608,12 @@
     <Content Include="Views\Customer\Alert.cshtml" />
     <Content Include="Views\ChargeSwap\Edit.cshtml" />
     <Content Include="Views\ChargeSwap\Index.cshtml" />
+    <Content Include="Views\ChargeSwap\Info.cshtml" />
+    <Content Include="Views\ChargeSwap\Audit.cshtml" />
+    <Content Include="Views\Charge\Audit.cshtml" />
+    <Content Include="Views\Charge\Edit.cshtml" />
+    <Content Include="Views\Charge\In.cshtml" />
+    <Content Include="Views\User\Select.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

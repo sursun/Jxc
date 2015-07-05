@@ -39,6 +39,7 @@ Account.Select = function () {
             if (rowData != null) {
                 $('#account_selected_Id').val(rowData.Id);
                 $('#account_selected_Name').val(rowData.Name);
+                $('#account_selected_Amount').val(rowData.CurAmount);
             }
 
         }

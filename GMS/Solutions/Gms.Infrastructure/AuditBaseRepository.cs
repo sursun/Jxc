@@ -38,6 +38,11 @@ namespace Gms.Infrastructure
                 }
             }
 
+            if (entityQuery.AuditState.HasValue)
+            {
+                q = q.Where(c => c.AuditState == entityQuery.AuditState);
+            }
+
             if (entityQuery.AuditorId.HasValue)
             {
                 q = q.Where(c => c.Auditor.Id == entityQuery.AuditorId);

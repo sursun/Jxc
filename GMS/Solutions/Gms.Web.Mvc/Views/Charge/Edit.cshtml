@@ -1,0 +1,164 @@
+﻿
+@using Gms.Domain
+@model Gms.Domain.Charge
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+
+    CommonCodeType chargeType = (CommonCodeType)ViewData["ChargeType"];
+    String strTitle = "记账";
+    if (chargeType == CommonCodeType.收入记账类型)
+    {
+        strTitle = "收入记账";
+    }
+    else
+    {
+        strTitle = "支出记账";
+    }
+}
+
+<body>
+    <title>@strTitle</title>
+    <div class="easyui-panel" style=" padding: 10px; background: #fafafa;">
+
+        <form id="entityform" method="post" action="/Charge/SaveOrUpdate">
+            
+            @Html.HiddenFor(c=>c.Id)
+
+            <table>
+      
+                <tr>
+                    <td>记账类型</td>
+                    <td>
+                        @if (chargeType == CommonCodeType.收入记账类型)
+                        {
+                            @Html.DropDownListForCommonCode(c=>c.ChargeType,CommonCodeType.收入记账类型)
+                        }
+                        else
+                        {
+                            @Html.DropDownListForCommonCode(c=>c.ChargeType,CommonCodeType.支出记账类型)
+                        }
+                        
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        账户
+                    </td>
+                    
+                    <td>
+                        @{
+                            int accId = 0;
+                            string accName = "";
+
+                            if (Model.Account != null)
+                            {
+                                accId = Model.Account.Id;
+                                accName = Model.Account.Name;
+                            }
+                        }
+                            
+                        <input id="Account_Id" name="Account.Id" style="display: none" value="@accId" />
+                        <input id="Account_Name" name="Account.Name"  disabled="disabled" value="@accName" />
+                        <a id="selectAccount" href="#">选择账户</a>
+                            
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>余额</td>
+                    <td>
+                        <input id="OldAmount" disabled="disabled" />
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td colspan="4">
+                        &ensp;
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>记账金额</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.Amount)
+                    </td>
+                </tr>
+  
+                <tr>
+                    <td>
+                        经手人
+                    </td>
+                    
+                    <td>
+                        @{
+                            int usrId = 0;
+                            string usrName = "";
+
+                            if (Model.User != null)
+                            {
+                                usrId = Model.User.Id;
+                                usrName = Model.User.LoginName;
+                            }
+                        }
+                            
+                        <input id="User_Id" name="User.Id" style="display: none" value="@usrId" />
+                        <input id="User_Name" name="User.Name"  disabled="disabled" value="@usrName" />
+                        <a id="selectUser" href="#">选择</a>
+                            
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>备注</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.Note)
+                    </td>
+                </tr>
+  
+                <tr>
+                    <td>登记人</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.Creator.LoginName)
+                    </td>
+                </tr>
+  
+                <tr>
+                    <td>登记时间</td>
+                    <td>
+                        <input type="text"  class="easyui-datebox" disabled="disabled"  value="@Model.CreateTime">
+                    </td>
+                </tr>
+
+            </table>
+
+        </form>
+    </div>
+    
+    <div id="selcet_acc_dlg" dlgtitle="选择账户" style="display: none;padding:8px;">
+        <iframe id="selcet_acc_dlg_content" style="width: 100%; height: 100%; border: none;" frameborder="no">
+            @*动态加载*@
+        </iframe>
+    </div>
+
+    <div id="selcet_user_dlg" dlgtitle="选择经手人" style="display: none;padding:8px;">
+        <iframe id="selcet_user_dlg_content" style="width: 100%; height: 100%; border: none;" frameborder="no">
+            @*动态加载*@
+        </iframe>
+    </div>    
+            
+    <div align="center" style="margin-top: 10px;">
+        <a href="#" id="btnSave" class="easyui-linkbutton" iconcls="icon-save" >保存</a>
+    </div>
+    
+</body>
+
+<script type="text/javascript" src="@Url.Content("/Scripts/Charge/Charge.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Charge.Edit();
+    });
+
+</script>

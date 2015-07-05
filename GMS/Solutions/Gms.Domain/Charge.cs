@@ -42,7 +42,7 @@ namespace Gms.Domain
         /// <summary>
         /// 是否自动记账？
         /// </summary>
-        public virtual Boolean AutoCreate { get; set; }
+        public virtual Yesno AutoCreate { get; set; }
 
         /// <summary>
         /// 备注
@@ -56,6 +56,11 @@ namespace Gms.Domain
         /// 记账账户
         /// </summary>
         public int? AccountId { get; set; }
+
+        /// <summary>
+        /// 收入还是支出？
+        /// </summary>
+        public Boolean? ChargeInOut { get; set; }
 
         /// <summary>
         /// 收支类型
@@ -82,7 +87,7 @@ namespace Gms.Domain
         /// <summary>
         /// 是否自动记账？
         /// </summary>
-        public Boolean? AutoCreate { get; set; }
+        public Yesno? AutoCreate { get; set; }
 
         /// <summary>
         /// 备注

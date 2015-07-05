@@ -1,0 +1,92 @@
+﻿
+@using Gms.Domain
+@model Gms.Domain.ChargeSwap
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body>
+    <title>流转记账</title>
+    <div class="easyui-panel" style=" padding: 10px; background: #fafafa;">
+
+        <table>
+      
+            <tr>
+                <td>
+                    &ensp;
+                </td>
+                    
+                <td>
+                    @Html.DisplayTextFor(c => c.OrigAccount.Name)
+                </td>
+
+                <td>
+                    <span style="margin-left: 10px;margin-right: 10px;">→</span>
+                </td>
+
+                <td>
+                    @Html.DisplayTextFor(c => c.DestAccount.Name)
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>记账前金额</td>
+                <td>
+                    @Html.DisplayTextFor(c => c.OrigAmount)
+                </td>
+                <td>
+                    &ensp;
+                </td>
+                <td>
+                    @Html.DisplayTextFor(c => c.DestAmount)
+                </td>
+            </tr>
+                
+            <tr>
+                <td colspan="4">
+                    &ensp;
+                </td>
+            </tr>
+        
+            <tr>
+                <td>记账金额</td>
+                <td>
+                    @Html.DisplayTextFor(c=>c.Amount)
+                </td>
+              
+                <td>备注</td>
+                <td>
+                    @Html.DisplayTextFor(c=>c.Note)
+                </td>
+            </tr>
+  
+            <tr>
+                <td>登记人</td>
+                <td>
+                    @Html.DisplayTextFor(c=>c.Creator.LoginName)
+                </td>
+            
+                <td>登记时间</td>
+                <td>
+                    <input type="text"  class="easyui-datebox" disabled="disabled"  value="@Model.CreateTime">
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+    
+    <div align="center" style="margin-top: 10px;">
+        <a href="#" id="btnClose" class="easyui-linkbutton" iconcls="icon-save" >关闭</a>
+    </div>
+    
+</body>
+
+<script type="text/javascript" src="@Url.Content("/Scripts/ChargeSwap/ChargeSwap.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        ChargeSwap.Info();
+    });
+
+</script>

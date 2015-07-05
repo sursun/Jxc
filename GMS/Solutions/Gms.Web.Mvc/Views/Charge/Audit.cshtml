@@ -1,0 +1,31 @@
+﻿@using Gms.Domain
+
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body>
+
+    <div id="toolbar" style="padding: 5px; height: auto">
+        
+        <div>
+            姓名：<input name="Name" class="messager-input" style="width: 80px" />
+            电话：<input name="Mobile" class="messager-input" style="width: 80px" />
+            公司：<input name="Company" class="messager-input" style="width: 80px" />
+            <a href="#" id="entity_search" class="easyui-linkbutton search" iconcls="icon-search">搜索</a>
+        </div>
+     
+    </div>
+     
+    <table id="entity_search_list" url="/Charge/List?AuditState=@((int)AuditState.未审核)" >
+            
+    </table>
+    
+</body>
+<script type="text/javascript" src="@Url.Content("/Scripts/Charge/Charge.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Charge.Audit();
+    });
+
+</script>

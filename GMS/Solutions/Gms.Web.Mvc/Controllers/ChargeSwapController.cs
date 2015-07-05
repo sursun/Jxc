@@ -21,7 +21,29 @@ namespace Gms.Web.Mvc.Controllers
             return View();
         }
 
+        public ActionResult Audit()
+        {
+            return View();
+        }
+
         public ActionResult Edit(int? id)
+        {
+            ChargeSwap item = null;
+
+            if (id.HasValue)
+            {
+                item = this.ChargeSwapRepository.Get(id.Value);
+            }
+
+            if (item == null)
+            {
+                item = new ChargeSwap();
+            }
+
+            return View(item);
+        }
+
+        public ActionResult Info(int? id)
         {
             ChargeSwap item = null;
 
@@ -57,6 +79,26 @@ namespace Gms.Web.Mvc.Controllers
 
                     TryUpdateModel(item);
                 }
+                else
+                {
+                    if(item.OrigAccount == null)
+                        throw new Exception("请选择源账户");
+
+                    if (item.DestAccount == null)
+                        throw new Exception("请选择目的账户");
+
+                    if (item.Amount == 0)
+                        throw new Exception("请输入记账金额");
+
+                    item.OrigAmount = item.OrigAccount.CurAmount;
+                    item.OrigAccount.CurAmount -= item.Amount;
+
+                    item.DestAmount = item.DestAccount.CurAmount;
+                    item.DestAccount.CurAmount += item.Amount;
+
+                }
+
+                item.AuditState = AuditState.未审核;
 
                 item = this.ChargeSwapRepository.SaveOrUpdate(item);
 
@@ -71,12 +113,47 @@ namespace Gms.Web.Mvc.Controllers
         }
 
         [Transaction]
+        public ActionResult SaveAudit(int id, int pass)
+        {
+            var item = this.ChargeSwapRepository.Get(id);
+
+            if (item != null)
+            {
+                item.Auditor = CurrentUser;
+                item.AuditTime = DateTime.Now;
+
+                if (pass == 1)
+                {
+                    item.AuditState = AuditState.审核成功;
+                }
+                else
+                {
+                    item.AuditState = AuditState.审核失败;
+                }
+
+                item = this.ChargeSwapRepository.SaveOrUpdate(item);
+
+                return JsonSuccess(item);
+            }
+            
+            return JsonError("审核失败，请刷新后再试");
+        }
+        
+        [Transaction]
         public ActionResult Delete(int id)
         {
             var item = this.ChargeSwapRepository.Get(id);
             if (item != null)
             {
-                this.ChargeSwapRepository.Delete(item);
+                if (item.AuditState == AuditState.未审核 || item.AuditState == AuditState.审核失败)
+                {
+                    this.ChargeSwapRepository.Delete(item);
+                }
+                else
+                {
+                    return JsonError("只能删除‘未审核’和‘审核失败’的记账");
+                }
+                
             }
             
             return JsonSuccess();

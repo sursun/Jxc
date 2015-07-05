@@ -19,6 +19,11 @@ namespace Gms.Infrastructure
             {
                 q = q.Where(c => c.Account.Id == entityQuery.AccountId);
             }
+            
+            if (entityQuery.ChargeInOut.HasValue)
+            {
+                q = q.Where(c => c.ChargeType.ParamFlag == entityQuery.ChargeInOut);
+            }
 
             if (entityQuery.ChargeTypeId.HasValue)
             {
