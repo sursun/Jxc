@@ -15,8 +15,12 @@ namespace Gms.Web.Mvc.Controllers
     //[Authorize]
     public class ChargeController : BaseController
     {
-
         public ActionResult In()
+        {
+            return View();
+        }
+
+        public ActionResult Out()
         {
             return View();
         }
@@ -26,7 +30,7 @@ namespace Gms.Web.Mvc.Controllers
             return View();
         }
 
-        public ActionResult Edit(int? id,CommonCodeType? chargetype)
+        public ActionResult Edit(int? id, CommonCodeType? chargeTypeFlag)
         {
             Charge item = null;
             ViewData["ChargeType"] = CommonCodeType.支出记账类型;
@@ -39,9 +43,9 @@ namespace Gms.Web.Mvc.Controllers
             if (item == null )
             {
                 item = new Charge();
-                if (chargetype.HasValue)
+                if (chargeTypeFlag.HasValue)
                 {
-                    ViewData["ChargeType"] = chargetype.Value;
+                    ViewData["ChargeType"] = chargeTypeFlag.Value;
                 }
             }
 
@@ -97,9 +101,9 @@ namespace Gms.Web.Mvc.Controllers
         [Transaction]
         public ActionResult SaveAudit(int id, int pass)
         {
-            var item = this.ChargeSwapRepository.Get(id);
+            var item = this.ChargeRepository.Get(id);
 
-            if (item != null)
+            if (item != null && item.AuditState ==AuditState.未审核)
             {
                 item.Auditor = CurrentUser;
                 item.AuditTime = DateTime.Now;
@@ -113,7 +117,7 @@ namespace Gms.Web.Mvc.Controllers
                     item.AuditState = AuditState.审核失败;
                 }
 
-                item = this.ChargeSwapRepository.SaveOrUpdate(item);
+                item = this.ChargeRepository.SaveOrUpdate(item);
 
                 return JsonSuccess(item);
             }

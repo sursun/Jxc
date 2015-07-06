@@ -60,7 +60,7 @@ namespace Gms.Domain
         /// <summary>
         /// 收入还是支出？
         /// </summary>
-        public Boolean? ChargeInOut { get; set; }
+        public CommonCodeType? ChargeTypeFlag { get; set; }
 
         /// <summary>
         /// 收支类型

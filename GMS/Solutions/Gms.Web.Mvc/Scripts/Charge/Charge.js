@@ -14,7 +14,7 @@ Charge.In = function () {
         singleSelect:true,
         columns: [[
             { field: 'AccountName', title: '账户', width: 100 },
-            { field: 'ChargeTypeName', title: '收入类型', width: 100 },
+            { field: 'ChargeTypeName', title: '记账类型', width: 100 },
             { field: 'OldAmount', title: '记账前余额', width: 100 },
             { field: 'Amount', title: '记账金额', width: 100 },
             { field: 'UserName', title: '经手人', width: 100 },
@@ -31,7 +31,9 @@ Charge.In = function () {
 
     $("#btnAdd").click(function () {
 
-        var vReturnValue = window.showModalDialog('/Charge/Edit', '', features);
+        var nType = this.hash.substr(1);
+
+        var vReturnValue = window.showModalDialog('/Charge/Edit?chargeTypeFlag=' + nType, '', features);
         if (vReturnValue != undefined) {
             $('#entity_search_list').datagridEx("reload");
         }
@@ -51,7 +53,7 @@ Charge.In = function () {
             return;
         }
 
-        var vReturnValue = window.showModalDialog('/Charge/Edit?id=' + rec.Id, '修改流转记账', features);
+        var vReturnValue = window.showModalDialog('/Charge/Edit?id=' + rec.Id, '', features);
         if (vReturnValue != undefined) {
             $('#entity_search_list').datagridEx("reload");
         }
@@ -69,9 +71,12 @@ Charge.Audit = function () {
         pagination: true,
         singleSelect:true,
         columns: [[
-            { field: 'OrigAccountName', title: '源账户', width: 100 },
-            { field: 'DestAccountName', title: '目的账户', width: 100 },
+            { field: 'AccountName', title: '账户', width: 100 },
+            { field: 'ChargeTypeName', title: '记账类型', width: 100 },
+            { field: 'OldAmount', title: '记账前余额', width: 100 },
             { field: 'Amount', title: '记账金额', width: 100 },
+            { field: 'UserName', title: '经手人', width: 100 },
+            { field: 'AutoCreate', title: '自动记账', width: 100 },
             { field: 'CreatorName', title: '登记人', width: 100 },
             { field: 'CreateTimeString', title: '登记日期', width: 100 },
             { field: 'Note', title: '备注', width: 100 },
@@ -94,26 +99,26 @@ Charge.Audit = function () {
         ]]
     });
     
-    $("#btnEdit").click(function () {
+    //$("#btnEdit").click(function () {
 
-        var rec = $('#entity_search_list').datagridEx("getSelected");
+    //    var rec = $('#entity_search_list').datagridEx("getSelected");
 
-        if (rec == null) {
-            return;
-        }
+    //    if (rec == null) {
+    //        return;
+    //    }
 
-        var vReturnValue = window.showModalDialog('/ChargeSwap/Info?id=' + rec.Id, '查看流转记账', features);
-        if (vReturnValue != undefined) {
-            $('#entity_search_list').datagridEx("reload");
-        }
+    //    var vReturnValue = window.showModalDialog('/ChargeSwap/Info?id=' + rec.Id, '查看流转记账', features);
+    //    if (vReturnValue != undefined) {
+    //        $('#entity_search_list').datagridEx("reload");
+    //    }
 
-    });
+    //});
 
     $(".btnAudit").live("click", function() {
         var nPass = this.hash.substr(1,1);
         var nId = this.hash.substr(2);
 
-        $.post("/ChargeSwap/SaveAudit", { id: nId, pass: nPass }, function (data) {
+        $.post("/Charge/SaveAudit", { id: nId, pass: nPass }, function (data) {
             if (data.success) {
 
                 $('#entity_search_list').datagridEx("reload");

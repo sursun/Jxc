@@ -117,7 +117,7 @@ namespace Gms.Web.Mvc.Controllers
         {
             var item = this.ChargeSwapRepository.Get(id);
 
-            if (item != null)
+            if (item != null && item.AuditState == AuditState.未审核)
             {
                 item.Auditor = CurrentUser;
                 item.AuditTime = DateTime.Now;

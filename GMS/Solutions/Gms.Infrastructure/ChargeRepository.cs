@@ -19,10 +19,10 @@ namespace Gms.Infrastructure
             {
                 q = q.Where(c => c.Account.Id == entityQuery.AccountId);
             }
-            
-            if (entityQuery.ChargeInOut.HasValue)
+
+            if (entityQuery.ChargeTypeFlag.HasValue)
             {
-                q = q.Where(c => c.ChargeType.ParamFlag == entityQuery.ChargeInOut);
+                q = q.Where(c => c.ChargeType.Type == entityQuery.ChargeTypeFlag);
             }
 
             if (entityQuery.ChargeTypeId.HasValue)

@@ -1614,6 +1614,7 @@
     <Content Include="Views\Charge\Edit.cshtml" />
     <Content Include="Views\Charge\In.cshtml" />
     <Content Include="Views\User\Select.cshtml" />
+    <Content Include="Views\Charge\Out.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
