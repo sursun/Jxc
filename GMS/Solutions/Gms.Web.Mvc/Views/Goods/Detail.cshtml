@@ -1,0 +1,151 @@
+﻿@using Gms.Domain
+@model Gms.Web.Mvc.Controllers.GoodsModel
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body>
+    
+    <title>查看商品详细信息</title>
+
+    <div class="easyui-panel" style=" padding: 10px; background: #fafafa;">
+    
+            <table>
+                <tr>
+                    <td>编号</td>
+                    <td style="width: 240px;">
+                        @Html.DisplayTextFor(c=>c.CodeNo)
+                    </td>
+                    <td style="width: 80px;">条码</td>
+                    <td>
+                        @Html.DisplayTextFor(c => c.BarCode)
+                    </td>
+                </tr>
+                <tr>
+                    <td>名称</td>
+                    <td>
+                        @Html.DisplayTextFor(c => c.Name)
+                    </td>
+     
+                    <td>名称简拼</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.Pinyin)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>规格型号</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.Model)
+                    </td>
+            
+                    <td>单位</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.UnitName)
+                    </td>
+                </tr>
+                    
+                <tr>
+                    <td>低储预警</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.MinQuantity)
+                    </td>
+            
+                    <td>高储预警</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.MaxQuantity)
+                    </td>
+                </tr>
+                    
+                @*                    <tr>
+                        <td>商品类别</td>
+                        <td colspan="3">
+                            @Html.DropDownListForCommonCode(c=>c.Category,CommonCodeType.商品类别)
+                            <a id="selectCategory" href="#">选择类别</a>
+                        </td>
+                    </tr>*@
+
+                <tr>
+                    <td>商品品牌</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.BrandName)
+                    </td>
+            
+                    <td>陈列架</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.DisplayStandsName)
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>进价</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.PurchasePrice)
+                    </td>
+            
+                    <td>零售价</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.RetailPrice)
+                    </td>
+                </tr>
+                    
+                <tr>
+                    <td>是否允许前台改价销售</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.IsFreePriceStr)
+                    </td>
+
+                    <td>最低限价</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.MinPrice)
+                    </td>
+                </tr>
+                    
+                <tr>
+                    <td>是否特价</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.IsBarginStr)
+                    </td>
+
+                    <td>特价</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.BarginPrice)
+                    </td>
+                        
+                </tr>
+             
+                <tr>
+                    
+                    <td>商品状态</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.GoodsStatusStr)
+                    </td>
+
+                    <td>积分金额</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.PointBase)
+                        <br/>
+                        消费多少元获得1积分，0代表按系统设置统一积分
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>备注</td>
+                    <td colspan="3">
+                        @Html.DisplayTextFor(c=>c.Note)
+                    </td>
+                </tr>
+                <tr>
+                    <td>创建时间</td>
+                    <td colspan="3">
+                        @Html.DisplayTextFor(c=>c.CreateTimeStr)
+                    </td>
+                </tr>
+
+            </table>
+        
+
+    </div>
+    
+</body>

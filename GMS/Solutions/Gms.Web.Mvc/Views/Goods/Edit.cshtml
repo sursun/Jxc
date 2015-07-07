@@ -1,0 +1,187 @@
+﻿@using Gms.Domain
+@model Gms.Domain.Goods
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+    String strTitle = "添加商品";
+    
+    if ( Model.Id > 0)
+    {
+        strTitle = "修改商品信息";
+    }
+}
+
+<body>
+
+        <title>@strTitle</title>
+
+    
+
+    <div class="easyui-panel" style=" padding: 10px; background: #fafafa;">
+    
+        <form id="entityform" method="post" action="/Goods/SaveOrUpdate">
+                
+            @Html.HiddenFor(c=>c.Id)
+
+            <table>
+                <tr>
+                    <td>编号</td>
+                    <td style="width: 240px;">
+                        @if ( Model.Id > 0)
+                        {
+                            <input type="text" disabled="disabled"  value="@Model.CodeNo">
+                        }
+                        else
+                        {
+                            <input type="text" name="CodeNo"  value="@Model.CodeNo">
+                        }
+                    </td>
+                    <td style="width: 80px;">条码</td>
+                    <td>
+                        @Html.TextBoxFor(c => c.BarCode)
+                    </td>
+                </tr>
+                <tr>
+                    <td>名称</td>
+                    <td>
+                        @Html.TextBoxFor(c => c.Name)
+                    </td>
+     
+                    <td>名称简拼</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.Pinyin)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>规格型号</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.Model)
+                    </td>
+            
+                    <td>单位</td>
+                    <td>
+                        @Html.DropDownListForCommonCode(c=>c.Unit,CommonCodeType.计量单位)
+                    </td>
+                </tr>
+                    
+                <tr>
+                    <td>低储预警</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.MinQuantity)
+                    </td>
+            
+                    <td>高储预警</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.MaxQuantity)
+                    </td>
+                </tr>
+                    
+                @*                    <tr>
+                        <td>商品类别</td>
+                        <td colspan="3">
+                            @Html.DropDownListForCommonCode(c=>c.Category,CommonCodeType.商品类别)
+                            <a id="selectCategory" href="#">选择类别</a>
+                        </td>
+                    </tr>*@
+
+                <tr>
+                    <td>商品品牌</td>
+                    <td>
+                        @Html.DropDownListForCommonCode(c=>c.Brand,CommonCodeType.商品品牌)
+                    </td>
+            
+                    <td>陈列架</td>
+                    <td>
+                        @Html.DropDownListForCommonCode(c=>c.DisplayStands,CommonCodeType.商品陈列)
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>进价</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.PurchasePrice)
+                    </td>
+            
+                    <td>零售价</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.RetailPrice)
+                    </td>
+                </tr>
+                    
+                <tr>
+                    <td>是否允许前台改价销售</td>
+                    <td>
+                        @Html.DropDownListFor(c=>c.IsFreePrice)
+                    </td>
+
+                    <td>最低限价</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.MinPrice)
+                    </td>
+                </tr>
+                    
+                <tr>
+                    <td>是否特价</td>
+                    <td>
+                        @Html.DropDownListFor(c=>c.IsBargin)
+                    </td>
+
+                    <td>特价</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.BarginPrice)
+                    </td>
+                        
+                </tr>
+             
+                <tr>
+                    
+                    <td>商品状态</td>
+                    <td>
+                        @Html.DropDownListFor(c=>c.GoodsStatus)
+                    </td>
+
+                    <td>积分金额</td>
+                    <td>
+                        @Html.TextBoxFor(c=>c.PointBase)
+                        <br/>
+                        消费多少元获得1积分，0代表按系统设置统一积分
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>备注</td>
+                    <td colspan="3">
+                        @Html.TextAreaFor(c=>c.Note)
+                    </td>
+                </tr>
+
+            </table>
+
+        </form>
+        <div>
+            <span>创建时间：</span>
+            <input type="text" disabled="disabled" class="easyui-datebox" value="@Model.CreateTime" >
+        </div>
+
+        <div id="selcet_category_dlg" dlgtitle="选择类别" style="display: none;padding:8px;">
+            <iframe id="selcet_category_dlg_content" style="width: 100%; height: 100%; border: none;" frameborder="no">
+                @*动态加载*@
+            </iframe>
+        </div>
+
+    </div>
+    
+    <div align="center" style="margin-top: 10px;">
+        <a href="#" id="btnSave" class="easyui-linkbutton" iconcls="icon-save" >保存</a>
+    </div>
+    
+</body>
+
+<script type="text/javascript" src="@Url.Content("/Scripts/Goods/Goods.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Goods.Edit();
+    });
+
+</script>

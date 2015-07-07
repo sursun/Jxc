@@ -15,6 +15,11 @@ namespace Gms.Domain
     /// </summary>
     public class Goods : Entity
     {
+        public Goods()
+        {
+            this.CreateTime = DateTime.Now;
+        }
+
         /// <summary>
         /// 编码
         /// </summary>
@@ -29,6 +34,12 @@ namespace Gms.Domain
         /// 名称
         /// </summary>
         public virtual String Name { get; set; }
+
+        /// <summary>
+        /// 名称
+        /// 简拼
+        /// </summary>
+        public virtual String Pinyin { get; set; }
 
         /// <summary>
         /// 商品缩略图
@@ -52,11 +63,13 @@ namespace Gms.Domain
 
         /// <summary>
         /// 最低数量
+        /// 低储预警
         /// </summary>
         public virtual decimal MinQuantity { get; set; }
 
         /// <summary>
         /// 最高数量
+        /// 高储预警
         /// </summary>
         public virtual decimal MaxQuantity { get; set; }
 
@@ -105,7 +118,7 @@ namespace Gms.Domain
         /// <summary>
         /// 是否特价
         /// </summary>
-        public virtual Boolean IsBargin { get; set; }
+        public virtual Yesno IsBargin { get; set; }
 
         /// <summary>
         /// 特价
@@ -115,7 +128,7 @@ namespace Gms.Domain
         /// <summary>
         /// 是否允许前台改价销售
         /// </summary>
-        public virtual Boolean IsFreePrice { get; set; }
+        public virtual Yesno IsFreePrice { get; set; }
 
         /// <summary>
         /// 积分金额
@@ -138,7 +151,6 @@ namespace Gms.Domain
         /// </summary>
         public virtual DateTime CreateTime { get; set; }
      
-        
     }
 
     public class GoodsQuery : QueryBase
@@ -186,12 +198,12 @@ namespace Gms.Domain
         /// <summary>
         /// 是否特价
         /// </summary>
-        public Boolean? IsBargin { get; set; }
+        public Yesno? IsBargin { get; set; }
         
         /// <summary>
         /// 是否允许前台改价销售
         /// </summary>
-        public Boolean? IsFreePrice { get; set; }
+        public Yesno? IsFreePrice { get; set; }
 
         /// <summary>
         /// 积分金额

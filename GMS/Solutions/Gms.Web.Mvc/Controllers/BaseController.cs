@@ -30,6 +30,7 @@ namespace Gms.Web.Mvc.Controllers
         public ISupplierRepository SupplierRepository { get; set; }
         public IContactRepository ContactRepository { get; set; }
 
+        public IGoodsRepository GoodsRepository { get; set; }
         public IStoreInRepository StoreInRepository { get; set; }
 
         public ISysLogRepository SysLogRepository { get; set; }

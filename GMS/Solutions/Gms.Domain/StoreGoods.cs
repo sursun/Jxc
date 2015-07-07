@@ -30,6 +30,11 @@ namespace Gms.Domain
         public virtual decimal TotalAomount { get; set; }
 
         /// <summary>
+        /// 新建商品时，商品的期初设置
+        /// </summary>
+        public virtual Boolean BasicInfo { get; set; }
+
+        /// <summary>
         /// 备注
         /// </summary>
         public virtual String Note { get; set; }
