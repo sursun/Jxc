@@ -38,3 +38,11 @@ a.btn-small:hover {
     color: #444;
     text-decoration: none;
 }
+
+.goods_category_item {
+    float: left;
+    border: 1px solid #46a7d1;
+    background-color: #e8f5fe;
+    margin: 5px;
+    padding: 3px;
+}

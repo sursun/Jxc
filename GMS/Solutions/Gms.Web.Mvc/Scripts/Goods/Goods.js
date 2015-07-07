@@ -108,80 +108,7 @@ Goods.Edit = function () {
             }
         }
     });
-
     
-    //----------------------------------------- 选择商品类别 -------------------------------------//
-    $("#selectAccount").live("click", function () {
-
-        $("#selcet_acc_dlg_content").attr("src", "/CommonCode/Select");
-
-        var opt = {
-            title: '选择商品类别',
-            width: 680,
-            height: 380,
-            buttons: [{
-                text: '确定',
-                iconCls: 'icon-ok',
-                handler: function () {
-                    var deptContents = $("#selcet_acc_dlg_content").contents();
-
-                    $("#Account_Id").val(deptContents.find("#account_selected_Id").val());
-                    $("#Account_Name").val(deptContents.find("#account_selected_Name").val());
-                    $("#OldAmount").val(deptContents.find("#account_selected_Amount").val());
-
-                    $("#selcet_acc_dlg").dialog('close');
-                }
-            }, {
-                text: '取消',
-                iconCls: 'icon-cancel',
-                handler: function () {
-                    $("#selcet_acc_dlg").dialog('close');
-                }
-            }]
-        };
-
-        $("#selcet_acc_dlg").show();
-        $("#selcet_acc_dlg").dialog(opt);
-
-        return false;
-
-    });
-
-    $("#selectUser").live("click", function () {
-
-        $("#selcet_user_dlg_content").attr("src", "/User/Select");
-
-        var opt = {
-            title: '选择经手人',
-            width: 680,
-            height: 380,
-            buttons: [{
-                text: '确定',
-                iconCls: 'icon-ok',
-                handler: function () {
-                    var deptContents = $("#selcet_user_dlg_content").contents();
-
-                    $("#User_Id").val(deptContents.find("#user_selected_Id").val());
-                    $("#User_Name").val(deptContents.find("#user_selected_LoginName").val());
-
-                    $("#selcet_user_dlg").dialog('close');
-                }
-            }, {
-                text: '取消',
-                iconCls: 'icon-cancel',
-                handler: function () {
-                    $("#selcet_user_dlg").dialog('close');
-                }
-            }]
-        };
-
-        $("#selcet_user_dlg").show();
-        $("#selcet_user_dlg").dialog(opt);
-
-        return false;
-
-    });
-
     $("#btnSave").click(function () {
 
         var formOptions = {
@@ -210,6 +137,46 @@ Goods.Edit = function () {
 
     });
     
+    //----------------------------------------- 商品类别维护 -------------------------------------//
+    $("#btnAddCategory").live("click", function () {
+        var nType = this.hash.substr(1);
+        $("#selcet_category_dlg_content").attr("src", "/CommonCode/Select?type=" + nType);
+
+        var opt = {
+            title: '选择商品类别',
+            width: 680,
+            height: 380,
+            buttons: [{
+                text: '确定',
+                iconCls: 'icon-ok',
+                handler: function () {
+                    var deptContents = $("#selcet_category_dlg_content").contents();
+
+                    var nId = deptContents.find("#commoncode_selected_Id").val();
+                    var strName = deptContents.find("#commoncode_selected_FullName").val();
+
+                    appendCategoryItem(nId,strName);
+
+                    $("#selcet_category_dlg").dialog('close');
+                }
+            }, {
+                text: '取消',
+                iconCls: 'icon-cancel',
+                handler: function () {
+                    $("#selcet_category_dlg").dialog('close');
+                }
+            }]
+        };
+
+        $("#selcet_category_dlg").show();
+        $("#selcet_category_dlg").dialog(opt);
+
+        return false;
+
+    });
+
+    var appendCategoryItem = function (id,fullname) { };
+    var removeCategoryItem = function(id) {};
 };
 
 
