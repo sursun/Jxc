@@ -26,5 +26,10 @@ namespace Gms.Infrastructure
             
             return q;
         }
+
+        public IList<GoodsType> GetGoodsTypes(int id)
+        {
+            return Query.Where(c => (c.Goods.Id == id)).ToList();
+        }
     }
 }

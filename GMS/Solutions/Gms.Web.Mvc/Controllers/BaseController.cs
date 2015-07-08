@@ -31,6 +31,7 @@ namespace Gms.Web.Mvc.Controllers
         public IContactRepository ContactRepository { get; set; }
 
         public IGoodsRepository GoodsRepository { get; set; }
+        public IGoodsTypeRepository GoodsTypeRepository { get; set; }
         public IStoreInRepository StoreInRepository { get; set; }
 
         public ISysLogRepository SysLogRepository { get; set; }

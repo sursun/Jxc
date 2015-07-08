@@ -192,7 +192,7 @@ CommonCode.Select = function (extName) {
         idField: 'Id',
         treeField: 'Name',
         columns: cols,
-        onSelect: function (rowIndex, rowData) {
+        onSelect: function (rowData) {
             if (rowData != null) {
                 $('#commoncode_selected_Id').val(rowData.Id);
                 $('#commoncode_selected_Name').val(rowData.Name);

@@ -1621,6 +1621,7 @@
     <Content Include="Views\Goods\Index.cshtml" />
     <Content Include="Views\Goods\Select.cshtml" />
     <Content Include="Views\Goods\Detail.cshtml" />
+    <Content Include="Views\Goods\Category.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

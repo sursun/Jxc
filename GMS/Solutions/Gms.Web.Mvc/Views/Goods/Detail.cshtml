@@ -57,13 +57,23 @@
                     </td>
                 </tr>
                     
-                @*                    <tr>
-                        <td>商品类别</td>
-                        <td colspan="3">
-                            @Html.DropDownListForCommonCode(c=>c.Category,CommonCodeType.商品类别)
-                            <a id="selectCategory" href="#">选择类别</a>
-                        </td>
-                    </tr>*@
+                <tr>
+                    <td>商品类别</td>
+                    <td colspan="3">
+                        @{
+                            IList<GoodsType> list = (IList<GoodsType>)ViewData["Category"];
+                            if (list != null)
+                            {
+                                foreach (var goodsType in list)
+                                {
+                                    <span>@goodsType.Type.FullNameString()</span>
+                                    <span>|</span>
+                                }
+  
+                            }
+                        }
+                    </td>
+                </tr>
 
                 <tr>
                     <td>商品品牌</td>

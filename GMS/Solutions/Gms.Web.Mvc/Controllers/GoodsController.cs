@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -42,6 +43,8 @@ namespace Gms.Web.Mvc.Controllers
                 item = new Goods();
             }
 
+            ViewData["Category"] = this.GoodsTypeRepository.GetGoodsTypes(item.Id);
+
             return View(GoodsModel.From(item));
         }
 
@@ -64,15 +67,51 @@ namespace Gms.Web.Mvc.Controllers
 
 
         [Transaction]
-        public ActionResult SaveOrUpdate(Goods obj)
+        public ActionResult SaveOrUpdate(Goods obj,int[] categorys)
         {
-            if (obj.Id > 0)
+            try
             {
-                obj = this.GoodsRepository.Get(obj.Id);
-                TryUpdateModel(obj);
+                if (obj.Id > 0)
+                {
+                    obj = this.GoodsRepository.Get(obj.Id);
+                    TryUpdateModel(obj);
+                }
+                obj = this.GoodsRepository.SaveOrUpdate(obj);
+
+                IList<GoodsType> types = this.GoodsTypeRepository.GetGoodsTypes(obj.Id);
+                IList<int> ids = categorys.ToList();
+
+                //
+                //每个商品可以属于多个类别
+                //先删除新类别中不存在的类别
+                int nLen = types.Count -1;
+                for (int i = nLen; i >= 0; i--)
+                {
+                    GoodsType goodsType = types[nLen];
+                    
+                    if (ids.IndexOf(goodsType.Type.Id) >= 0)
+                    {
+                        ids.Remove(goodsType.Type.Id);
+                    }
+                    else
+                    {
+                        this.GoodsTypeRepository.Delete(goodsType);
+                    }
+                }
+
+                foreach (var id in ids)
+                {
+                    this.GoodsTypeRepository.SaveOrUpdate(new GoodsType() {Goods = obj,Type = this.CommonCodeRepository.Get(id)});
+                }
+
+                return JsonSuccess(obj);
+
             }
-            obj = this.GoodsRepository.SaveOrUpdate(obj);
-            return JsonSuccess(obj);
+            catch (Exception ex)
+            {
+                return JsonError(ex.Message);
+            }
+
         }
 
         [Transaction]
@@ -92,6 +131,13 @@ namespace Gms.Web.Mvc.Controllers
             }
         }
 
+        public ActionResult Category(int goodsid)
+        {
+            IList<GoodsType> list = this.GoodsTypeRepository.GetGoodsTypes(goodsid);
+            
+            return View(list);
+        }
+        
     }
 
     public class GoodsModel
@@ -219,7 +265,7 @@ namespace Gms.Web.Mvc.Controllers
         /// 创建时间
         /// </summary>
         public String CreateTimeStr { get; set; }
-
+        
         public GoodsModel(Goods goods)
         {
             this.Id = goods.Id;

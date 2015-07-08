@@ -175,8 +175,29 @@ Goods.Edit = function () {
 
     });
 
-    var appendCategoryItem = function (id,fullname) { };
-    var removeCategoryItem = function(id) {};
+    $(".deleteCategory").live("click", function () {
+        $(this).parent().remove();
+    });
+
+    var appendCategoryItem = function (id, fullname) {
+
+        removeCategoryItem(id);
+
+        var htmlContent = "<div class='goods_category_item'><span>" + fullname + "</span> <input name='categorys' value='";
+        htmlContent += id;
+        htmlContent += "' style='display: none'/><a href='#' class='deleteCategory'>删除</a></div>";
+        $("#btnAddCategory").before(htmlContent);
+    };
+
+    var removeCategoryItem = function (id) {
+        $.each($("#btnAddCategory").parent().find("input"), function () {
+            var destVal = $(this).val();
+
+            if(id == destVal)
+                $(this).parent().remove();
+        });
+        
+    };
 };
 
 

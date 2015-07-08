@@ -79,148 +79,70 @@
                 <tr>
                     <td>商品类别</td>
                     <td colspan="3">
-                        <div>
-                            <div class="goods_category_item">
-                                <span>五金电器》扳手1</span> 
-                                <input name="aaaa" value="3" style="display: none"/>
-                                <a href="#">删除</a>
-                            </div>
-                            
-                            <div class="goods_category_item">
-                                <span>五金电器》扳手2</span> 
-                                <input name="aaaa" value="3" style="display: none"/>
-                                <a href="#">删除</a>
-                            </div>
-                            <div class="goods_category_item">
-                                <span>五金电器》扳手1</span> 
-                                <input name="aaaa" value="3" style="display: none"/>
-                                <a href="#">删除</a>
-                            </div>
-                            <div class="goods_category_item">
-                                <span>五金电器》扳手1</span> 
-                                <input name="aaaa" value="3" style="display: none"/>
-                                <a href="#">删除</a>
-                            </div>
-                            
-                            <div class="goods_category_item">
-                                <span>五金电器》扳手2</span> 
-                                <input name="aaaa" value="3" style="display: none"/>
-                                <a href="#">删除</a>
-                            </div><div class="goods_category_item">
-                                <span>五金电器》扳手1</span> 
-                                <input name="aaaa" value="3" style="display: none"/>
-                                <a href="#">删除</a>
-                            </div>
-                            
-                            <div class="goods_category_item">
-                                <span>五金电器》扳手2</span> 
-                                <input name="aaaa" value="3" style="display: none"/>
-                                <a href="#">删除</a>
-                            </div>
-                            <div class="goods_category_item">
-                                <span>五金电器》扳手2</span> 
-                                <input name="aaaa" value="3" style="display: none"/>
-                                <a href="#">删除</a>
-                            </div>
-                            <div class="goods_category_item">
-                                <span>五金电器》扳手1</span> 
-                                <input name="aaaa" value="3" style="display: none"/>
-                                <a href="#">删除</a>
-                            </div>
-                            
-                            <div class="goods_category_item">
-                                <span>五金电器》扳手2</span> 
-                                <input name="aaaa" value="3" style="display: none"/>
-                                <a href="#">删除</a>
-                            </div>
-                            <div class="goods_category_item">
-                                <span>五金电器》扳手1</span> 
-                                <input name="aaaa" value="3" style="display: none"/>
-                                <a href="#">删除</a>
-                            </div>
-                            
-                            <div class="goods_category_item">
-                                <span>五金电器》扳手2</span> 
-                                <input name="aaaa" value="3" style="display: none"/>
-                                <a href="#">删除</a>
-                            </div>
-                            <div class="goods_category_item">
-                                <span>五金电器》扳手1</span> 
-                                <input name="aaaa" value="3" style="display: none"/>
-                                <a href="#">删除</a>
-                            </div>
-                            
-                            <div class="goods_category_item">
-                                <span>五金电器》扳手2</span> 
-                                <input name="aaaa" value="3" style="display: none"/>
-                                <a href="#">删除</a>
-                            </div>
-                            <a id="btnAddCategory" class="easyui-linkbutton" data-options="iconCls:'icon-add'" categorysum="2" style="margin-top: 5px;float: left;" href="#@CommonCodeType.商品类别">添加</a>
-                        </div>
-                        
-                        
+                        @{
+                            Html.RenderAction("Category","Goods",new{goodsid=Model.Id});
+                        }
                     </td>
                 </tr>
 
                 <tr>
                     <td>商品品牌</td>
                     <td>
-                        @Html.DropDownListForCommonCode(c=>c.Brand,CommonCodeType.商品品牌)
+                        @Html.DropDownListForCommonCode(c => c.Brand, CommonCodeType.商品品牌)
                     </td>
             
                     <td>陈列架</td>
                     <td>
-                        @Html.DropDownListForCommonCode(c=>c.DisplayStands,CommonCodeType.商品陈列)
+                        @Html.DropDownListForCommonCode(c => c.DisplayStands, CommonCodeType.商品陈列)
                     </td>
                 </tr>
         
                 <tr>
                     <td>进价</td>
                     <td>
-                        @Html.TextBoxFor(c=>c.PurchasePrice)
+                        @Html.TextBoxFor(c => c.PurchasePrice)
                     </td>
             
                     <td>零售价</td>
                     <td>
-                        @Html.TextBoxFor(c=>c.RetailPrice)
+                        @Html.TextBoxFor(c => c.RetailPrice)
                     </td>
                 </tr>
                     
                 <tr>
                     <td>是否允许前台改价销售</td>
                     <td>
-                        @Html.DropDownListFor(c=>c.IsFreePrice)
+                        @Html.DropDownListFor(c => c.IsFreePrice)
                     </td>
 
                     <td>最低限价</td>
                     <td>
-                        @Html.TextBoxFor(c=>c.MinPrice)
+                        @Html.TextBoxFor(c => c.MinPrice)
                     </td>
                 </tr>
                     
                 <tr>
                     <td>是否特价</td>
                     <td>
-                        @Html.DropDownListFor(c=>c.IsBargin)
+                        @Html.DropDownListFor(c => c.IsBargin)
                     </td>
 
                     <td>特价</td>
                     <td>
-                        @Html.TextBoxFor(c=>c.BarginPrice)
+                        @Html.TextBoxFor(c => c.BarginPrice)
                     </td>
-                        
                 </tr>
              
                 <tr>
                     
                     <td>商品状态</td>
                     <td>
-                        @Html.DropDownListFor(c=>c.GoodsStatus)
+                        @Html.DropDownListFor(c => c.GoodsStatus)
                     </td>
 
                     <td>积分金额</td>
                     <td>
-                        @Html.TextBoxFor(c=>c.PointBase)
+                        @Html.TextBoxFor(c => c.PointBase)
                         <br/>
                         消费多少元获得1积分，0代表按系统设置统一积分
                     </td>
@@ -230,7 +152,7 @@
                 <tr>
                     <td>备注</td>
                     <td colspan="3">
-                        @Html.TextAreaFor(c=>c.Note)
+                        @Html.TextAreaFor(c => c.Note)
                     </td>
                 </tr>
 

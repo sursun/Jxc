@@ -1,0 +1,27 @@
+﻿@using Gms.Domain
+@model IList<GoodsType>
+@{
+    Layout = null;
+}
+
+
+<div>
+                            
+    @{
+        if (Model != null)
+        {
+            foreach (var goodsType in Model)
+            {
+                <div class="goods_category_item">
+                    <span>@goodsType.Type.FullNameString()</span> 
+                    <input name="categorys" value="@goodsType.Type.Id" style="display: none"/>
+                    <a href="#" class="deleteCategory">删除</a>
+                </div>
+            }
+        }
+
+    }
+                            
+    <a id="btnAddCategory" class="easyui-linkbutton" data-options="iconCls:'icon-add'" categorysum="2" style="margin-top: 5px;float: left;" href="#@((int)CommonCodeType.商品类别)">添加</a>
+</div>
+  

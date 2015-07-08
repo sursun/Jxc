@@ -8,5 +8,6 @@ namespace Gms.Infrastructure
 {
     public interface IGoodsTypeRepository : IRepositoryBase<GoodsType>
     {
+        IList<GoodsType> GetGoodsTypes(int id);
     }
 }
