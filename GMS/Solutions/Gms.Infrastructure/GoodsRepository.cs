@@ -30,6 +30,11 @@ namespace Gms.Infrastructure
                 q = q.Where(c => c.Name.Contains(entityQuery.Name));
             }
 
+            if (!entityQuery.Pinyin.IsNullOrEmpty())
+            {
+                q = q.Where(c => c.Pinyin.Contains(entityQuery.Pinyin));
+            }
+
             if (entityQuery.Quantity != null)
             {
                 if (entityQuery.Quantity.Start.HasValue)

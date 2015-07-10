@@ -12,6 +12,12 @@ namespace Gms.Domain
     /// </summary>
     public abstract class StoreAlter : AuditBase
     {
+        public StoreAlter()
+        {
+            this.CodeNo = DateTime.Now.ToString("yyyyMMddHHmmss");
+            this.OrderTime = DateTime.Now;
+        }
+
         /// <summary>
         /// 票号
         /// </summary>

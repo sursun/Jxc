@@ -34,6 +34,19 @@ namespace Gms.Web.Mvc.Controllers
             return Json(result);
         }
 
+        public ActionResult GetByPinyin(string q)
+        {
+            if (q.IsNullOrEmpty())
+            {
+                return Json(new { total = 0, rows = new List<GoodsType>() });
+            }
+
+            var list = this.GoodsRepository.GetAll(new GoodsQuery { Pinyin = q});
+            var data = list.Select(c => GoodsModel.From(c)).ToList();
+            var result = new { total = list.Count, rows = data };
+            return Json(result);
+        }
+
         public ActionResult Detail(int id)
         {
             Goods item = this.GoodsRepository.Get(id);
@@ -65,7 +78,6 @@ namespace Gms.Web.Mvc.Controllers
             return View(item);
         }
 
-
         [Transaction]
         public ActionResult SaveOrUpdate(Goods obj,int[] categorys)
         {
@@ -76,32 +88,45 @@ namespace Gms.Web.Mvc.Controllers
                     obj = this.GoodsRepository.Get(obj.Id);
                     TryUpdateModel(obj);
                 }
-                obj = this.GoodsRepository.SaveOrUpdate(obj);
 
-                IList<GoodsType> types = this.GoodsTypeRepository.GetGoodsTypes(obj.Id);
-                IList<int> ids = categorys.ToList();
-
-                //
-                //每个商品可以属于多个类别
-                //先删除新类别中不存在的类别
-                int nLen = types.Count -1;
-                for (int i = nLen; i >= 0; i--)
+                if (obj.Pinyin.IsNullOrEmpty() && !obj.Name.IsNullOrEmpty())
                 {
-                    GoodsType goodsType = types[nLen];
-                    
-                    if (ids.IndexOf(goodsType.Type.Id) >= 0)
-                    {
-                        ids.Remove(goodsType.Type.Id);
-                    }
-                    else
-                    {
-                        this.GoodsTypeRepository.Delete(goodsType);
-                    }
+                    obj.Pinyin = ChineseToSpell.GetChineseSpell(obj.Name);
                 }
 
-                foreach (var id in ids)
+                obj = this.GoodsRepository.SaveOrUpdate(obj);
+
+                if (categorys != null)
                 {
-                    this.GoodsTypeRepository.SaveOrUpdate(new GoodsType() {Goods = obj,Type = this.CommonCodeRepository.Get(id)});
+                    IList<GoodsType> types = this.GoodsTypeRepository.GetGoodsTypes(obj.Id);
+                    IList<int> ids = categorys.ToList();
+
+                    //
+                    //每个商品可以属于多个类别
+                    //先删除新类别中不存在的类别
+                    int nLen = types.Count - 1;
+                    for (int i = nLen; i >= 0; i--)
+                    {
+                        GoodsType goodsType = types[nLen];
+
+                        if (ids.IndexOf(goodsType.Type.Id) >= 0)
+                        {
+                            ids.Remove(goodsType.Type.Id);
+                        }
+                        else
+                        {
+                            this.GoodsTypeRepository.Delete(goodsType);
+                        }
+                    }
+
+                    foreach (var id in ids)
+                    {
+                        this.GoodsTypeRepository.SaveOrUpdate(new GoodsType()
+                        {
+                            Goods = obj,
+                            Type = this.CommonCodeRepository.Get(id)
+                        });
+                    }
                 }
 
                 return JsonSuccess(obj);
@@ -119,6 +144,12 @@ namespace Gms.Web.Mvc.Controllers
         {
             try
             {
+                IList<GoodsType> types = this.GoodsTypeRepository.GetGoodsTypes(id);
+                foreach (var goodsType in types)
+                {
+                    this.GoodsTypeRepository.Delete(goodsType);
+                }
+
                 var obj = this.GoodsRepository.Get(id);
 
                 this.GoodsRepository.Delete(obj);

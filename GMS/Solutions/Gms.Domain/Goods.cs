@@ -169,6 +169,12 @@ namespace Gms.Domain
         /// 名称
         /// </summary>
         public String Name { get; set; }
+
+        /// <summary>
+        /// 名称
+        /// 简拼
+        /// </summary>
+        public String Pinyin { get; set; }
         
         /// <summary>
         /// 数量

@@ -20,6 +20,11 @@ namespace Gms.Web.Mvc.Controllers
             return View();
         }
 
+        public ActionResult Select()
+        {
+            return View();
+        }
+
         public ActionResult Alert()
         {
             return View();

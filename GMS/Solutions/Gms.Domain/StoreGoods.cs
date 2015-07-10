@@ -42,6 +42,11 @@ namespace Gms.Domain
 
     public class StoreGoodsQuery : QueryBase
     {
+        public StoreGoodsQuery()
+        {
+            BasicInfo = false;
+        }
+
         /// <summary>
         /// 商品
         /// </summary>
@@ -61,6 +66,11 @@ namespace Gms.Domain
         /// 总额
         /// </summary>
         public Range<decimal?> TotalAomount { get; set; }
+
+        /// <summary>
+        /// 新建商品时，商品的期初设置
+        /// </summary>
+        public Boolean? BasicInfo { get; set; }
 
         /// <summary>
         /// 备注

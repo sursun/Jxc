@@ -58,6 +58,11 @@ namespace Gms.Infrastructure
                     q = q.Where(c => c.TotalAomount < entityQuery.TotalAomount.End);
                 }
             }
+
+            if (entityQuery.BasicInfo.HasValue)
+            {
+                q = q.Where(c => c.BasicInfo == entityQuery.BasicInfo);
+            }
             
             if (!entityQuery.Note.IsNullOrEmpty())
             {
