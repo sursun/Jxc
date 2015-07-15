@@ -23,19 +23,18 @@ namespace Gms.Web.Mvc.Controllers
     /// <summary>
     /// 库存商品
     /// </summary>
-    public class StoreGoodsModel
+    public class StoreGoodsModel:GoodsModel
     {
-        public int Id { get; set; }
+        public StoreGoodsModel()
+        {
+        }
 
-        /// <summary>
-        /// 商品
-        /// </summary>
-        public GoodsModel GoodsModel { get; set; }
-
+        public int StoreGoodsId { get; set; }
+        
         /// <summary>
         /// 数量
         /// </summary>
-        public decimal Quantity { get; set; }
+        public decimal StoreGoodsQuantity { get; set; }
 
         /// <summary>
         /// 单价
@@ -48,23 +47,19 @@ namespace Gms.Web.Mvc.Controllers
         public decimal TotalAomount { get; set; }
 
         /// <summary>
+        /// 
         /// 备注
         /// </summary>
-        public String Note { get; set; }
+        public String StoreGoodsNote { get; set; }
 
-        public StoreGoodsModel(StoreGoods storeGoods)
+        public StoreGoodsModel(StoreGoods storeGoods):base(storeGoods.Goods)
         {
-            this.Id = storeGoods.Id;
+            this.StoreGoodsId = storeGoods.Id;
 
-            if (storeGoods.Goods != null)
-            {
-                this.GoodsModel = GoodsModel.From(storeGoods.Goods);
-            }
-
-            this.Quantity = storeGoods.Quantity;
+            this.StoreGoodsQuantity = storeGoods.Quantity;
             this.Price = storeGoods.Price;
             this.TotalAomount = storeGoods.TotalAomount;
-            this.Note = storeGoods.Note;
+            this.StoreGoodsNote = storeGoods.Note;
         }
 
 

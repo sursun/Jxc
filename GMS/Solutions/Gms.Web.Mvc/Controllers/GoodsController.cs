@@ -47,6 +47,17 @@ namespace Gms.Web.Mvc.Controllers
             return Json(result);
         }
 
+        public ActionResult GetGoods(int id)
+        {
+            var goods = this.GoodsRepository.Get(id);
+            if (goods != null)
+            {
+                return JsonSuccess(GoodsModel.From(goods));
+            }
+
+            return JsonError("未找到商品");
+        }
+
         public ActionResult Detail(int id)
         {
             Goods item = this.GoodsRepository.Get(id);
@@ -296,7 +307,11 @@ namespace Gms.Web.Mvc.Controllers
         /// 创建时间
         /// </summary>
         public String CreateTimeStr { get; set; }
-        
+
+        public GoodsModel()
+        {
+        }
+
         public GoodsModel(Goods goods)
         {
             this.Id = goods.Id;

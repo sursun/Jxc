@@ -1628,6 +1628,8 @@
     <Content Include="Views\StoreIn\Edit.cshtml" />
     <Content Include="Views\StoreIn\Index.cshtml" />
     <Content Include="Views\StoreIn\Add.cshtml" />
+    <Content Include="Views\StoreIn\Detail.cshtml" />
+    <Content Include="Views\StoreIn\Audit.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

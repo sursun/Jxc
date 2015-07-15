@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using Gms.Common;
 using Gms.Domain;
 using Gms.Infrastructure;
+using NUnit.Framework.Constraints;
 using SharpArch.NHibernate.Contracts.Repositories;
 using SharpArch.NHibernate.Web.Mvc;
 
@@ -40,9 +42,16 @@ namespace Gms.Web.Mvc.Controllers
             
             return View(item);
         }
+
+        public ActionResult Detail(int id)
+        {
+            StoreIn item = this.StoreInRepository.Get(id);
+            
+            return View(item);
+        }
         
         [Transaction]
-        public ActionResult SaveOrUpdate(StoreIn obj)
+        public ActionResult SaveOrUpdate(StoreIn obj, string sgoods)
         {
             try
             {
@@ -50,6 +59,66 @@ namespace Gms.Web.Mvc.Controllers
                 {
                     obj = this.StoreInRepository.Get(obj.Id);
                     TryUpdateModel(obj);
+
+
+                    var jser = new JavaScriptSerializer();
+                    IList<StoreInDetailModel> datas = jser.Deserialize<IList<StoreInDetailModel>>(sgoods);
+
+
+                    var list = this.StoreInDetailRepository.GetAll(new StoreInDetailQuery
+                    {
+                        StoreInId = obj.Id
+                    });
+
+                    IList<StoreInDetail> dts = new List<StoreInDetail>();
+
+                    //找到存在的进行更新,不存在的删除
+                    foreach (var item1 in list)
+                    {
+                        bool bFlag = false;
+
+                        for (int i = datas.Count - 1; i >= 0; i--)
+                        {
+                            var item2 = datas[i];
+
+                            if (item1.Goods.Id == item2.Id)
+                            {
+                                item1.Price = item2.Price;
+                                item1.Quantity = item2.StoreGoodsQuantity;
+                                item1.TotalAomount = item2.TotalAomount;
+                                item1.Note = item2.StoreGoodsNote;
+
+                                dts.Add(item1);
+                                datas.Remove(item2);
+
+                                bFlag = true;
+                            }
+                        }
+
+                        if (!bFlag)
+                        {
+                            this.StoreInDetailRepository.Delete(item1);
+                        }
+                    }
+
+                    //添加新增的
+                    foreach (var item in datas)
+                    {
+                        dts.Add(new StoreInDetail()
+                        {
+                            StoreIn = obj,
+                            Goods = this.GoodsRepository.Get(item.Id),
+                            Price = item.Price,
+                            Quantity = item.StoreGoodsQuantity,
+                            TotalAomount = item.TotalAomount,
+                            Note = item.StoreGoodsNote
+                        });
+                    }
+                    
+                    foreach (var item in dts)
+                    {
+                        this.StoreInDetailRepository.SaveOrUpdate(item);
+                    }
                 }
                 else
                 {
@@ -86,6 +155,16 @@ namespace Gms.Web.Mvc.Controllers
             {
                 var obj = this.StoreInRepository.Get(id);
 
+                var list = this.StoreInDetailRepository.GetAll(new StoreInDetailQuery
+                {
+                    StoreInId = obj.Id
+                });
+
+                if (list.Count > 0)
+                {
+                    return JsonError("入库单中存在商品，请清空后再试！");
+                }
+
                 this.StoreInRepository.Delete(obj);
 
                 return JsonSuccess();
@@ -111,6 +190,44 @@ namespace Gms.Web.Mvc.Controllers
         }
         
         #endregion
+        
+        #region 商品审核
+
+        public ActionResult Audit()
+        {
+            return View();
+        }
+
+        [Transaction]
+        public ActionResult SaveAudit(int id, int pass)
+        {
+            var item = this.StoreInRepository.Get(id);
+
+            if (item != null && item.AuditState == AuditState.未审核)
+            {
+                item.Auditor = CurrentUser;
+                item.AuditTime = DateTime.Now;
+
+                if (pass == 1)
+                {
+                    item.AuditState = AuditState.审核成功;
+                }
+                else
+                {
+                    item.AuditState = AuditState.审核失败;
+                }
+
+                item = this.StoreInRepository.SaveOrUpdate(item);
+
+                return JsonSuccess(item);
+            }
+
+            return JsonError("审核失败，请刷新后再试");
+        }
+   
+        
+        #endregion
+
     }
 
     /// <summary>
@@ -261,6 +378,11 @@ namespace Gms.Web.Mvc.Controllers
     {
         public int StoreInId { get; set; }
         public String StoreInCodeNo { get; set; }
+
+        public StoreInDetailModel()
+        {
+        }
+
 
         public StoreInDetailModel(StoreInDetail storeInDetail)
             : base(storeInDetail)
