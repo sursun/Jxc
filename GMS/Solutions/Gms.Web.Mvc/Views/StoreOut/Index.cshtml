@@ -1,0 +1,37 @@
+﻿@using Gms.Domain
+
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body>
+
+    <div id="toolbar" style="padding: 5px; height: auto">
+        
+        <div style="margin-bottom: 5px">
+            <a href="#" id="btnAdd" class="easyui-linkbutton" iconcls="icon-add" plain="true">添加</a>
+            <a href="#" id="btnEdit" class="easyui-linkbutton" iconcls="icon-edit" plain="true">修改</a>
+            <a href="#" class="easyui-linkbutton del" forgid="entity_search_list" iconcls="icon-remove" plain="true">删除</a>
+        </div>
+        
+        <div>
+            姓名：<input name="Name" class="messager-input" style="width: 80px" />
+            电话：<input name="Mobile" class="messager-input" style="width: 80px" />
+            公司：<input name="Company" class="messager-input" style="width: 80px" />
+            <a href="#" id="entity_search" class="easyui-linkbutton search" iconcls="icon-search">搜索</a>
+        </div>
+     
+    </div>
+     
+    <table id="entity_search_list" url="@Url.Action("List","StoreOut")" del="@Url.Action("Delete","StoreOut")">
+            
+    </table>
+    
+</body>
+<script type="text/javascript" src="@Url.Content("/Scripts/StoreOut/StoreOut.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        StoreOut.Init();
+    });
+
+</script>
