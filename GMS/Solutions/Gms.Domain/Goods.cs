@@ -127,6 +127,8 @@ namespace Gms.Domain
          
         /// <summary>
         /// 是否允许前台改价销售
+        /// 
+        /// 
         /// </summary>
         public virtual Yesno IsFreePrice { get; set; }
 

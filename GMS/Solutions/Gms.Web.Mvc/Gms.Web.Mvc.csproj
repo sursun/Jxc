@@ -194,6 +194,7 @@
     <Compile Include="Controllers\StoreInController.cs" />
     <Compile Include="Controllers\StoreGoodsController.cs" />
     <Compile Include="Controllers\StoreOutController.cs" />
+    <Compile Include="Controllers\StoreTransferController.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\DashboardViewModel.cs" />
     <Compile Include="Models\ForgotPasswordViewModel.cs" />
@@ -1637,6 +1638,11 @@
     <Content Include="Views\StoreOut\Detail.cshtml" />
     <Content Include="Views\StoreOut\Edit.cshtml" />
     <Content Include="Views\StoreOut\Index.cshtml" />
+    <Content Include="Views\StoreTransfer\Add.cshtml" />
+    <Content Include="Views\StoreTransfer\Audit.cshtml" />
+    <Content Include="Views\StoreTransfer\Detail.cshtml" />
+    <Content Include="Views\StoreTransfer\Edit.cshtml" />
+    <Content Include="Views\StoreTransfer\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

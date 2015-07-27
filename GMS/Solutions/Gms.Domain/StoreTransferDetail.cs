@@ -14,7 +14,7 @@ namespace Gms.Domain
         /// <summary>
         /// 商品调拨
         /// </summary>
-        public virtual StoreTransfer GoodsTransfer { get; set; }
+        public virtual StoreTransfer StoreTransfer { get; set; }
 
     }
     
@@ -23,7 +23,7 @@ namespace Gms.Domain
         /// <summary>
         /// 商品调拨
         /// </summary>
-        public int? GoodsTransferId { get; set; }
+        public int? StoreTransferId { get; set; }
 
     }
 }

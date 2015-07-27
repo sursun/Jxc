@@ -1,0 +1,180 @@
+﻿@using Gms.Domain
+@model Gms.Domain.StoreTransfer
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body>
+    
+    <title>查看销售出库单</title>
+
+    <div class="easyui-panel" style=" padding: 10px; background: #fafafa;">
+   
+            <table>
+                <tr>
+                    <td>票号</td>
+                    <td style="width: 240px;">
+                        <input type="text" disabled="disabled"  value="@Model.CodeNo">
+                    </td>
+                    <td colspan="2">&ensp;</td>
+                </tr>
+                <tr>
+                    <td >单据编号</td>
+                    <td>
+                        @Html.DisplayTextFor(c => c.OrderCode)
+                    </td>
+
+                    <td style="width: 80px;">单据日期</td>
+                    <td>
+                        <input type="text" disabled="disabled" class="easyui-datebox" value="@Model.OrderTime" >
+                    </td>
+                </tr>
+
+                <tr>
+                    
+                    <td>仓库</td>
+                    <td>
+                        @{
+                            int storeId = 0;
+                            String storeName = "";
+                            if (Model.Store != null)
+                            {
+                                storeId = Model.Store.Id;
+                                storeName = Model.Store.Name;
+                            }
+                        }
+                        <input id="Store_Id" name="Store.Id" style="display: none" value="@storeId" />
+                        <input id="Store_Name" name="Store.Name"  disabled="disabled" value="@storeName" />
+
+                    </td>
+            
+                    <td>客户</td>
+                    <td>
+                        @{
+                            int customerId = 0;
+                            String customerName = "";
+                            if (Model.Customer != null)
+                            {
+                                customerId = Model.Customer.Id;
+                                customerName = Model.Customer.Name;
+                            }
+                        }
+                        <input id="Customer_Id" name="Customer.Id" style="display: none" value="@customerId" />
+                        <input id="Customer_Name" name="Customer.Name"  disabled="disabled" value="@customerName" />
+
+                    </td>
+                </tr>
+                    
+                <tr>
+                    <td>销售员</td>
+                    <td colspan="3">
+                        
+                        @{
+                            int sellerId = 0;
+                            String sellerName = "";
+                            if (Model.Seller != null)
+                            {
+                                sellerId = Model.Seller.Id;
+                                sellerName = Model.Seller.LoginName;
+                                
+                            }
+                        }
+                        <input id="Seller_Id" name="Seller.Id" style="display: none" value="@sellerId" />
+
+                        <input id="Seller_Name" name="Seller.Name"  disabled="disabled" value="@sellerName" />
+
+                    </td>
+                        
+                </tr>
+
+                <tr>
+                    <td>结算账户</td>
+                    <td>
+                 
+                        @{
+                            int accId = 0;
+                            String accName = "";
+                            if (Model.Account != null)
+                            {
+                                accId = Model.Account.Id;
+                                accName = Model.Account.Name;
+                            }
+                        }
+                        <input id="Account_Id" name="Account.Id" style="display: none" value="@accId" />
+                        <input id="Account_Name" name="Account.Name"  disabled="disabled" value="@accName" />
+
+                    </td>
+            
+                    <td>本次应收款</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.Amount)
+                    </td>
+                </tr>
+                    
+                <tr>
+                    <td>本次欠款</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.Debt)
+                    </td>
+            
+                    <td>本次收款</td>
+                    <td>
+                        @Html.DisplayTextFor(c => c.AmountReceipt)
+                    </td>
+                    
+                </tr>
+            
+                <tr>
+                    
+                    <td>付款人</td>
+                    <td>
+                        @Html.DisplayTextFor(c=>c.Payer)
+                    </td>
+
+                    <td>收款人</td>
+                    <td>
+                        @Html.DisplayTextFor(c => c.Payee)
+                    </td>
+   
+                </tr>
+
+                <tr>
+                    <td>备注</td>
+                    <td colspan="3">
+                        @Html.DisplayTextFor(c => c.Note)
+                    </td>
+                </tr>
+
+            </table>
+
+    
+        
+        <div style="margin-top: 10px;margin-bottom: 10px;">
+            <div id="toolbar" style="padding: 5px; height: auto">
+            </div>
+     
+            <table id="entity_search_list" url="/StoreIn/DetailList?storeInId=@Model.Id">
+            
+            </table>
+        </div>
+
+        <div>
+            <span>登记人：</span>
+            @Html.DisplayTextFor(c => c.Creator.LoginName)
+            <span>创建时间：</span>
+            <input type="text" disabled="disabled" class="easyui-datebox" value="@Model.CreateTime" >
+        </div>
+        
+
+    </div>
+    
+    
+</body>
+
+<script type="text/javascript" src="@Url.Content("/Scripts/StoreOut/StoreOut.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        StoreOut.Detail();
+    });
+
+</script>

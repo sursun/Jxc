@@ -1,0 +1,118 @@
+﻿@using Gms.Domain
+@model Gms.Domain.StoreTransfer
+@{
+    Layout = "~/Views/Shared/EmptyLayout.cshtml";
+}
+
+<body>
+    
+    <title>新增销售出库单</title>
+
+    <div class="easyui-panel" style=" padding: 10px; background: #fafafa;">
+    
+        <form id="entityform" method="post" action="/StoreOut/SaveOrUpdate">
+
+            <table>
+                <tr>
+                    <td>票号</td>
+                    <td style="width: 240px;">
+                        <input type="text" disabled="disabled"  value="@Model.CodeNo">
+                    </td>
+                    <td colspan="2">&ensp;</td>
+                </tr>
+                <tr>
+                    <td >单据编号</td>
+                    <td>
+                        @Html.TextBoxFor(c => c.OrderCode)
+                    </td>
+
+                    <td style="width: 80px;">单据日期</td>
+                    <td>
+                        @Html.TextBoxFor(c => c.OrderTime,new{@class="easyui-datebox"})
+                    </td>
+                </tr>
+
+                <tr>
+                    
+                    <td>仓库</td>
+                    <td>
+                        @{
+                            int storeId = 0;
+                            String storeName = "";
+                            if (Model.Store != null)
+                            {
+                                storeId = Model.Store.Id;
+                                storeName = Model.Store.Name;
+                            }
+                        }
+                        <input id="Store_Id" name="Store.Id" style="display: none" value="@storeId" />
+                            <input id="Store_Name" name="Store.Name"  disabled="disabled" value="@storeName" />
+
+                        <a id="selectStore" href="#@CommonCodeType.仓库">选择仓库</a>
+                    </td>
+            
+                    <td>客户</td>
+                    <td>
+                        @{
+                            int customerId = 0;
+                            String customerName = "";
+                            if (Model.Customer != null)
+                            {
+                                customerId = Model.Customer.Id;
+                                customerName = Model.Customer.Name;
+                            }
+                        }
+                        <input id="Customer_Id" name="Customer.Id" style="display: none" value="@customerId" />
+                            <input id="Customer_Name" name="Customer.Name"  disabled="disabled" value="@customerName" />
+
+                        <a id="selectCustomer" href="#">选择客户</a>
+                    </td>
+                </tr>
+                    
+                <tr>
+                    <td>销售员</td>
+                    <td colspan="3">
+                        
+                        @{
+                            int sellerId = 0;
+                            String sellerName = "";
+                            if (Model.Seller != null)
+                            {
+                                sellerId = Model.Seller.Id;
+                                sellerName = Model.Seller.LoginName;
+                            }
+                        }
+                        <input id="Seller_Id" name="Seller.Id" style="display: none" value="@sellerId" />
+                            <input id="Seller_Name" name="Seller.Name"  disabled="disabled" value="@sellerName" />
+
+                        <a id="selectSeller" href="#">选择销售员</a>
+                    </td>
+                        
+                </tr>
+
+            </table>
+
+        </form>
+   
+
+        <div id="selcet_item_dlg" dlgtitle="选择XX" style="display: none;padding:8px;">
+            <iframe id="selcet_item_dlg_content" style="width: 100%; height: 100%; border: none;" frameborder="no">
+                @*动态加载*@
+            </iframe>
+        </div>
+
+    </div>
+    
+    <div align="center" style="margin-top: 10px;">
+        <a href="#" id="btnSave" class="easyui-linkbutton" iconcls="icon-save" >下一步</a>
+    </div>
+    
+</body>
+
+<script type="text/javascript" src="@Url.Content("/Scripts/StoreOut/StoreOut.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        StoreOut.Add();
+    });
+
+</script>

@@ -39,6 +39,9 @@ namespace Gms.Web.Mvc.Controllers
         public IStoreOutRepository StoreOutRepository { get; set; }
         public IStoreOutDetailRepository StoreOutDetailRepository { get; set; }
 
+        public IStoreTransferRepository StoreTransferRepository { get; set; }
+        public IStoreTransferDetailRepository StoreTransferDetailRepository { get; set; }
+
         public ISysLogRepository SysLogRepository { get; set; }
 
         public bool IsSystem()

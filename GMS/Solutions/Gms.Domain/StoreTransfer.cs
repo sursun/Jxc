@@ -35,6 +35,7 @@ namespace Gms.Domain
         /// <summary>
         /// 调入仓库
         /// </summary>
+        /// 
         public virtual CommonCode ToStore { get; set; }
         
         /// <summary>
